@@ -7,6 +7,9 @@ COPY . /app/
 WORKDIR /app/
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
+# This checks whether artisan is usable, it's a test.
+RUN php artisan about
+
 FROM node:lts-alpine3.15 AS build-js
 ARG RELEASE_HASH
 COPY --from=build-php /app/ /app/
