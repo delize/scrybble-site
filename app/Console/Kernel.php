@@ -15,6 +15,10 @@ class Kernel extends ConsoleKernel {
     protected function schedule(Schedule $schedule) {
         // $schedule->command('inspire')->hourly();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command('app:clean-old-syncs --force')
+            ->daily()
+            ->at('01:00')
+            ->appendOutputTo(storage_path('logs/clean-syncs.log'));
     }
 
     /**
