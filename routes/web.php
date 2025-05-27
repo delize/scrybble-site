@@ -37,6 +37,11 @@ Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', functi
     return $request->user();
 });
 
+Route::get('login', function () {
+    $redirect = urlencode(session()->get('url.intended'));
+    return redirect("/auth/login?redirect={$redirect}");
+})->name('login');
+
 Route::group(['middleware' => ['auth']], static function () {
     Route::get('/app/', [DashboardController::class, 'index'])->name('dashboard');
 

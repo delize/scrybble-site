@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
 use App\Http\Controllers\RMFiletreeController;
 use App\Http\Controllers\SyncController;
+use App\Models\Sync;
+use App\Services\GumroadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +26,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => "auth:api"], static function () {
+Route::group(['middleware' => ["auth:api", "throttle:180,1"]], static function () {
+    Route::post('sync/file', [FileController::class, 'show'])->name('download');
+    Route::post('sync/status', [SyncController::class, 'show']);
+
     Route::get('sync/delta', [SyncController::class, 'index']);
     Route::get('sync/onboardingState', OnboardingStateController::class);
     Route::post('sync/RMFileTree', [RMFiletreeController::class, 'index']);
     Route::get('sync/inspect-sync', [InspectSyncController::class, 'index']);
+
+    Route::get('/sync/user', function (Request $request, GumroadService $gumroadService) {
+        $user = $request->user();
+        return [
+            'user' => $user,
+            'subscription_status' => $gumroadService->licenseInfo(),
+            'total_syncs' => Sync::forUser($user)->count()
+        ];
+    });
 });

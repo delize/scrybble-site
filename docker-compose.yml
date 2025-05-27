@@ -61,9 +61,7 @@ services:
     remarks:
         volumes:
             - ./storage/efs:/efs
-        build:
-            context: ./docker/remarks-server
-            dockerfile: Dockerfile
+        image: "laauurraaa/remarks-server:wmwfyiqalxli8g83kml2r60hi75bqqcd"
         networks:
             - sail
 networks:
