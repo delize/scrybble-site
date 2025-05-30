@@ -1,5 +1,5 @@
 ARG RELEASE_HASH
-FROM laauurraaa/composer-8.1.7 AS build-php
+FROM laauurraaa/composer-8.3.21 AS build-php
 RUN test -n "$RELEASE_HASH" || echo "RELEASE_HASH must be set for a build"
 LABEL authors="lb"
 
@@ -21,7 +21,7 @@ RUN npm install -g cross-env
 RUN npm run build
 RUN rm -rf node_modules
 
-FROM php:8.3.15-apache-bookworm AS production
+FROM php:8.3.21-apache-bookworm AS production
 
 RUN apt-get update
 RUN apt-get -yqq install libbz2-dev libzip-dev libicu-dev
