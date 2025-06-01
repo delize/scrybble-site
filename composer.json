@@ -13,7 +13,7 @@
         "laravel/fortify": "^1.14",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5.9",
-        "laravel/passport": "^12.0",
+        "laravel/passport": "^v13.0.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
