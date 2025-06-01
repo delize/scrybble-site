@@ -48,7 +48,7 @@ export default function GumroadLicenseCard() {
         <div className="no-license">
           <a
             href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian"
-            className="fs-5 link-info"
+            className="fs-5"
             target="_blank"
           >
             Don't have a license? Try scrybble for free
