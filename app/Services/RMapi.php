@@ -146,11 +146,14 @@ class RMapi
             throw new RuntimeException("rmapi ls path failed with exit code `$exit_code`: " . $error);
         }
 
-        return $output->reduce(function (Collection $joinedLines, string $line) {
+        return $output->reduce(function (Collection $joinedLines, string $line) use ($output) {
             if (Str::startsWith($line, ["[d]", "[f]"])) {
                 $joinedLines->push($line);
             } else {
-                $joinedLines[count($joinedLines) - 1] .= $line;
+                Log::debug("Got a long line not starting with [d] or [f]");
+                Log::debug($line);
+                Log::debug(print_r($output, return: true));
+//                $joinedLines[count($joinedLines) - 1] .= $line;
             }
             return $joinedLines;
         }, collect())->sort()->map(function ($line) use ($path) {
