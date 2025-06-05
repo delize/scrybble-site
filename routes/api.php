@@ -1,13 +1,16 @@
 <?php
 declare(strict_types=1);
 
+use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
+use App\Http\Controllers\OnetimecodeController;
 use App\Http\Controllers\RMFiletreeController;
 use App\Http\Controllers\SyncController;
 use App\Models\Sync;
 use App\Services\GumroadService;
+use App\Services\OnboardingStateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +38,16 @@ Route::group(['middleware' => ["auth:api", "throttle:180,1"]], static function (
     Route::post('sync/RMFileTree', [RMFiletreeController::class, 'index']);
     Route::get('sync/inspect-sync', [InspectSyncController::class, 'index']);
 
-    Route::get('/sync/user', function (Request $request, GumroadService $gumroadService) {
+    Route::post('sync/gumroadLicense', [ConnectedGumroadLicenseController::class, "store"]);
+    Route::post('sync/onetimecode', [OnetimecodeController::class, 'create']);
+
+    Route::get('/sync/user', function (Request $request, GumroadService $gumroadService, OnboardingStateService $onboardingStateService) {
         $user = $request->user();
         return [
             'user' => $user,
             'subscription_status' => $gumroadService->licenseInfo(),
-            'total_syncs' => Sync::forUser($user)->count()
+            'total_syncs' => Sync::forUser($user)->count(),
+            'onboarding_state' => $onboardingStateService->getState()
         ];
     });
 });

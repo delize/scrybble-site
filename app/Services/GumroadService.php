@@ -12,9 +12,12 @@ class GumroadService
     {
     }
 
-    public function licenseInfo(): array
+    public function licenseInfo(): array | null
     {
         $licenseObj = Auth::user()->gumroadLicense;
+        if ($licenseObj === null) {
+            return null;
+        }
         $license = $licenseObj->license;
         $response = ['license' => $license,];
         $isLifetime = boolval($licenseObj->lifetime);

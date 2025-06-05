@@ -55,4 +55,14 @@ class Sync extends Model {
         $this->completed = true;
         $this->save();
     }
+
+    public static function formatForResponse(self $sync): array {
+        return [
+            'id' => $sync->id,
+            'filename' => $sync->filename,
+            'created_at' => $sync->created_at->diffForHumans(),
+            'completed' => $sync->completed,
+            'error' => !$sync->completed && ($sync->isOld() || $sync->hasError())
+        ];
+    }
 }
