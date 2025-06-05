@@ -8,6 +8,7 @@ use Eloquent\Pathogen\AbsolutePath;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RMFiletreeController extends Controller {
 
@@ -18,6 +19,9 @@ class RMFiletreeController extends Controller {
         $items = $rmapi->list($path);
         if ($path !== "/") {
             $parent = AbsolutePath::fromString($path)->parent()->normalize()->string();
+            if (!Str::endsWith($parent, "/")) {
+                $parent .= "/";
+            }
             $items->prepend(['type' => 'd', 'name' => '..', 'path' => $parent]);
         }
 
@@ -45,16 +49,5 @@ class RMFiletreeController extends Controller {
             "items" => $items,
             "cwd" => $path
         ]);
-    }
-
-    private function formatSyncItem(Sync $syncItem): array
-    {
-        return [
-            'id' => $syncItem->id,
-            'filename' => $syncItem->filename,
-            'created_at' => $syncItem->created_at->diffForHumans(),
-            'completed' => $syncItem->completed,
-            'error' => !$syncItem->completed && ($syncItem->isOld() || $syncItem->hasError())
-        ];
     }
 }
