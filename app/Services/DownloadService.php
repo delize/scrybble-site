@@ -36,10 +36,10 @@ class DownloadService
     {
         $storage = Storage::disk('efs');
 
-        $path = "user-{$user_id}/processed/${sync_id}.zip";
+        $path = "user-{$user_id}/processed/{$sync_id}.zip";
         if ($storage->exists($path)) {
             return $storage->temporaryUrl($path, now()->addMinutes(5));
         }
-        throw new GoneHttpException("File with sync id ${sync_id} has been deleted");
+        throw new GoneHttpException("File with sync id {$sync_id} has been deleted");
     }
 }
