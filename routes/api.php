@@ -6,7 +6,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
 use App\Http\Controllers\OnetimecodeController;
-use App\Http\Controllers\RemarkableDocumentShareController;
+use App\Http\Controllers\ReMarkableDocumentFeedbackController;
 use App\Http\Controllers\RMFiletreeController;
 use App\Http\Controllers\SyncController;
 use App\Models\Sync;
@@ -34,7 +34,7 @@ Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static fu
     Route::post('sync/file', [FileController::class, 'show'])->name('download');
     Route::post('sync/status', [SyncController::class, 'show']);
 
-    Route::post('sync/remarkable-document-share', [RemarkableDocumentShareController::class, 'store']);
+    Route::post('sync/remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
 
     Route::get('sync/delta', [SyncController::class, 'index']);
     Route::get('sync/onboardingState', OnboardingStateController::class);
