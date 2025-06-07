@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sync;
+use App\Services\DownloadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\form;
 
 class InspectSyncController extends Controller {
     public function index(Request $request) {
@@ -19,7 +21,7 @@ class InspectSyncController extends Controller {
             $result = $query->paginate($perPage);
 
             return response()->json([
-                'data' => collect($result->items())->map($this->formatSyncItem(...)),
+                'data' => collect($result->items())->map(Sync::formatForResponse(...)),
                 'current_page' => $result->currentPage(),
                 'last_page' => $result->lastPage(),
                 'per_page' => $result->perPage(),
@@ -28,26 +30,9 @@ class InspectSyncController extends Controller {
         } else {
             $collection = $query->limit(10)
                 ->get()
-                ->map($this->formatSyncItem(...));
+                ->map(Sync::formatForResponse(...));
 
             return response()->json($collection);
         }
     }
 
-    /**
-     * Format a sync item for the API response
-     *
-     * @param Sync $syncItem
-     * @return array
-     */
-    private function formatSyncItem(Sync $syncItem): array
-    {
-        return [
-            'id' => $syncItem->id,
-            'filename' => $syncItem->filename,
-            'created_at' => $syncItem->created_at->diffForHumans(),
-            'completed' => $syncItem->completed,
-            'error' => !$syncItem->completed && ($syncItem->isOld() || $syncItem->hasError())
-        ];
-    }
-}

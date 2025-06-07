@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Sync;
 use App\Services\DownloadService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\GoneHttpException;
 
@@ -34,5 +35,28 @@ class SyncController extends Controller
                 })->filter(fn ($syncOrNull) => !is_null($syncOrNull))->values()->toArray();
 
         return response()->json($results);
+    }
+
+    public function show(Request $request, DownloadService $downloadService) {
+        $user = Auth::user();
+
+        $request->integer('sync_id');
+        $sync = Sync::select(['filename', 'created_at', 'completed', 'id', 'sync_id'])
+            ->forUser(Auth::user())
+            ->orderByDesc("created_at")
+            ->first();
+
+        $res = [
+            "filename" => $sync->filename,
+            "id" => $sync->id,
+            "completed" => $sync->completed,
+            "error" => $sync->hasError()
+        ];
+
+        if ($sync->completed) {
+            $res["download_url"] = $downloadService->prepareProcessedRemarksZipUrl($user->id, $sync->sync_id);
+        }
+
+        return response()->json($res);
     }
 }

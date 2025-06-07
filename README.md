@@ -154,6 +154,8 @@ Quick tip: If you get tired of typing "docker compose -f docker-compose.selfhost
     - Make sure to pick a good username and password, it's used to connect the Obsidian Scrybble plugin with your server.
     - Additionally, this account is what you use to log in to your Scrybble dashboard on the website.
 3. Run `docker compose -f docker-compose.selfhosted.yml exec --user www-data app php artisan passport:install`
+4. Run `docker compose -f docker-compose.selfhosted.yml exec --user www-data app php artisan passport:client --device`
+   - It is essential that you store the client secret somewhere safe
 
 If you mess up in the set-up stage, you can start over from fresh by running
 

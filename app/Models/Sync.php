@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Eloquent\Pathogen\AbsolutePath;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon;
 
 class Sync extends Model {
     protected $table = 'sync';
@@ -40,19 +40,28 @@ class Sync extends Model {
         return $this->hasMany(SyncLog::class);
     }
 
-    public function isOld(): bool {
-        $minutes = 5;
-        return Carbon::now()->addMinutes($minutes)->lessThan($this->created_at);
-    }
-
     public function hasError(): bool
     {
-        return $this->logs()->where('severity', 'error')->count() > 0;
+        $definiteError = $this->logs()->where('severity', 'error')->count() > 0;
+        $isOld = $this->created_at->addMinutes(10)->lessThan(now());
+
+        return (!$this->completed && $isOld) || $definiteError;
     }
 
     public function complete(): void
     {
         $this->completed = true;
         $this->save();
+    }
+
+    public static function formatForResponse(self $sync): array {
+        return [
+            'id' => $sync->id,
+            'filename' => AbsolutePath::fromString($sync->filename)->name(),
+            'path' => $sync->filename,
+            'created_at' => $sync->created_at->diffForHumans(),
+            'completed' => $sync->completed,
+            'error' => $sync->hasError()
+        ];
     }
 }

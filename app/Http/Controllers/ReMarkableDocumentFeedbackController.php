@@ -6,7 +6,7 @@ use App\Http\Requests\RemarkableDocumentShareRequest;
 use App\Models\RemarkableDocumentShare;
 use Illuminate\Support\Facades\Auth;
 
-class RemarkableDocumentShareController extends Controller
+class ReMarkableDocumentFeedbackController extends Controller
 {
 //    public function index()
 //    {

@@ -139,9 +139,10 @@ class RMapi
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
 
-            if (Str::contains($error, "missing token")) {
-
-            }
+            // Rare error once received from the API. If this ever happens again, look into it
+//            if (Str::contains($error, "missing token")) {
+//
+//            }
 
             throw new RuntimeException("rmapi ls path failed with exit code `$exit_code`: " . $error);
         }

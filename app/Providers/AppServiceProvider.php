@@ -11,6 +11,7 @@ use App\Services\Remarks\RemarksService;
 use App\Services\RMapi;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 use URL;
 
 class AppServiceProvider extends ServiceProvider
@@ -45,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Passport::deviceUserCodeView("auth.device.user-code");
+        Passport::deviceAuthorizationView('auth.device.authorize');
+
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }

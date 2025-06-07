@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClientSecretController;
+use App\Http\Controllers\CustomHostInformationController;
 use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
@@ -13,11 +13,12 @@ use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
 use App\Http\Controllers\OnetimecodeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RemarkableDocumentShareController;
+use App\Http\Controllers\ReMarkableDocumentFeedbackController;
 use App\Http\Controllers\RMFiletreeController;
 use App\Http\Controllers\SentryTunnelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Passport\Passport;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::middleware(['middleware' => 'deployment.self-hosted'])->get('/client-secret', [ClientSecretController::class, "show"]);
+Route::middleware(['middleware' => 'deployment.self-hosted'])->get('/self-host-setup', [CustomHostInformationController::class, "show"]);
 Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('login', function () {
+    if (session()->has('url.intended')) {
+        $redirect = urlencode(session()->get('url.intended'));
+        if (Str::contains($redirect, 'obsidian')) {
+            dd($redirect);
+        }
+        return redirect("/auth/login?redirect={$redirect}");
+    }
+    return redirect("/auth/login");
+})->name('login');
 
 Route::group(['middleware' => ['auth']], static function () {
     Route::get('/app/', [DashboardController::class, 'index'])->name('dashboard');
@@ -66,7 +78,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => "api"], static function () {
 
     Route::post('RMFileTree', [RMFiletreeController::class, 'index']);
 
-    Route::post('remarkable-document-share', [RemarkableDocumentShareController::class, 'store']);
+    Route::post('remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
 });
 
 Route::group(['prefix' => 'api'], static function () {

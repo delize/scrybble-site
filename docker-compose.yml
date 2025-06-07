@@ -2,11 +2,11 @@
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.1
+            context: ./vendor/laravel/sail/runtimes/8.3
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.1/app
+        image: sail-8.3/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -61,9 +61,7 @@ services:
     remarks:
         volumes:
             - ./storage/efs:/efs
-        build:
-            context: ./docker/remarks-server
-            dockerfile: Dockerfile
+        image: "laauurraaa/remarks-server:wmwfyiqalxli8g83kml2r60hi75bqqcd"
         networks:
             - sail
 networks:
