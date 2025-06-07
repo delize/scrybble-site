@@ -40,15 +40,12 @@ class Sync extends Model {
         return $this->hasMany(SyncLog::class);
     }
 
-    // a file is old if $this->created_at + 10 minutes is less than now
-    public function isOld(): bool {
-        $minutes = 5;
-        return $this->created_at->addMinutes($minutes)->lessThan(now());
-    }
-
     public function hasError(): bool
     {
-        return $this->logs()->where('severity', 'error')->count() > 0;
+        $definiteError = $this->logs()->where('severity', 'error')->count() > 0;
+        $isOld = $this->created_at->addMinutes(10)->lessThan(now());
+
+        return (!$this->completed && $isOld) || $definiteError;
     }
 
     public function complete(): void
@@ -64,7 +61,7 @@ class Sync extends Model {
             'path' => $sync->filename,
             'created_at' => $sync->created_at->diffForHumans(),
             'completed' => $sync->completed,
-            'error' => (!$sync->completed && $sync->isOld()) || $sync->hasError()
+            'error' => $sync->hasError()
         ];
     }
 }
