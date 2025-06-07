@@ -31,7 +31,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static function () {
-    Route::post('sync/file', [FileController::class, 'show'])->name('download');
+    Route::post('sync/file', [FileController::class, 'show']);
     Route::post('sync/status', [SyncController::class, 'show']);
 
     Route::post('sync/remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
