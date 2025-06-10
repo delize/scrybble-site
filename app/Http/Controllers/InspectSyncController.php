@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sync;
-use App\Services\DownloadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function Laravel\Prompts\form;
 
-class InspectSyncController extends Controller {
-    public function index(Request $request) {
+class InspectSyncController extends Controller
+{
+    public function index(Request $request)
+    {
         $paginated = $request->boolean('paginated');
         $perPage = $request->integer('per_page', 10);
 
@@ -35,4 +35,4 @@ class InspectSyncController extends Controller {
             return response()->json($collection);
         }
     }
-
+}
