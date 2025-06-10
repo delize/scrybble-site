@@ -6,10 +6,6 @@ use App\Services\GumroadApi;
 
 class GumroadSaleController extends Controller
 {
-    public function index()
-    {
-
-    }
 
     public function show(string $sale_id, GumroadApi $gumroadApi)
     {

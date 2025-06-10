@@ -11,7 +11,7 @@ function usePrefillEmailField() {
   const [params] = useSearchParams()
   const sale_id: string | undefined = params.get('sale_id')
   const { data: userPrefill, isSuccess: prefillSuccess } =
-    useGumroadSaleInfoQuery(sale_id, { skip: sale_id === undefined })
+    useGumroadSaleInfoQuery(sale_id, { skip: sale_id == null })
 
   useEffect(() => {
     if (emailField && prefillSuccess && userPrefill) {

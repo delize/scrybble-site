@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class GumroadApi
 {
-    const API_ROOT = 'https://api.gumroad.com/v2/';
+    const string API_ROOT = 'https://api.gumroad.com/v2/';
     private Client $client;
 
     public function __construct()
@@ -23,14 +23,18 @@ class GumroadApi
         ]);
     }
 
-    /**
-     */
     public function saleById(string $sale_id)
     {
         $contents = Cache::remember("gumroad:sales:$sale_id", Carbon::now()->addHour(),
             fn() => $this->client->get("sales/$sale_id")->getBody()->getContents()
         );
-        return json_decode($contents, true);
+        $decoded = json_decode($contents, true);
+
+        if ($decoded['success']) {
+            return collect($decoded['sale']);
+        }
+
+        return null;
     }
 
     /**
