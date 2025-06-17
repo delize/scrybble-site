@@ -5,16 +5,13 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts'
 import {
-  createBrowserRouter,
-  createRoutesFromChildren,
-  Link,
-  matchRoutes,
-  Route,
-  RouterProvider,
-  useLocation,
-  useNavigationType,
-  useParams,
-  useRouteError,
+    createBrowserRouter,
+    createRoutesFromElements,
+    Link,
+    Route,
+    RouterProvider,
+    useParams,
+    useRouteError,
 } from 'react-router-dom'
 import LoginCard from './components/feature/LoginCard/LoginCard.tsx'
 import { usePostQuery, usePostsQuery } from './store/api/apiRoot.ts'
@@ -25,7 +22,6 @@ import { RegisterCard } from './components/feature/RegisterCard/RegisterCard.tsx
 import { LandingPage } from './pages/LandingPage/LandingPage.tsx'
 import { Toaster } from 'react-hot-toast'
 import ResetPasswordCard from './components/feature/ResetPasswordCard/ResetPasswordCard.tsx'
-import * as Sentry from '@sentry/react'
 import { ResetPasswordTokenCard } from './components/feature/ResetPasswordTokenCard.tsx'
 import UserProfile from './pages/UserProfile/UserProfile.tsx'
 import ReactMarkdown from 'react-markdown'
@@ -36,27 +32,6 @@ let InspectSync = React.lazy(
 )
 let PurchasedPage = React.lazy(() => import('./pages/PurchasedPage.tsx'))
 
-Sentry.init({
-  dsn: 'https://4201915825194ef6ab9263518b836ee4@o199243.ingest.sentry.io/4504527483305984',
-  integrations: [
-    Sentry.reactRouterV6BrowserTracingIntegration({
-      useEffect: React.useEffect,
-      useLocation,
-      useNavigationType,
-      createRoutesFromChildren,
-      matchRoutes,
-    }),
-  ],
-  tunnel: '/tunnel',
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-})
-
-const sentryCreateBrowserRouter =
-  Sentry.wrapCreateBrowserRouter(createBrowserRouter)
 
 function ObsidianPosts() {
   const { data, isLoading } = usePostsQuery()
@@ -138,11 +113,10 @@ const routes = (
     <Route index element={<LandingPage />} />
   </Route>
 )
-
-const router = sentryCreateBrowserRouter(createRoutesFromChildren(routes))
+const router = createBrowserRouter(createRoutesFromElements(routes))
 
 function App() {
-  return (
+    return (
     <Provider store={store}>
       <Suspense>
         <RouterProvider router={router} />

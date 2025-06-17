@@ -1,220 +1,604 @@
-
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
-
-// Define Scrybble Brand Colors
-$scrybble-citron:       #BEC36B;  // Secondary color
-$scrybble-kobold-pink:  #EFD3CF;  // Secondary color
-$scrybble-flame:        #E86837;  // Accent for buttons
-$scrybble-envisage:     #95BDB5;  // Primary brand color
-$scrybble-acorn-squash: #F0A740;  // Accent color
-$scrybble-baby-powder:  mix(#F6F5F0, $scrybble-envisage, 85%);  // Primary background color
-
-// Override Bootstrap's color system
-$primary:   $scrybble-envisage;
-$secondary: $scrybble-citron;
-$success:   adjust-color($scrybble-citron, $lightness: -10%); // Darker citron for success
-$info:      $scrybble-kobold-pink;
-$warning:   $scrybble-acorn-squash;
-$danger:    $scrybble-flame;
-$light:     $scrybble-baby-powder;
-$dark:      #343a40; // Keep Bootstrap's dark or customize
-
-// Create custom color class for the flame color if needed as a utility
-$custom-colors: (
-    "flame": $scrybble-flame
-);
-
-// Body
-$body-bg:                   $scrybble-baby-powder;
-$body-color:                #303030; // Dark gray for text
-
-// Links
-$link-color:                $scrybble-envisage;
-$link-hover-color:          $scrybble-acorn-squash;
-
-// Components
-$border-radius:             .25rem;
-$border-radius-lg:          .5rem;
-$border-radius-sm:          .2rem;
-
-// Buttons + Forms
-$input-btn-padding-y:       .5rem;
-$input-btn-padding-x:       1rem;
-$input-focus-border-color:  $scrybble-envisage;
-$input-focus-box-shadow:    0 0 0 0.25rem rgba($scrybble-envisage, 0.25);
-
-// Cards
-$card-border-color:         rgba($scrybble-envisage, 0.125);
-$card-cap-bg:               rgba($scrybble-envisage, 0.03);
-
-// Navs
-$nav-link-color:            $scrybble-envisage;
-$nav-link-hover-color:      $scrybble-acorn-squash;
-$nav-tabs-link-active-color: $scrybble-flame;
-
-$table-color: $body-color; // Keep default text color
-$table-bg: rgba($scrybble-envisage, 0.05); // Use baby powder as base background
-
-// Striped table colors
-$table-striped-color: $body-color; // Keep default text color for striped rows
-$table-striped-bg-factor: 0.14; // Adjust for subtlety
-$table-striped-bg: rgba($scrybble-envisage, $table-striped-bg-factor); // Very light Kobold Pink
-
-// Hover effect
-$table-hover-color: $body-color; // Keep default text color for hover
-$table-hover-bg-factor: 0.88; // Slightly stronger than stripes
-$table-hover-bg: rgba($scrybble-envisage, $table-hover-bg-factor); // Light Envisage on hover
-
-// Active state
-$table-active-color: $body-color;
-$table-active-bg-factor: 0.12;
-$table-active-bg: rgba($scrybble-envisage, $table-active-bg-factor);
-
-// Border colors
-$table-border-factor: 0.1;
-$table-border-color: rgba($scrybble-envisage, $table-border-factor);
-
-// Import Bootstrap
-@import "bootstrap/scss/bootstrap";
-
-
-.bg-envisage {
-    background-color: $scrybble-envisage !important;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.bg-kobold-pink {
-    background-color: $scrybble-kobold-pink !important;
+:root {
+    --citron: #BEC36B;
+    --autumn-green: #95b38d;
+    --kobold-pink: #EFD3CF;
+    --flame: #E86837;
+    --envisage: #95BDB5;
+    --acorn-squash: #F0A740;
+    --baby-powder: #F6F5F0;
+    --text-dark: #2C2C2C;
+    --text-medium: #5A5A5A;
+    --text-light: #8B8B8B;
+
+    --accent-color-first: var(--flame);
+    --accent-color-second: var(--envisage);
+    --accent-color-third: var(--acorn-squash);
 }
 
-a {
-    color: darken($scrybble-envisage, 35%);
-    transition: color 0.2s ease-in-out;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--baby-powder);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+button {
+    --bg: var(--citron);
+    --fg: color-mix(in oklab, var(--citron), black 40%);
+    background-color: var(--bg);
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+
+    & a {
+        text-decoration: none;
+        color: var(--fg);
+    }
+
     &:hover {
-        color: darken($scrybble-envisage, 45%);
+        --bg: color-mix(in oklab, var(--citron), black 10%);
+        transform: translateY(-2px);
     }
 }
 
-.form-check-input {
-    &:checked {
-        background-color: $scrybble-envisage;
-        border-color: $scrybble-envisage;
-    }
-
-    &:focus {
-        border-color: $scrybble-envisage;
-        box-shadow: 0 0 0 0.25rem rgba(149, 189, 181, 0.25); // Envisage with opacity
-    }
-
-    &:not(:disabled):not(:checked):hover {
-        border-color: shade-color($scrybble-envisage, 10%);
-    }
+header {
+    background: var(--envisage);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(95, 189, 181, 0.2);
 }
 
-h1 {
-    color: $scrybble-envisage;
-    border-bottom: 3px solid $scrybble-envisage;
-    padding-bottom: 10px;
-}
-
-h2 {
-    margin-top: 30px;
-    color: $scrybble-flame !important;
-    border-bottom: 2px solid $scrybble-citron;
-    padding-bottom: 5px;
-}
-
-dialog {
-    border-radius: 8px; // Slightly increased for a softer feel
-    border-color: $scrybble-envisage; // Your primary brand color
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    padding: 1.5rem;
-
-    // Optional: Add a subtle header styling if your dialogs have headers
-    .modal-header, .dialog-header {
-        border-bottom: 1px solid rgba(149, 189, 181, 0.3); // Envisage with opacity
-        margin-bottom: 1rem;
-        padding-bottom: 0.75rem;
-    }
-}
-dialog::backdrop {
-    backdrop-filter: blur(8px);
-    background-color: rgba($scrybble-envisage, 0.5); // Envisage with opacity for a subtle tint
-}
-
-.btn:disabled {
-    background-color: $scrybble-baby-powder !important;
-}
-
-b {
-    color: darken($scrybble-envisage, 25%);
-}
 
 nav {
-    background-color: $scrybble-envisage !important;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    & .nav-link {
-        color: darken($scrybble-envisage, 20%);
-        font-weight: bold;
-        margin-right: 15px;
+    .logo {
+        font-size: 1.5rem;
+        color: black;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .nav-links a {
         text-decoration: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        background-color: rgba(255, 255, 255, 0.6);
+        color: var(--text-dark);
+        font-weight: 500;
+        transition: color 0.3s;
+    }
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-        & .active {
-            color: white;
-            background-color: $scrybble-flame;
-        }
+    .nav-links a:hover {
+        color: var(--envisage);
     }
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/img/paper.png');
-    background-repeat: repeat;
-    opacity: 0.3;
-    z-index: -1;
-    /* Ensures you can click through it */
-    pointer-events: none;
+.hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--baby-powder) 0%, rgba(239, 211, 207, 0.3) 100%);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.hero-text .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.hero-text .description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-medium);
+}
+
+
+.cta-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--envisage);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border: 2px solid var(--envisage);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.cta-secondary:hover {
+    background: var(--envisage);
+    color: white;
+}
+
+.hero-visual {
+    position: relative;
+}
+
+.feature-preview {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--envisage);
+}
+
+.problem {
+    padding: 4rem 0;
+    background: white;
+}
+
+.problem-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.problem h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.accent-card {
+    padding: 2rem;
+    background: var(--baby-powder);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+
+    &:nth-child(1) {
+        --accent-color: var(--accent-color-first);
+    }
+
+    &:nth-child(2) {
+        --accent-color: var(--accent-color-second);
+    }
+
+    &:nth-child(3) {
+        --accent-color: var(--accent-color-third);
+    }
+
+    & h3 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+}
+
+blockquote {
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+
+    & p {
+        font-style: italic;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    & cite {
+        font-weight: 600;
+        color: var(--accent-color);
+    }
+}
+
+/* Solution Section */
+.solution {
+    padding: 4rem 0;
+    background: var(--envisage);
+    color: white;
+}
+
+.solution-content {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.solution h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.solution-description {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Features Section */
+.features {
+    padding: 4rem 0;
+    background: var(--baby-powder);
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--citron);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.social-proof {
+    padding: 4rem 0;
+    background: white;
+
+    h2 {
+        color: var(--text-dark);
+        font-size: 2.5rem;
+    }
+
+    h2, h3, p {
+        text-align: center;
+    }
+
+    h2 + p {
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    h4 {
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+
+        &:before {
+            content: "\"";
+        }
+
+        &:after {
+            content: "\"";
+        }
+    }
+
+    .testimonials {
+        display: grid;
+        grid-template-areas: "a c"
+                                     "b c";
+        gap: 2rem;
+
+        &.rightist {
+            grid-template-areas: "c a"
+                                         "c b";
+        }
+
+        .big-one {
+            width: 100%;
+            grid-area: c;
+            text-justify: distribute;
+        }
+
+        .accent-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .accent-card * {
+            text-align: left;
+        }
+    }
+
+    .testimonial {
+        background: var(--baby-powder);
+        padding: 2rem;
+        border-radius: 12px;
+        border-left: 4px solid var(--envisage);
+    }
+}
+
+/* Pricing */
+.pricing {
+    padding: 4rem 0;
+    background: var(--baby-powder);
+    text-align: center;
+
+    .billing-toggle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .toggle-container {
+        background: white;
+        border-radius: 12px;
+        padding: 4px;
+        display: flex;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-option {
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        color: #64748b;
+    }
+
+    .toggle-option.active {
+        background: #f97316;
+        color: white;
+        box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+    }
+
+    .toggle-option .discount-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--autumn-green);
+        color: white;
+        font-size: 0.9rem;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-weight: 700;
+    }
+}
+
+section.pricing {
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: var(--text-dark);
+    }
+
+    .pricing-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 0 auto;
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e5e5;
+            display: grid;
+
+            &.popular {
+                box-shadow: 0 2px 8px rgba(255, 140, 66, 0.5);
+                border: 2px solid #ff8c42;
+            }
+
+            .note {
+                font-size: 0.9rem;
+                color: var(--text-light);
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                color: var(--text-dark);
+                font-weight: 600;
+            }
+
+            .price {
+                font-size: 2rem;
+                font-weight: 700;
+                color: var(--envisage);
+                margin: 1rem 0 2rem 0;
+
+                span {
+                    font-size: 0.9rem;
+                    color: #888;
+                    font-weight: 400;
+                }
+            }
+
+            .pricing-features {
+                list-style: none;
+                margin: 2rem 0;
+                padding: 0;
+
+                & li {
+                    margin-bottom: 0.8rem;
+                    color: var(--text-medium);
+                    font-size: 0.95rem;
+                    list-style-type: none;
+                    text-align: left;
+
+                    &:before {
+                        content: '✓ ';
+                        color: color-mix(in oklab, var(--citron), black 20%);
+                    }
+                }
+            }
+
+            .pricing-cta {
+                width: 100%;
+                background: var(--autumn-green);
+                color: white;
+                padding: 0.8rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                font-weight: 500;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .pricing-cta:hover {
+                background: #95b38d;
+                transform: translateY(-1px);
+            }
+
+
+            .popular-badge {
+                position: absolute;
+                top: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--envisage);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+
+            .price {
+                font-size: 2rem;
+                font-weight: 700;
+                color: var(--flame);
+                margin: 1rem 0;
+
+                & span {
+                    font-size: 0.9rem;
+                    color: #666;
+                }
+            }
+
+            .price-note {
+                color: var(--text-medium);
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+    }
+
+    .pricing-trial-note {
+        text-align: center;
+        margin-top: 2rem;
+        color: var(--text-medium);
+        font-size: 0.9rem;
+    }
 }
 
 footer {
-    background-color: lighten($scrybble-envisage, 0.35);
-    border-top: 3px solid $scrybble-envisage;
-    padding: 1.5rem 0;
-    margin-top: 3rem;
-    color: #555;
-
-    a {
-        color: $scrybble-flame;
-
-        &:hover {
-            color: darken($scrybble-flame, 10%);
-            text-decoration: none;
-        }
-    }
+    background: var(--text-dark);
+    color: white;
+    padding: 3rem 0 2rem;
 }
 
-.card {
-    & .card-header {
-        background-color: $scrybble-citron;
-    }
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-//table a {
-//    color: mix($scrybble-envisage, black, 35%);
-//}
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--envisage);
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+    color: var(--envisage);
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 2rem;
+    text-align: center;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .cta-primary, .cta-secondary {
+        display: block;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}

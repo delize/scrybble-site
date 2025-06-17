@@ -18,6 +18,7 @@ use Throwable;
 
 class ProcessDownloadedZipListener implements ShouldQueue
 {
+    public int $tries = 1;
 
 
     public function __construct(private PRMStorageInterface $PRMStorage)

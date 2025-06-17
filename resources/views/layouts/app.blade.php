@@ -13,13 +13,15 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    @viteReactRefresh
-    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
+    @vite(['resources/sass/app.scss'])
 </head>
 <body class="min-vh-100">
 
+@include('components.layout.navigation')
+
 @yield('content')
+
+@include('components.layout.footer')
 
 </body>
 </html>
