@@ -3,10 +3,8 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Product</h4>
-                <a href="/features">Features</a>
-                <a href="/pricing">Pricing</a>
                 <a href="https://github.com/Scrybbling-together/">GitHub</a>
-                <a href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Download Plugin</a>
+                <a href="https://obsidian.md/plugins?id=scrybble.ink">Download Plugin</a>
             </div>
 
             <div class="footer-section">
