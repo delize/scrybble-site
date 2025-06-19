@@ -88,7 +88,7 @@
             <div class="container">
                 <h2 class="mb-4">Everything You Need for Seamless Integration</h2>
                 <div class="grid gap-4">
-                    <div class="grid align-items-center g-col-12 gap-5">
+                    <div class="grid align-items-center g-col-12 gap-5 justify-content-center">
                         <div class="g-col-6">
                             <img class="w-100" src="/img/docs-for-developers-md.png" alt="">
                         </div>
@@ -129,7 +129,12 @@
                             <img class="w-100" src="/img/bullet-journal-pdf.png" alt="">
                         </div>
                     </div>
-                </div>
+
+                    <div class="g-col-12 text-center">
+                        <h2>Handwritten notes for reference</h2>
+                        <p class="note">Coming soon!</p>
+                    </div>
+                </div>*
             </div>
         </section>
 
