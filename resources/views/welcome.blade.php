@@ -84,44 +84,50 @@
             </div>
         </section>
 
-        <section class="features" id="features">
+        <section class="p-5 bg-body-tertiary">
             <div class="container">
-                <h2>Everything You Need for Seamless Integration</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Searchable Highlights & Text</h3>
-                        <p>All your reMarkable highlights, typed text, and handwritten notes become searchable Markdown
-                            files in Obsidian, organized by page with preserved structure.</p>
+                <h2 class="mb-4">Everything You Need for Seamless Integration</h2>
+                <div class="grid gap-4">
+                    <div class="grid align-items-center g-col-12 gap-5">
+                        <div class="g-col-6">
+                            <img class="w-100" src="/img/docs-for-developers-md.png" alt="">
+                        </div>
+                        <div class="g-col-6">
+                            <h3>Export your highlights</h3>
+                            <p>All your reMarkable highlights, searchable Markdown files in Obsidian, organized by page with preserved structure.</p>
+                        </div>
                     </div>
 
-                    <div class="feature-card">
-                        <h3>Native Obsidian Integration</h3>
-                        <p>Browse and sync your entire reMarkable file tree directly from within Obsidian. No more
+                    <div class="grid align-items-center g-col-12 gap-4">
+                        <div class="g-col-3">
+                            <h3>Native Obsidian Integration</h3>
+                            <p>Browse and sync your entire reMarkable file tree directly from within Obsidian. No more
                             switching to external websites or apps.</p>
+                        </div>
+                        <div class="g-col-9">
+                            <img class="w-100" src="/img/rM-integration.png" alt="">
+                        </div>
                     </div>
 
-                    <div class="feature-card">
-                        <h3>Smart Tag Preservation</h3>
-                        <p>Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings,
-                            keeping your organization system intact.</p>
+                    <div class="grid align-items-center g-col-12 gap-4">
+                        <div class="g-col-6">
+                            <img class="w-100" src="img/tags.png" alt="">
+                        </div>
+                        <div class="g-col-6">
+                            <h3>Organized with tags</h3>
+                            <p>Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings,
+                                creating one organization system for both reMarkable and Obsidian.</p>
+                        </div>
                     </div>
 
-                    <div class="feature-card">
-                        <h3>Complete File Access</h3>
-                        <p>Access all your ebooks, PDFs, quick notes, and worksheets safely stored in your vault with
-                            both original PDF and processed Markdown versions.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <h3>Link Your Thinking</h3>
-                        <p>Transform isolated handwritten notes into connected knowledge. Link reMarkable insights to
-                            other notes, create MOCs, and build your second brain.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <h3>Privacy First & Open Source</h3>
-                        <p>Your notes stay private and secure. Fully open source codebase you can trust, with
-                            transparent development and community contributions.</p>
+                    <div class="grid align-items-center g-col-12 gap-4">
+                        <div class="g-col-3">
+                            <h3>Handwritten notes for reference</h3>
+                            <p>Obsidian becomes your perfect place for both freeform, handwritten thinking and digital thinking.</p>
+                        </div>
+                        <div class="g-col-9">
+                            <img class="w-100" src="/img/bullet-journal-pdf.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
