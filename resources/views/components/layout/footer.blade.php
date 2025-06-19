@@ -26,7 +26,9 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {{ Carbon\Carbon::now()->format("Y") }} Scrybble. Made with care for knowledge workers everywhere.</p>
+            <p>&copy; 2022 - {{ Carbon\Carbon::now()->format("Y") }} Scrybble. Made with care for knowledge workers everywhere.</p>
+            <p>Streamsoft is a sole-proprietorship registered in the Netherlands. </p>
+            <p>KVK: 65379748</p>
         </div>
     </div>
 </footer>

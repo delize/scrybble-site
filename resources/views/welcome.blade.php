@@ -15,24 +15,28 @@
     @endsection
 
     @section('content')
-        <section class="hero">
+        <section class="bg-secondary-subtle p-5">
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Think Analog, Organize Digital</h1>
-                        <p class="subtitle">The missing link between your reMarkable tablet and Obsidian vault</p>
-                        <p class="description">Stop losing your handwritten insights in a digital silo. Scrybble
+                <div class="grid align-items-center">
+                    <div class="g-col-6">
+                        <h1 class="display-1 fw-bolder">Think Analog, Organize Digital</h1>
+                        <p class="display-5 text- mb-4" style="--bs-text-opacity: .65;">The missing link between your
+                            reMarkable tablet and Obsidian vault</p>
+                        <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">Stop losing your
+                            handwritten insights in a digital silo. Scrybble
                             seamlessly syncs your reMarkable notes into Obsidian, making them searchable, linkable, and
                             part of your knowledge system.</p>
-                        <button class="cta-primary">
-                            <a href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get Scrybble Now</a>
-                        </button>
-                        <a href="#features" class="cta-secondary">See How It Works</a>
+                        <a class="btn btn-lg btn-primary" role="button" aria-disabled="true"
+                           href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get
+                            Scrybble Now</a>
+                        <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">See
+                            How It Works</a>
                     </div>
-                    <div class="hero-visual">
-                        <div class="feature-preview">
-                            <h4>Forever part of your vault</h4>
-                            <p>Your reMarkable highlights and notes appear in Obsidian as organized, searchable Markdown
+                    <div class="g-col-6">
+                        <div class="card border-secondary p-4 bg-white shadow">
+                            <b>Forever part of your vault</b>
+                            <p class="mb-0">Your reMarkable highlights and notes appear in Obsidian as organized,
+                                searchable Markdown
                                 files with page references and tags intact.</p>
                         </div>
                     </div>
@@ -40,25 +44,27 @@
             </div>
         </section>
 
-        <section class="problem">
-            <div class="container">
-                <div class="problem-content">
-                    <h2>Your Knowledge is Trapped in Silos</h2>
-                    <p>You chose reMarkable for distraction-free thinking and Obsidian for powerful knowledge
-                        management. But they don't talk to each other.</p>
+        <section class="p-4">
+            <div class="container p-4 d-flex justify-content-center">
+                <div class="problem-content w-75">
+                    <div class="text-center mb-4">
+                        <h2>Your Knowledge is Trapped in Silos</h2>
+                        <p>You chose reMarkable for distraction-free thinking and Obsidian for powerful knowledge
+                            management. But they don't talk to each other.</p>
+                    </div>
 
-                    <div class="problem-grid">
-                        <div class="accent-card">
+                    <div class="grid gap-4">
+                        <div class="card card-accent g-col-6">
                             <h3>Isolated Reading Notes</h3>
                             <p>Book highlights and PDF annotations stay locked in your reMarkable, disconnected from
                                 your research and ideas.</p>
                         </div>
-                        <div class="accent-card">
+                        <div class="card card-accent g-col-6">
                             <h3>Lost Handwritten Insights</h3>
                             <p>Your best ideas are written by hand but can't be searched, linked, or integrated with
                                 your digital knowledge base.</p>
                         </div>
-                        <div class="accent-card">
+                        <div class="card card-accent g-col-6">
                             <h3>Manual Export Hell</h3>
                             <p>Constant friction switching between devices, manually exporting files, and recreating
                                 connections breaks your flow.</p>
@@ -68,15 +74,13 @@
             </div>
         </section>
 
-        <section class="solution">
-            <div class="container">
-                <div class="solution-content">
-                    <h2>One Workflow, Seamless Integration</h2>
-                    <p class="solution-description">Scrybble creates the bridge you've been missing. Write naturally on
-                        reMarkable, then access, search, and connect your notes instantly in Obsidian. Your analog
-                        insights become part of your digital knowledge system without losing the benefits of either
-                        tool.</p>
-                </div>
+        <section class="bg-secondary text-white p-4">
+            <div class="container text-center p-4">
+                <h1 class="display-3 fw-bold mb-4 text-">One Workflow, Seamless Integration</h1>
+                <p class="w-50 mb-0 fs-6 m-auto">Scrybble creates the bridge you've been missing. Write naturally on
+                    reMarkable, then access, search, and connect your notes instantly in Obsidian. Your analog
+                    insights become part of your digital knowledge system without losing the benefits of either
+                    tool.</p>
             </div>
         </section>
 
@@ -123,36 +127,38 @@
             </div>
         </section>
 
-        <section class="social-proof">
+        <section class="p-5">
             <div class="container">
-                <h2>What Knowledge Workers Are Saying</h2>
-                <p>From our user survey conducted in May, 2025:</p>
+                <div class="text-center">
+                    <h2>What Knowledge Workers Are Saying</h2>
+                    <p class="fst-italic">From our user survey conducted in May, 2025:</p>
+                </div>
 
-                <h4 style="--accent-color: var(--accent-color-first);">What do you value most about the Scrybble
+                <h4 style="color: var(--accent-color-first);">What do you value most about the Scrybble
                     reMarkable x Obsidian integration?</h4>
                 <div class="testimonials">
-                    <blockquote class="accent-card big-one">
+                    <blockquote class="card-accent big-one">
                         <p>I was this close to giving up and no longer subscribe to reMarkable and sticking with my Kobo
                             instead because of this issue. Scrybble changed my life. I'm so excited about using my
                             reMarkable every day because of this tool.</p>
                         <cite>Kandola Sanjeev — Business Manager, North America</cite>
                     </blockquote>
 
-                    <blockquote style="grid-area: b;" class="accent-card">
+                    <blockquote style="grid-area: b;" class="card-accent">
                         <p>The ability to selectively choose what syncs</p>
                         <cite>Matt J. — Academic Researcher, Europe</cite>
                     </blockquote>
 
-                    <blockquote style="grid-area: a;" class="accent-card">
+                    <blockquote style="grid-area: a;" class="card-accent">
                         <p>Just the fact that this makes it possible at all.</p>
                         <cite>— Graduate student, Europe</cite>
                     </blockquote>
                 </div>
 
-                <h4 style="--accent-color: var(--accent-color-second);">Why is it important that what you do on
+                <h4 style="color: var(--accent-color-second);">Why is it important that what you do on
                     reMarkable is available within Obsidian?</h4>
                 <div class="testimonials rightist">
-                    <blockquote style="--accent-color: var(--accent-color-second);" class="accent-card big-one">
+                    <blockquote style="--accent-color: var(--accent-color-second);" class="card card-accent big-one">
                         <p>reMarkable makes up a good chunk of my second brain, and right now it feels very disconnected
                             from the rest of my project and knowledge management. The lack of Obsidian integration (or
                             any integration for that matter) would be a significant reason for switching e-Tablets in
@@ -160,33 +166,35 @@
                         <cite>J. Ortega, Professor, North America</cite>
                     </blockquote>
 
-                    <blockquote style="--accent-color: var(--accent-color-third); grid-area: a;" class="accent-card">
+                    <blockquote style="--accent-color: var(--accent-color-third); grid-area: a;"
+                                class="card card-accent">
                         <p>Without export reMarkeable is a silo, a graveyard.</p>
                         <cite>Holger Hubs — Creative professional, North America</cite>
                     </blockquote>
 
-                    <blockquote style="--accent-color: var(--accent-color-first); grid-area: b;" class="accent-card">
+                    <blockquote style="--accent-color: var(--accent-color-first); grid-area: b;"
+                                class="card card-accent">
                         <p>It is essential — my use of RMs (I have 2) only took off with this integration and is the
                             only reason I bought the paper pro.</p>
                         <cite>— Creative Professional, Europe</cite>
                     </blockquote>
                 </div>
 
-                <h4 style="--accent-color: var(--accent-color-third);">What do you value most about the Scrybble
-                    reMarkable x Obsidian integration?</h4>
+                <h4 style="color: var(--accent-color-third);">What do you value most about the Scrybble reMarkable x
+                    Obsidian integration?</h4>
                 <div class="testimonials">
-                    <blockquote style="--accent-color: var(--accent-color-third);" class="accent-card big-one">
-                        Notes on research papers are fairly easy to keep track of
+                    <blockquote style="--accent-color: var(--accent-color-third);" class="card-accent big-one">
+                        <p>Notes on research papers are fairly easy to keep track of</p>
                         <cite>Sl. Colienne — Researcher, North America</cite>
                     </blockquote>
 
-                    <blockquote style="--accent-color: var(--accent-color-first); grid-area: a;" class="accent-card">
+                    <blockquote style="--accent-color: var(--accent-color-first); grid-area: a;" class="card-accent">
                         <p>It let me work out of my computer on my researchs, with deep concentration, and i can find
                             all my notes in my "second brain" in Obsidian</p>
                         <cite>Audrey Vermeulen — Creative & Researcher, Europe</cite>
                     </blockquote>
 
-                    <blockquote style="--accent-color: var(--accent-color-second); grid-area: b;" class="accent-card">
+                    <blockquote style="--accent-color: var(--accent-color-second); grid-area: b;" class="card-accent">
                         <p>I love that the highlighted bits are a separate note!</p>
                         <cite>Nancy Melchert — Graduate/PhD student, North America</cite>
                     </blockquote>
@@ -196,65 +204,100 @@
 
         <section class="pricing" id="pricing">
             <div class="container">
-                <h2>Choose Your Plan</h2>
+                <h2 id="plan-heading">Choose Your Plan</h2>
 
-                <div class="billing-toggle">
-                    <div class="toggle-container">
-                        <div class="toggle-option active" data-billing="monthly">Monthly</div>
-                        <div class="toggle-option" data-billing="yearly">
+                <div class="billing-toggle" role="radiogroup" aria-labelledby="plan-heading">
+                    <div class="card p-1 flex-row gap-2">
+                        <input type="radio" class="btn-check" name="billing-period" id="monthly" autocomplete="off">
+                        <label class="btn btn-outline-danger border-0" for="monthly">Monthly</label>
+
+                        <input type="radio" class="btn-check" name="billing-period" id="yearly" autocomplete="off">
+                        <label class="btn btn-outline-danger position-relative border-0" for="yearly">
                             Yearly
-                            <span class="discount-badge">-15%</span>
-                        </div>
-                        <div class="toggle-option" data-billing="2yearly">
+                            <span
+                                class="position-absolute z-1 top-0 start-100 translate-middle badge rounded-pill bg-primary text-white">-15%</span>
+                        </label>
+
+                        <input type="radio" class="btn-check" name="billing-period" id="two-yearly" autocomplete="off"
+                               checked>
+                        <label class="btn btn-outline-danger position-relative border-0" for="two-yearly">
                             2-Yearly
-                            <span class="discount-badge">-25%</span>
-                        </div>
+                            <span
+                                class="position-absolute z-1 top-0 start-100 translate-middle badge rounded-pill bg-primary text-white">-25%</span>
+                        </label>
                     </div>
                 </div>
 
                 <div class="pricing-cards">
-                    <div class="pricing-card">
+                    <div class="pricing-card" id="academic">
                         <h3>Student & Academic</h3>
-                        <div class="price">€2.29<span>/month</span></div>
+                        <div class="price">2.29<span>/month</span></div>
+                        <span class="note">Discounted for students and academics</span>
 
                         <ul class="pricing-features">
-                            <li>Full reMarkable ↔ Obsidian sync</li>
+                            <li>Full Scrybble Sync functionality</li>
                             <li>Unlimited documents</li>
                             <li>Community support</li>
-                            <li>Open-source code access</li>
                         </ul>
                         <button class="pricing-cta">Start Student Plan</button>
                     </div>
 
-                    <div class="pricing-card popular">
+                    <div class="pricing-card popular" id="professional">
                         <h3>Professional</h3>
-                        <div class="price">€3.99<span>/month</span></div>
+                        <div class="price">3.99<span>/month</span></div>
+                        <span class="note">For professional use</span>
 
                         <ul class="pricing-features">
-                            <li>Everything in Student</li>
-                            <li>Priority support</li>
-                            <li>Advanced sync options</li>
-                            <li>Professional use license</li>
+                            <li>Full Scrybble Sync functionality</li>
+                            <li>Community support</li>
+                            <li>Priority e-mail support</li>
                         </ul>
                         <button class="pricing-cta">Start Professional Plan</button>
                     </div>
 
-                    <div class="pricing-card">
-                        <h3>Supporter</h3>
-                        <div class="price">€10<span>/month</span></div>
-
-                        <span class="note">Pick your own price (min €10)</span>
+                    <div class="pricing-card" id="custom">
+                        <h3>Custom solutions</h3>
+                        <div class="price" style="--symbol: ''">custom<span>/inquiry</span></div>
+                        <span
+                            class="note">Your workflows are best when they integrate with what you know and love</span>
 
                         <ul class="pricing-features">
-                            <li>Everything in Professional</li>
-                            <li>Support development</li>
-                            <li>Early access to features</li>
-                            <li>Direct developer contact</li>
+                            <li>Work with specific software that is missing an integration?</li>
+                            <li>Zotero x reMarkable?</li>
+                            <li>Anki x Obsidian?</li>
+                            <li> x ...?</li>
+                            <li>We are always looking to expand the Scrybble knowledge management software suite</li>
                         </ul>
-                        <button class="pricing-cta">Become a Supporter</button>
+                        <button class="pricing-cta">Contact us</button>
                     </div>
                 </div>
                 <p class="pricing-trial-note">30-day free trial • Cancel anytime</p>
+                <script>
+                    const academic = document.querySelector('.pricing-card#academic .price')
+                    const professional = document.querySelector('.pricing-card#professional .price')
+                    const radio = document.querySelector('.billing-toggle')
+
+                    const basePrices = {
+                        academic: 2.29,
+                        professional: 3.99,
+                    }
+
+                    const multipliers = {
+                        monthly: 1,
+                        yearly: 0.85,
+                        'two-yearly': 0.75,
+                    }
+
+                    radio.addEventListener('change', function(e) {
+                        if (e.target.type === 'radio') {
+                            const period = e.target.id
+                            const multiplier = multipliers[period]
+
+                            academic.innerHTML = `${(basePrices.academic * multiplier).toFixed(2)}<span>/month</span>`
+                            professional.innerHTML = `${(basePrices.professional * multiplier).toFixed(2)}<span>/month</span>`
+                        }
+                    })
+                </script>
             </div>
         </section>
     @endsection

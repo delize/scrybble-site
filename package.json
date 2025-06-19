@@ -26,7 +26,7 @@
         "@sentry/react": "^7.120.2",
         "@sentry/tracing": "^7.114.0",
         "axios": "^1.7.9",
-        "bootstrap": "^5.3.3",
+        "bootstrap": "^5.3.6",
         "dotenv": "^16.4.7",
         "htmx.org": "2.0.4",
         "lodash-es": "^4.17.21",
