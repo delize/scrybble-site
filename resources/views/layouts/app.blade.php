@@ -7,20 +7,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Scrybble Sync - Empowering curiosity</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @yield('head')
+
     @vite(['resources/sass/app.scss'])
 </head>
-<body class="min-vh-100">
+<body class="min-vh-100 d-flex flex-column justify-content-between">
 
 @include('components.layout.navigation')
-
 @yield('content')
-
 @include('components.layout.footer')
 
 </body>

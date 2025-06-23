@@ -38,16 +38,13 @@ Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', functi
     return $request->user();
 });
 
-Route::get('login', function () {
-    if (session()->has('url.intended')) {
-        $redirect = urlencode(session()->get('url.intended'));
-        if (Str::contains($redirect, 'obsidian')) {
-            dd($redirect);
-        }
-        return redirect("/auth/login?redirect={$redirect}");
-    }
-    return redirect("/auth/login");
-})->name('login');
+//Route::get('login', function () {
+//    if (session()->has('url.intended')) {
+//        $redirect = urlencode(session()->get('url.intended'));
+//        return redirect("/auth/login?redirect={$redirect}");
+//    }
+//    return redirect("/auth/login");
+//});
 
 Route::group(['middleware' => ['auth']], static function () {
     Route::get('/app/', [DashboardController::class, 'index'])->name('dashboard');

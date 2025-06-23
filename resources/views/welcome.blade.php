@@ -1,13 +1,12 @@
 <x-app-layout>
     @section('head')
-        <title>Scrybble - Think Analog, Organize Digital | reMarkable Obsidian Integration</title>
         <meta name="description"
               content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge. No more isolated notes.">
         <meta name="keywords"
               content="reMarkable Obsidian integration, handwritten notes sync, PKM, digital knowledge management, note-taking workflow, reMarkable tablet, Obsidian plugin">
 
         <!-- Open Graph -->
-        <meta property="og:title" content="Scrybble - Think Analog, Organize Digital">
+        <meta property="og:title" content="Scrybble Sync - Think Analog, Organize Digital">
         <meta property="og:description"
               content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge.">
         <meta property="og:type" content="website">
@@ -217,7 +216,7 @@
             <div class="container">
                 <h2 id="plan-heading">Choose Your Plan</h2>
 
-                <div class="billing-toggle" role="radiogroup" aria-labelledby="plan-heading">
+                <div id="billing-toggle" class="d-flex mb-5 justify-content-center" role="radiogroup" aria-labelledby="plan-heading">
                     <div class="card p-1 flex-row gap-2">
                         <input type="radio" class="btn-check" name="billing-period" id="monthly" autocomplete="off">
                         <label class="btn btn-outline-danger border-0" for="monthly">Monthly</label>
@@ -273,7 +272,7 @@
                             class="note">We are always looking to expand the Scrybble knowledge management software suite</span>
 
                         <ul class="pricing-features">
-                            <li>Work with specific software that is missing an integration?</li>
+                            <li>Do you work with specific software that is missing an integration?</li>
                             <li>Zotero x reMarkable?</li>
                             <li>Anki x Obsidian?</li>
                             <li>... x ...?</li>
@@ -285,7 +284,7 @@
                 <script>
                     const academic = document.querySelector('.pricing-card#academic .price')
                     const professional = document.querySelector('.pricing-card#professional .price')
-                    const radio = document.querySelector('.billing-toggle')
+                    const radio = document.getElementById('billing-toggle')
 
                     const basePrices = {
                         academic: 2.29,

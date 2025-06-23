@@ -44,6 +44,8 @@ $btn-link-hover-color: var(--scrybble-baby-poder);
 $border-radius: 12px;
 
 $nav-link-color: $scrybble-envisage;
+$nav-link-padding-x: 1rem;
+$nav-link-padding-y: 1rem;
 $nav-link-hover-color: $scrybble-acorn-squash;
 $nav-tabs-link-active-color: $scrybble-flame;
 
@@ -71,26 +73,26 @@ nav {
     justify-content: space-between;
     align-items: center;
 
-    .logo {
-        font-size: 1.5rem;
-        color: black;
+    :is(a, button):not(.navbar-brand) {
+        font-weight: bold;
+        border-radius: 3px;
+        padding: 10px 15px;
+        margin: 4px;
+        background-color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+
+        transition: color, background-color 200ms ease-out;
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.8);
+            background-color: $scrybble-envisage;
+        }
     }
 
     .nav-links {
         display: flex;
         gap: 2rem;
         list-style: none;
-    }
-
-    .nav-links a {
-        text-decoration: none;
-        color: var(--text-dark);
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-        color: var(--envisage);
     }
 }
 
@@ -224,30 +226,11 @@ h4:has(+ .testimonials) {
     font-style: italic;
 }
 
-.billing-toggle {
-
-}
-
-.billing-toggle {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
 /* Pricing */
 .pricing {
     padding: 4rem 0;
     background: var(--baby-powder);
     text-align: center;
-
-
-    //.toggle-container {
-    //    background: white;
-    //    border-radius: 12px;
-    //    padding: 4px;
-    //    display: flex;
-    //    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    //}
 
     .toggle-option {
         padding: 12px 24px;
