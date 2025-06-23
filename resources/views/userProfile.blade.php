@@ -12,7 +12,6 @@
                     </div>
 
                     <div class="card-body">
-                        <!-- User Information Section -->
                         <div class="row mb-4">
                             <div class="col-md-9">
                                 <div class="user-info">

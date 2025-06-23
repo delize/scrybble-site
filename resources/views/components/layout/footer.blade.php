@@ -19,7 +19,7 @@
 {{--                <a href="/about">About</a>--}}
 {{--                <a href="/mission">Mission</a>--}}
 {{--                <a href="/privacy">Privacy</a>--}}
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Following the <i>Applied Communication Design</i> method: Creating technology that fosters curiosity, connection, nature and resilience.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Following the <i>Applied Communication Design</i> business philosophy: Creating technology that fosters curiosity, connection, nature and resilience.</p>
             </div>
 
 {{--            <div class="footer-section">--}}
