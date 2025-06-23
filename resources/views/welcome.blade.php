@@ -131,10 +131,10 @@
                     </div>
 
                     <div class="g-col-12 text-center">
-                        <h2>Handwritten notes for reference</h2>
-                        <p class="note">Coming soon!</p>
+                        <h2>Handwriting to markdown text and diagrams.</h2>
+                        <p class="note">This will be coming soon. Interested in helping us shape this integration? Share your ideas on our {{ config('app.discord') }}!</p>
                     </div>
-                </div>*
+                </div>
             </div>
         </section>
 
@@ -242,14 +242,14 @@
                     <div class="pricing-card" id="academic">
                         <h3>Student & Academic</h3>
                         <div class="price">2.29<span>/month</span></div>
-                        <span class="note">Discounted for students and academics</span>
+                        <span class="note">Scrybble is discounted for students and academics.</span>
 
                         <ul class="pricing-features">
                             <li>Full Scrybble Sync functionality</li>
                             <li>Unlimited documents</li>
                             <li>Community support</li>
                         </ul>
-                        <button class="pricing-cta">Start Student Plan</button>
+                        <a href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian" class="btn btn-primary">View plans</a>
                     </div>
 
                     <div class="pricing-card popular" id="professional">
@@ -260,28 +260,28 @@
                         <ul class="pricing-features">
                             <li>Full Scrybble Sync functionality</li>
                             <li>Community support</li>
+                            <li>Unlimited documents</li>
                             <li>Priority e-mail support</li>
                         </ul>
-                        <button class="pricing-cta">Start Professional Plan</button>
+                        <a href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian" class="btn btn-primary">View plans</a>
                     </div>
 
                     <div class="pricing-card" id="custom">
                         <h3>Custom solutions</h3>
                         <div class="price" style="--symbol: ''">custom<span>/inquiry</span></div>
                         <span
-                            class="note">Your workflows are best when they integrate with what you know and love</span>
+                            class="note">We are always looking to expand the Scrybble knowledge management software suite</span>
 
                         <ul class="pricing-features">
                             <li>Work with specific software that is missing an integration?</li>
                             <li>Zotero x reMarkable?</li>
                             <li>Anki x Obsidian?</li>
-                            <li> x ...?</li>
-                            <li>We are always looking to expand the Scrybble knowledge management software suite</li>
+                            <li>... x ...?</li>
                         </ul>
-                        <button class="pricing-cta">Contact us</button>
+                        <a href="mailto:{{ config('app.support_email') }}" class="btn btn-primary">Contact us</a>
                     </div>
                 </div>
-                <p class="pricing-trial-note">30-day free trial • Cancel anytime</p>
+                <p class="mt-4" style="grid-column: 2">30-day free trial • Cancel anytime</p>
                 <script>
                     const academic = document.querySelector('.pricing-card#academic .price')
                     const professional = document.querySelector('.pricing-card#professional .price')

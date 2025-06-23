@@ -4,13 +4,13 @@
             <div class="footer-section">
                 <h4>Product</h4>
                 <a href="https://github.com/Scrybbling-together/">GitHub</a>
-                <a href="https://obsidian.md/plugins?id=scrybble.ink">Download Plugin</a>
+                <a href="https://obsidian.md/plugins?id=scrybble.ink">Download Obsidian Plugin</a>
             </div>
 
             <div class="footer-section">
-                <h4>Support</h4>
+                <h4>Support & Community</h4>
                 <a href="mailto:mail@scrybble.ink">Email Support</a>
-                <a href="https://discord.gg/zPrAUzNuSN">Discord Community</a>
+                <a href="{{ config('app.discord_invite') }}">Discord Community</a>
                 <a href="https://github.com/Scrybbling-together/scrybble/issues">Report Issues</a>
             </div>
 
@@ -19,7 +19,7 @@
                 <a href="/about">About</a>
                 <a href="/mission">Mission</a>
                 <a href="/privacy">Privacy</a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Part of Applied Communication Design - Creating technology that fosters curiosity, connection, nature and resilience.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Following the <i>Applied Communication Design</i> method - Creating technology that fosters curiosity, connection, nature and resilience.</p>
             </div>
         </div>
 
