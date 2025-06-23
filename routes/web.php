@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomHostInformationController;
 use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentsController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\GumroadLicenseInformationController;
@@ -61,6 +62,10 @@ Route::post("/tunnel", [SentryTunnelController::class, "index"]);
 
 Route::get('prmdownload/{path}', [DownloadController::class, "download"])->where('path', '.*')->name('prmdownload');
 
+Route::group(['middleware' => 'auth'], static function () {
+    Route::get('profile', ProfileController::class);
+});
+
 Route::group(['middleware' => ['auth'], 'prefix' => "api"], static function () {
     Route::get('onboardingState', OnboardingStateController::class);
     Route::get('licenseInformation', GumroadLicenseInformationController::class);
@@ -76,6 +81,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => "api"], static function () {
     Route::post('RMFileTree', [RMFiletreeController::class, 'index']);
 
     Route::post('remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
+
 });
 
 Route::group(['prefix' => 'api'], static function () {
