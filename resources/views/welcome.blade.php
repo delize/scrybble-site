@@ -84,7 +84,7 @@
             </div>
         </section>
 
-        <section class="p-5 bg-body-tertiary">
+        <section class="p-5 bg-body-tertiary" id="features">
             <div class="container">
                 <h2 class="mb-4">Everything You Need for Seamless Integration</h2>
                 <div class="grid gap-4">
@@ -116,7 +116,7 @@
                         <div class="g-col-6">
                             <h3>Organized with tags</h3>
                             <p>Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings,
-                                creating one organization system for both reMarkable and Obsidian.</p>
+                                resulting in one organization system for both reMarkable and Obsidian.</p>
                         </div>
                     </div>
 
