@@ -33,6 +33,8 @@ use Laravel\Passport\Passport;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/support', fn () => view('pages.support'));
+Route::get('/contact', fn () => view('pages.support'));
 
 Route::middleware(['middleware' => 'deployment.self-hosted'])->get('/self-host-setup', [CustomHostInformationController::class, "show"]);
 Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', function (Request $request) {
@@ -81,7 +83,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => "api"], static function () {
     Route::post('RMFileTree', [RMFiletreeController::class, 'index']);
 
     Route::post('remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
-
 });
 
 Route::group(['prefix' => 'api'], static function () {
@@ -94,5 +95,3 @@ Route::group(['prefix' => 'api'], static function () {
 
 Route::get('shared_documents', [SharedDocumentsController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::fallback([HomeController::class, 'index']);

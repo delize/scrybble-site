@@ -9,7 +9,7 @@
 
             <div class="footer-section">
                 <h4>Support & Community</h4>
-                <a href="mailto:mail@scrybble.ink">Email Support</a>
+                <a href="/support">Find support</a>
                 <a href="{{ config('app.discord_invite') }}">Discord Community</a>
                 <a href="https://github.com/Scrybbling-together/scrybble/issues">Report Issues</a>
             </div>
