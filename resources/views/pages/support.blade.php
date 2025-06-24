@@ -84,7 +84,7 @@
                                 <img class="mw-100" src="/img/document-sync-error.png" alt="An image showing a sync failure for 'The myth of Sisyphus' by Albert Camus">
                                 <p>This means our software is unable to process this specific file correctly.</p>
                                 <p><b>Give us access to your file and we can fix it:</b></p>
-                                <p class="text-muted">We do not have access to your files (for privacy reasons):</p>
+                                <p class="text-muted">For privacy reasons, we don't have access to your files without your explicit permission.</p>
                                 <ol>
                                     <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
                                     <li>Click the "feedback" action next to the file</li>
@@ -92,7 +92,49 @@
                                     <li>Fill in the details and share the file</li>
                                     <li>We'll get back to you via e-mail after you shared your file.</li>
                                 </ol>
+                            </div>
+                        </details>
 
+                        <details class="border-bottom">
+                            <summary class="p-3 bg-light border-0 fw-semibold" style="cursor: pointer;">
+                                I want to cancel/change my subscription
+                            </summary>
+                            <div class="p-3">
+                                Our subscriptions are managed by Gumroad.
+
+                                @if ( auth()->user() && auth()->user()->gumroadLicense)
+                                    <ol>
+                                        <li><a href="/profile">Visit your profile</a></li>
+                                        <li>Click "manage subscription"</li>
+                                        <li>Make the desired changes.</li>
+                                    </ol>
+                                @else
+                                    <ol>
+                                        <li>First, <a href="/{{ route('login') }}">log in.</a></li>
+                                        <li><a href="/profile">Visit your profile</a></li>
+                                        <li>Click "manage subscription"</li>
+                                        <li>Make the desired changes.</li>
+                                    </ol>
+                                @endif
+                            </div>
+                        </details>
+
+                        <details class="border-bottom">
+                            <summary class="p-3 bg-light border-0 fw-semibold" style="cursor: pointer;">
+                                My annotations look weird, are incomplete or are shown at the wrong position.
+                            </summary>
+                            <div class="p-3">
+                                <p>It's a known issue that sometimes your annotations (drawings, marginalia etc) can look a bit off! Sorry!</p>
+                                <p>We're always working on improving our reMarkable annotations processing software.</p>
+                                <h3>Want your specific issue looked at by a developer?</h3>
+                                <p class="text-muted">For privacy reasons, we don't have access to your files without your explicit permission.</p>
+                                <ol>
+                                    <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
+                                    <li>Click the "feedback" action next to the file</li>
+                                    <li><img class="mw-100" src="img/feedback%20button.png" alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface"></li>
+                                    <li>Fill in the details and share the file</li>
+                                    <li>We'll get back to you via e-mail after you shared your file.</li>
+                                </ol>
                             </div>
                         </details>
 
@@ -110,22 +152,6 @@
                                     <li>Still having issues?</li>
                                     <li>Click the "feedback" button in the Scrybble sync plugin.</li>
                                     <li>This way, we can look at your document and fix the problem with a new update.</li>
-                                </ol>
-                            </div>
-                        </details>
-
-                        <details class="border-bottom">
-                            <summary class="p-3 bg-light border-0 fw-semibold" style="cursor: pointer;">
-                                Initial setup and plugin installation
-                            </summary>
-                            <div class="p-3">
-                                <ol>
-                                    <li>Install the Obsidian plugin from the Community Plugins directory</li>
-                                    <li>Create your Scrybble account and get your API key</li>
-                                    <li>Enter your API key in the plugin settings</li>
-                                    <li>Configure your sync preferences</li>
-                                    <li>Need step-by-step help? Ask in Discord with screenshots of where you're stuck
-                                    </li>
                                 </ol>
                             </div>
                         </details>
