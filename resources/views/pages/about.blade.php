@@ -24,17 +24,10 @@
                 <div class="col-lg-8">
                     <h2 class="mb-4">Why Scrybble Exists</h2>
                     <p class="fs-5 mb-4">
-                        I was frustrated. I loved my reMarkable for reading and thinking, and I loved Obsidian for organizing my ideas.
-                        But they lived in completely separate worlds. My best insights were trapped on my tablet, disconnected from my
-                        digital knowledge system.
+                        There are many amazing tools and software in the world. reMarkable has created an amazing device for focused reading and writing work, but it doesn't connect well with the rest of the world.
                     </p>
                     <p class="mb-4">
-                        Manual exports were clunky. Existing solutions were either too technical, too expensive, or missed the point entirely.
-                        I needed something that respected both tools for what they do best, without trying to replace either one.
-                    </p>
-                    <p class="mb-4">
-                        So I built Scrybble. Not to disrupt anything or scale fast or move fast and break things. Just to solve a real problem
-                        for people who think with both their hands and their keyboards.
+                        Scrybble was born out of frustration for lack of further integration between devices and systems for knowledge workers.
                     </p>
                 </div>
             </div>
@@ -89,7 +82,7 @@
 
                                         <h5>Lemon</h5>
                                         <p class="text-muted mb-2">Office cat</p>
-                                        <small>Doesn't actually have any meaningful skills, but she's very sweet and makes the people around her happier.</small>
+                                        <small>Doesn't actually have any meaningful technical skills, but she's very sweet and makes the people around her happier.</small>
                                     </div>
                                 </div>
 
