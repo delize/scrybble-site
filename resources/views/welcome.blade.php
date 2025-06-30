@@ -15,21 +15,23 @@
 @endsection
 
 @section('content')
-    <section class="bg-secondary-subtle p-5">
+    <section class="bg-secondary-subtle p-3 p-lg-5">
         <div class="container">
             <div class="grid align-items-center">
-                <div class="g-col-6">
+                <div class="g-col-12 g-col-lg-6">
                     <h1 class="display-1 fw-bolder">Think Analog, Organize Digital</h1>
                     <p class="display-5 text- mb-4" style="--bs-text-opacity: .65;">The missing link between your
                         reMarkable tablet and Obsidian vault</p>
                     <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">You chose the reMarkable tablet for focused reading and writing, and use Obsidian for organization.</p>
                     <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65">Scrybble is the glue connecting the two.</p>
-                    <a class="btn btn-lg btn-primary" role="button" aria-disabled="true"
-                       href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get
-                        Scrybble Now</a>
-                    <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">What can Scrybble do for you?</a>
+                    <div class="d-grid d-sm-flex gap-2">
+                        <a class="btn btn-lg btn-primary" role="button" aria-disabled="true"
+                           href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get
+                            Scrybble Now</a>
+                        <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">What can Scrybble do for you?</a>
+                    </div>
                 </div>
-                <div class="g-col-6">
+                <div class="g-col-12 g-col-lg-6">
                     <div class="card border-secondary p-4 bg-white shadow">
                         <b>Your annotations in your vault</b>
                         <p class="mb-0">Scrybble connects your reMarkable to Obsidian. Annotations written on your tablet appear in Obsidian with page references intact.</p>
@@ -40,8 +42,8 @@
     </section>
 
     <section class="p-4">
-        <div class="container p-4 d-flex justify-content-center">
-            <div class="problem-content w-75">
+        <div class="container p-3 p-lg-4 d-flex justify-content-center">
+            <div class="problem-content">
                 <div class="text-center mb-4">
                     <h2>Your Knowledge is Trapped in Silos</h2>
                     <p>You chose reMarkable for distraction-free thinking and Obsidian for powerful knowledge
@@ -49,17 +51,17 @@
                 </div>
 
                 <div class="grid gap-4">
-                    <div class="card card-accent g-col-6">
+                    <div class="card card-accent g-col-12 g-col-lg-6">
                         <h3>Isolated Reading Notes</h3>
                         <p>Book highlights and PDF annotations stay locked in your reMarkable, disconnected from
                             your research and ideas.</p>
                     </div>
-                    <div class="card card-accent g-col-6">
+                    <div class="card card-accent g-col-12 g-col-lg-6">
                         <h3>Lost Handwritten Insights</h3>
                         <p>Your best ideas are written by hand but can't be searched, linked, or integrated with
                             your digital knowledge base.</p>
                     </div>
-                    <div class="card card-accent g-col-6">
+                    <div class="card card-accent g-col-12 g-col-lg-6">
                         <h3>Manual Export Hell</h3>
                         <p>Constant friction switching between devices, manually exporting files, and recreating
                             connections breaks your flow.</p>
@@ -71,18 +73,19 @@
 
     <section class="bg-secondary text-white p-4">
         <div class="container text-center p-4">
-            <h1 class="display-3 fw-bold mb-4 text-">One Workflow, Seamless Integration</h1>
-            <p class="w-50 mb-0 fs-6 m-auto">Scrybble creates the bridge you've been missing. Write naturally on
+            <h1 class="display-3 fw-bold mb-4">One Workflow, Seamless Integration</h1>
+            <p class="w-lg-50 mb-0 fs-6 m-auto">Scrybble creates the bridge you've been missing. Write naturally on
                 reMarkable, then access, search, and connect your notes instantly in Obsidian. Your analog
                 insights become part of your digital knowledge system without losing the benefits of either
                 tool.</p>
         </div>
     </section>
 
-    <section class="p-5 bg-body-tertiary" id="features">
+    <section class="p-3 p-lg-5 bg-body-tertiary" id="features">
         <div class="container">
             <h2 class="mb-4">What does Scrybble do for you?</h2>
-            <div class="grid gap-4">
+
+            <div class="grid gap-4 d-none d-lg-block">
                 <div class="grid align-items-center g-col-12 gap-5 justify-content-center">
                     <div class="g-col-6">
                         <img class="w-100" src="/img/docs-for-developers-md.png" alt="">
@@ -133,18 +136,66 @@
                         your ideas on our {{ config('app.discord') }}!</p>
                 </div>
             </div>
+
+            <div class="d-lg-none">
+                <div class="row g-4">
+                    <div class="col-12 mb-4">
+                        <div class="card border-0 bg-white shadow-sm p-2">
+                            <img class="card-img-top" src="/img/docs-for-developers-md.png" alt="">
+                            <div class="card-body">
+                                <h3 class="card-title">Export your highlights</h3>
+                                <p class="card-text">All your reMarkable highlights, searchable Markdown files in Obsidian, organized by page with preserved structure.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <div class="card border-0 bg-white shadow-sm p-2">
+                            <img class="card-img-top" src="/img/rM-integration.png" alt="">
+                            <div class="card-body">
+                                <h3 class="card-title">Native Obsidian Integration</h3>
+                                <p class="card-text">Browse and sync your entire reMarkable file tree directly from within Obsidian. No more switching to external websites or apps.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <div class="card border-0 bg-white shadow-sm p-2">
+                            <img class="card-img-top" src="img/tags.png" alt="">
+                            <div class="card-body">
+                                <h3 class="card-title">Organized with tags</h3>
+                                <p class="card-text">Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings, resulting in one organization system for both reMarkable and Obsidian.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <div class="card border-0 bg-white shadow-sm p-2">
+                            <img class="card-img-top" src="/img/bullet-journal-pdf.png" alt="">
+                            <div class="card-body">
+                                <h3 class="card-title">Handwritten notes for reference</h3>
+                                <p class="card-text">Obsidian becomes your perfect place for both freeform, handwritten thinking and digital thinking.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center mt-5">
+                        <h2>Handwriting to markdown text and diagrams.</h2>
+                        <p class="note">This will be coming soon. Interested in helping us shape this integration? Share your ideas on our {{ config('app.discord') }}!</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="p-5">
+    <section class="p-3 p-lg-5">
         <div class="container">
             <div class="text-center">
                 <h2>What Knowledge Workers Are Saying</h2>
                 <p class="fst-italic">From our user survey conducted in May, 2025:</p>
             </div>
 
-            <h4 style="color: var(--accent-color-first);">What do you value most about the Scrybble
-                reMarkable x Obsidian integration?</h4>
+            <h4 style="color: var(--accent-color-first);">What do you value most about the Scrybble reMarkable x Obsidian integration?</h4>
             <div class="testimonials">
                 <blockquote class="card-accent big-one">
                     <p>I was this close to giving up and no longer subscribe to reMarkable and sticking with my Kobo
@@ -189,8 +240,7 @@
                 </blockquote>
             </div>
 
-            <h4 style="color: var(--accent-color-third);">What do you value most about the Scrybble reMarkable x
-                Obsidian integration?</h4>
+            <h4 style="color: var(--accent-color-third);">Anything else to add?</h4>
             <div class="testimonials">
                 <blockquote style="--accent-color: var(--accent-color-third);" class="card-accent big-one">
                     <p>Notes on research papers are fairly easy to keep track of</p>

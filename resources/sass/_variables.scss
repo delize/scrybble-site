@@ -219,6 +219,12 @@ blockquote {
     .accent-card * {
         text-align: left;
     }
+
+    @include media-breakpoint-down(sm) {
+        grid-template-areas: "a"
+                             "b"
+                             "c" !important;
+    }
 }
 
 h4:has(+ .testimonials) {
