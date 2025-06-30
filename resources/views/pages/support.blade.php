@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="grid gap-4 mb-5">
-                        <div class="card border-primary g-col-6">
+                        <div class="card border-primary g-col-12 g-col-lg-6">
                             <div class="card-header bg-primary text-white">
                                 <h3 class="mb-0">Discord Community</h3>
                                 <small>Same day response on workdays</small>
@@ -40,11 +40,12 @@
                                 </ul>
                                 <p class="mb-3"><strong>Response time:</strong> Same day on weekdays (Monday-Friday,
                                     European time)</p>
-                                <a href="{{ config('app.discord') }}" class="btn btn-primary">Join the <b>Scrybbling Together</b> Discord</a>
+                                <a href="{{ config('app.discord') }}" class="btn btn-primary">Join the <b>Scrybbling
+                                        Together</b> Discord</a>
                             </div>
                         </div>
 
-                        <div class="card border-outline-secondary g-col-6">
+                        <div class="card border-primary g-col-12 g-col-lg-6">
                             <div class="card-header bg-light">
                                 <h3 class="mb-0">Email Support</h3>
                                 <small>Within 5 business days</small>
@@ -68,7 +69,7 @@
         </div>
     </section>
 
-    <section class="bg-body-tertiary p-5">
+    <section class="bg-body-tertiary p-3 p-lg-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -81,14 +82,18 @@
                             </summary>
                             <div class="p-3">
                                 <h3>Ran into this issue?</h3>
-                                <img class="mw-100" src="/img/document-sync-error.png" alt="An image showing a sync failure for 'The myth of Sisyphus' by Albert Camus">
+                                <img class="mw-100" src="/img/document-sync-error.png"
+                                     alt="An image showing a sync failure for 'The myth of Sisyphus' by Albert Camus">
                                 <p>This means our software is unable to process this specific file correctly.</p>
                                 <p><b>Give us access to your file and we can fix it:</b></p>
-                                <p class="text-muted">For privacy reasons, we don't have access to your files without your explicit permission.</p>
+                                <p class="text-muted">For privacy reasons, we don't have access to your files without
+                                    your explicit permission.</p>
                                 <ol>
                                     <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
                                     <li>Click the "feedback" action next to the file</li>
-                                    <li><img class="mw-100" src="img/feedback%20button.png" alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface"></li>
+                                    <li><img class="mw-100" src="img/feedback%20button.png"
+                                             alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface">
+                                    </li>
                                     <li>Fill in the details and share the file</li>
                                     <li>We'll get back to you via e-mail after you shared your file.</li>
                                 </ol>
@@ -124,14 +129,18 @@
                                 My annotations look weird, are incomplete or are shown at the wrong position.
                             </summary>
                             <div class="p-3">
-                                <p>It's a known issue that sometimes your annotations (drawings, marginalia etc) can look a bit off! Sorry!</p>
+                                <p>It's a known issue that sometimes your annotations (drawings, marginalia etc) can
+                                    look a bit off! Sorry!</p>
                                 <p>We're always working on improving our reMarkable annotations processing software.</p>
                                 <h3>Want your specific issue looked at by a developer?</h3>
-                                <p class="text-muted">For privacy reasons, we don't have access to your files without your explicit permission.</p>
+                                <p class="text-muted">For privacy reasons, we don't have access to your files without
+                                    your explicit permission.</p>
                                 <ol>
                                     <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
                                     <li>Click the "feedback" action next to the file</li>
-                                    <li><img class="mw-100" src="img/feedback%20button.png" alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface"></li>
+                                    <li><img class="mw-100" src="img/feedback%20button.png"
+                                             alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface">
+                                    </li>
                                     <li>Fill in the details and share the file</li>
                                     <li>We'll get back to you via e-mail after you shared your file.</li>
                                 </ol>
@@ -144,14 +153,20 @@
                             </summary>
                             <div class="p-3">
                                 <ol>
-                                    <li><b>Is your PDF a scanned document?</b> The text might not be digitally embedded within the PDF document. We will use OCR and/or AI at later stages to simplify this process at a later Scrybble release, but this is not yet supported.</li>
-                                    <li>You can run your document through a third-party OCR service and try again that way.</li>
+                                    <li><b>Is your PDF a scanned document?</b> The text might not be digitally embedded
+                                        within the PDF document. We will use OCR and/or AI at later stages to simplify
+                                        this process at a later Scrybble release, but this is not yet supported.
+                                    </li>
+                                    <li>You can run your document through a third-party OCR service and try again that
+                                        way.
+                                    </li>
                                 </ol>
                                 <hr>
                                 <ol>
                                     <li>Still having issues?</li>
                                     <li>Click the "feedback" button in the Scrybble sync plugin.</li>
-                                    <li>This way, we can look at your document and fix the problem with a new update.</li>
+                                    <li>This way, we can look at your document and fix the problem with a new update.
+                                    </li>
                                 </ol>
                             </div>
                         </details>
@@ -192,7 +207,7 @@
                 <div class="col-lg-8">
                     <h2 class="mb-4">What to Include When Asking for Help</h2>
                     <div class="grid gap-4">
-                        <div class="card card-accent g-col-6">
+                        <div class="card card-accent g-col-12 g-col-lg-6">
                             <h3>For Technical Issues</h3>
                             <ul class="text-start">
                                 <li>What you were trying to do</li>
@@ -201,7 +216,7 @@
                                 <li>Your device/OS versions</li>
                             </ul>
                         </div>
-                        <div class="card card-accent g-col-6">
+                        <div class="card card-accent g-col-12 g-col-lg-6">
                             <h3>For Account Issues</h3>
                             <ul class="text-start">
                                 <li>Your account email address</li>
@@ -216,23 +231,19 @@
         </div>
     </section>
 
-    <section class="bg-secondary text-white p-5">
+    <section class="bg-secondary text-white p-3 p-lg-5">
         <div class="container text-center">
             <h2 class="mb-4">Our Support Philosophy</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <p class="fs-5 mb-4">We're committed to transparent, helpful support that respects your time and
-                        intelligence.</p>
-                    <div class="grid gap-5">
-                        <div class="g-col-6">
-                            <h4>Honest Answers</h4>
-                            <p>If we can't fix something or it's not possible, we'll tell you straight up.</p>
-                        </div>
-                        <div class="g-col-6">
-                            <h4>Community First</h4>
-                            <p>Our Discord community often has faster answers than we do. We encourage peer support.</p>
-                        </div>
-                    </div>
+            <p class="fs-5 mb-4">We're committed to transparent, helpful support that respects your time and
+                intelligence.</p>
+            <div class="grid gap-lg-5">
+                <div class="g-col-12 g-col-lg-6">
+                    <h4>Honest Answers</h4>
+                    <p>If we can't fix something or it's not possible, we'll tell you straight up.</p>
+                </div>
+                <div class="g-col-12 g-col-lg-6">
+                    <h4>Community First</h4>
+                    <p>Our Discord community often has faster answers than we do. We encourage peer support.</p>
                 </div>
             </div>
         </div>

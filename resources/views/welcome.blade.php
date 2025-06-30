@@ -85,8 +85,8 @@
         <div class="container">
             <h2 class="mb-4">What does Scrybble do for you?</h2>
 
-            <div class="grid gap-4 d-none d-lg-block">
-                <div class="grid align-items-center g-col-12 gap-5 justify-content-center">
+            <div class="grid d-none d-lg-block">
+                <div class="grid align-items-center g-col-12 gap-5 justify-content-center mb-4">
                     <div class="g-col-6">
                         <img class="w-100" src="/img/docs-for-developers-md.png" alt="">
                     </div>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
 
-                <div class="grid align-items-center g-col-12 gap-4">
+                <div class="grid align-items-center g-col-12 gap-4 mb-4">
                     <div class="g-col-3">
                         <h3>Native Obsidian Integration</h3>
                         <p>Browse and sync your entire reMarkable file tree directly from within Obsidian. No more
@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="grid align-items-center g-col-12 gap-4">
+                <div class="grid align-items-center g-col-12 gap-4 mb-4">
                     <div class="g-col-6">
                         <img class="w-100" src="img/tags.png" alt="">
                     </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="grid align-items-center g-col-12 gap-4">
+                <div class="grid align-items-center g-col-12 gap-4 mb-4">
                     <div class="g-col-3">
                         <h3>Handwritten notes for reference</h3>
                         <p>Obsidian becomes your perfect place for both freeform, handwritten thinking and digital
