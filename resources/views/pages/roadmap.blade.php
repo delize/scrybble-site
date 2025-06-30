@@ -57,9 +57,9 @@
                             <div class="card-body">
                                 <p><strong>Problem:</strong> Your files are currently stored on our servers, but are accessible by the developer. If our server were hacked, your files are accessible by hackers.</p>
                                 <p><strong>Solution:</strong> Implement end-to-end encryption so that even in a case of a data leak, your files remain entirely secure.</p>
-                                <div class="mt-3">
-                                    <small class="text-muted">Expected: Q3</small>
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q3 2025</small>
                             </div>
                         </div>
 
@@ -71,9 +71,9 @@
                             <div class="card-body">
                                 <p><strong>Problem:</strong> In Scrybble's early stages, security was less important. Your files are stored on a secure server, but there are many ways to harden the security further even beyond E2E encryption.</p>
                                 <p><strong>Solution:</strong> Implement various security best-practices</p>
-                                <div class="mt-3">
-                                    <small class="text-muted">Expected: Q3</small>
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q3 2025</small>
                             </div>
                         </div>
 
@@ -85,9 +85,9 @@
                             <div class="card-body">
                                 <p><strong>Problem:</strong> How the server is currently implemented, your file security depends on us not getting hacked.</p>
                                 <p><strong>Solution:</strong> Implement end-to-end encryption so that even under awful circumstances, your files remain secure.</p>
-                                <div class="mt-3">
-                                    <small class="text-muted">Expected: Q3</small>
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q3 2025</small>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                 <div class="col-lg-10">
                     <h2 class="text-center mb-5">Q4 2025 - Next Up</h2>
                     <div class="grid gap-4 mb-4">
-                        <div class="card border-primary g-col-6">
+                        <div class="card border-primary g-col-12 g-col-lg-6">
                             <div class="card-header bg-light text-dark d-flex justify-content-between align-items-center">
                                 <h4 class="mb-0">Search and sort options for reMarkable notebooks within the Obsidian plugin</h4>
                                 <span class="badge bg-info text-dark fs-6 p-2">Exploring</span>
@@ -112,13 +112,13 @@
                             <div class="card-body">
                                 <p><strong>Problem:</strong> Highlights don't work on scanned PDFs without embedded text</p>
                                 <p><strong>Solution:</strong> AI and/or OCR</p>
-                                <div class="mt-3">
-                                    <small class="text-muted">Expected: Q4 2025</small>
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q4 2025</small>
                             </div>
                         </div>
 
-                        <div class="card border-primary g-col-6">
+                        <div class="card border-primary g-col-12 g-col-lg-6">
                             <div class="card-header bg-light text-dark d-flex justify-content-between align-items-center">
                                 <h4 class="mb-0">Highlight support for scanned documents</h4>
                                 <span class="badge bg-info text-dark fs-6 p-2">Exploring</span>
@@ -126,13 +126,13 @@
                             <div class="card-body">
                                 <p><strong>Problem:</strong> Highlights don't work on scanned PDFs without embedded text</p>
                                 <p><strong>Solution:</strong> AI and/or OCR</p>
-                                <div class="mt-3">
-                                    <small class="text-muted">Expected: Q4 2025</small>
-                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q4 2025</small>
                             </div>
                         </div>
 
-                        <div class="card border-warning g-col-lg-6 g-col-12">
+                        <div class="card border-primary g-col-12 g-col-lg-6">
                             <div class="card-header bg-light text-dark d-flex justify-content-between align-items-center">
                                 <h4 class="mb-0">Automatic sync functionality</h4>
                                 <span class="badge bg-warning text-dark fs-6 p-2">Planned</span>
@@ -143,6 +143,9 @@
                                 <ul class="mb-0">
                                     <li>Select files and or folders which should automatically sync</li>
                                 </ul>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Expected: Q4 2025</small>
                             </div>
                         </div>
                     </div>
@@ -221,28 +224,36 @@
                             <div class="card-body text-center">
                                 <h4>Get your voice heard</h4>
                                 <p>A particular feature particularly important for you? Contact us!</p>
-                                <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
-                                <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-grid d-sm-flex gap-2">
+                                    <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
+                                    <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                                </div>
                             </div>
                         </div>
                         <div class="card border-outline-secondary g-col-6">
                             <div class="card-body text-center">
                                 <h4>Suggest Ideas</h4>
                                 <p>Have a feature request? We want to hear it.</p>
-                                <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
-                                <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-grid d-sm-flex gap-2">
+                                    <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
+                                    <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <h3 class="mb-3">Previously Completed</h3>
-                        <ul class="d-grid gap-4">
-                            <li class="badge bg-success fs-6 p-4">✓ Type folio & typed text support</li>
-                            <li class="badge bg-success fs-6 p-4">✓ reMarkable Paper Pro support</li>
-                            <li class="badge bg-success fs-6 p-4">✓ Improved sync reliability</li>
-                            <li class="badge bg-success fs-6 p-4">✓ Greatly improved UI within Obsidian</li>
-                            <li class="badge bg-success fs-6 p-4">✓ Highlight export from device</li>
+                        <ul>
+                            <li class="badge bg-success fs-6 p-2 mb-2">✓ Type folio & typed text support</li>
+                            <li class="badge bg-success fs-6 p-2 mb-2">✓ reMarkable Paper Pro support</li>
+                            <li class="badge bg-success fs-6 p-2 mb-2">✓ Improved sync reliability</li>
+                            <li class="badge bg-success fs-6 p-2 mb-2">✓ Greatly improved UI within Obsidian</li>
+                            <li class="badge bg-success fs-6 p-2 mb-2">✓ Highlight export from device</li>
                         </ul>
                     </div>
                 </div>
