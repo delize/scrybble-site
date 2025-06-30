@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Scrybble Sync - Think analog, organize digital</title>
+    <title>{{ $title ?? "Scrybble Sync - Think analog, organize digital"}}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -15,7 +15,7 @@
 
     @yield('head')
 
-    @vite(['resources/sass/app.scss'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-between">
 

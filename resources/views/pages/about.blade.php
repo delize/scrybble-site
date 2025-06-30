@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
-@section('head')
+@push('head')
+    <?php $title = "Scrybble - About"; ?>
+
     <meta name="description"
           content="Meet the team behind Scrybble - the reMarkable-Obsidian integration that bridges analog and digital thinking. Built with transparency, community, and respect for your workflow.">
     <meta name="keywords" content="Scrybble team, about, reMarkable Obsidian creator, Applied Communication Design">
-@endsection
+@endpush
 
 @section('content')
     <section class="bg-secondary-subtle p-5">
@@ -152,6 +154,21 @@
                                 <small class="text-muted">Important for being: connected, part-of-a-greater-whole</small>
                             </div>
                         </div>
+
+                        <div class="card border-info g-col-6">
+                            <div class="card-header bg-info text-dark">
+                                <h4 class="mb-0">Radical openness</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-3"><strong>What we look for:</strong></p>
+                                <ul class="mb-3">
+                                    <li>📖 <strong>Open wherever possible</strong> - When creating or learning something, look for opportunities to package and share it with the wider community under the most permissive license possible</li>
+                                    <li>💬 <strong>Business in conversation</strong> - Notice business and/or technical challenges or decisions that you could handle internally, and look for opportunities to involve the community or customers instead</li>
+                                    <li>🧱 <strong>Cemented value-system</strong> - Notice opportunities to embed core values into organizational systems, legal structures, and processes rather than relying on cultural memory or individual choice</li>
+                                </ul>
+                                <small class="text-muted">Important for being: connected, part-of-a-greater-whole</small>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="text-center">
@@ -181,31 +198,19 @@
                     </p>
 
                     <div class="grid gap-3 mb-5">
-                        <div class="g-col-6 g-col-md-4">
+                        <div class="g-col-6">
                             <div class="text-center p-3 bg-white bg-opacity-10 rounded">
-                                <strong>@contributor1</strong><br>
-                                <small>Bug fixes, testing</small>
+                                <strong><a class="text-white" href="https://github.com/zegevlier">Zegevlier</a></strong><br>
+                                <small>Feature suggestions, solutions for rendering problems in <a href="https://github.com/Scrybbling-together/remarks" class="text-white">remarks</a></small>
                             </div>
                         </div>
-                        <div class="g-col-6 g-col-md-4">
+                        <div class="g-col-6">
                             <div class="text-center p-3 bg-white bg-opacity-10 rounded">
-                                <strong>@contributor2</strong><br>
-                                <small>Feature suggestions</small>
-                            </div>
-                        </div>
-                        <div class="g-col-6 g-col-md-4">
-                            <div class="text-center p-3 bg-white bg-opacity-10 rounded">
-                                <strong>@contributor3</strong><br>
-                                <small>Documentation</small>
+                                <strong><a href="https://github.com/chemag" class="text-white"></a>@chemag</strong><br>
+                                <small>Collaborated on data structure parsing in <a class="text-white" href="https://github.com/ricklupton/rmscene">rmscene</a></small>
                             </div>
                         </div>
                     </div>
-
-                    <h3 class="mb-4">Community Champions</h3>
-                    <p class="mb-4">
-                        Special thanks to our Discord community members who help newcomers, share workflow tips,
-                        and provide thoughtful feedback that guides our development priorities.
-                    </p>
 
                     <div class="text-center">
                         <p class="mb-3">Want to contribute? We welcome:</p>
@@ -215,7 +220,8 @@
                             <li>• Documentation improvements</li>
                             <li>• Community support and discussion</li>
                         </ul>
-                        <a href="{{ config('app.discord') }}" class="btn btn-outline-light btn-lg">Join Our Discord Community</a>
+                        <a href="{{ config('app.discord') }}" class="btn btn-outline-light btn-lg">Join <strong>Scrybbling Together</strong> Discord Community</a>
+                        <a class="btn btn-outline-light btn-lg" href="https://github.com/scrybbling-together">Check out the <strong>Scrybbling Together</strong> Github organization</a>
                     </div>
                 </div>
             </div>

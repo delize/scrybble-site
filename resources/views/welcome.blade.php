@@ -22,22 +22,17 @@
                     <h1 class="display-1 fw-bolder">Think Analog, Organize Digital</h1>
                     <p class="display-5 text- mb-4" style="--bs-text-opacity: .65;">The missing link between your
                         reMarkable tablet and Obsidian vault</p>
-                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">Stop losing your
-                        handwritten insights in a digital silo. Scrybble
-                        seamlessly syncs your reMarkable notes into Obsidian, making them searchable, linkable, and
-                        part of your knowledge system.</p>
+                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">You chose the reMarkable tablet for focused reading and writing, and use Obsidian for organization.</p>
+                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65">Scrybble is the glue connecting the two.</p>
                     <a class="btn btn-lg btn-primary" role="button" aria-disabled="true"
                        href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get
                         Scrybble Now</a>
-                    <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">See
-                        How It Works</a>
+                    <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">What can Scrybble do for you?</a>
                 </div>
                 <div class="g-col-6">
                     <div class="card border-secondary p-4 bg-white shadow">
-                        <b>Forever part of your vault</b>
-                        <p class="mb-0">Your reMarkable highlights and notes appear in Obsidian as organized,
-                            searchable Markdown
-                            files with page references and tags intact.</p>
+                        <b>Your annotations in your vault</b>
+                        <p class="mb-0">Scrybble connects your reMarkable to Obsidian. Annotations written on your tablet appear in Obsidian with page references intact.</p>
                     </div>
                 </div>
             </div>
@@ -86,7 +81,7 @@
 
     <section class="p-5 bg-body-tertiary" id="features">
         <div class="container">
-            <h2 class="mb-4">Everything You Need for Seamless Integration</h2>
+            <h2 class="mb-4">What does Scrybble do for you?</h2>
             <div class="grid gap-4">
                 <div class="grid align-items-center g-col-12 gap-5 justify-content-center">
                     <div class="g-col-6">
@@ -223,10 +218,10 @@
             <div id="billing-toggle" class="d-flex mb-5 justify-content-center" role="radiogroup"
                  aria-labelledby="plan-heading">
                 <div class="card p-1 flex-row gap-2">
-                    <input type="radio" class="btn-check" name="billing-period" id="monthly" autocomplete="off">
+                    <input type="radio" class="btn-check" name="billing-period" id="monthly" autocomplete="off" checked>
                     <label class="btn btn-outline-danger border-0" for="monthly">Monthly</label>
 
-                    <input type="radio" class="btn-check" name="billing-period" id="yearly" autocomplete="off" checked>
+                    <input type="radio" class="btn-check" name="billing-period" id="yearly" autocomplete="off">
                     <label class="btn btn-outline-danger position-relative border-0" for="yearly">
                         Yearly
                         <span
@@ -279,7 +274,7 @@
                         class="note">We are always looking to expand the Scrybble knowledge management software suite</span>
 
                     <ul class="pricing-features">
-                        <li>Do you work with specific software that is missing an integration?</li>
+                        <li>Is your workflow in need of a specific integration?</li>
                         <li>Zotero x reMarkable?</li>
                         <li>Anki x Obsidian?</li>
                         <li>... x ...?</li>
