@@ -44,6 +44,7 @@
             # TODO: Deprecated in favor of bun
             pkgs.nodejs_22
             pkgs.bun
+            pkgs.imagemagick
             php.scrybble-php
             php.scrybble-php.packages.composer
             setup-script

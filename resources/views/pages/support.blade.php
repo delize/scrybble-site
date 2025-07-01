@@ -82,7 +82,7 @@
                             </summary>
                             <div class="p-3">
                                 <h3>Ran into this issue?</h3>
-                                <img class="mw-100" src="/img/document-sync-error.png"
+                                <img class="mw-100" src="/img/document-sync-error.webp"
                                      alt="An image showing a sync failure for 'The myth of Sisyphus' by Albert Camus">
                                 <p>This means our software is unable to process this specific file correctly.</p>
                                 <p><b>Give us access to your file and we can fix it:</b></p>
@@ -91,7 +91,7 @@
                                 <ol>
                                     <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
                                     <li>Click the "feedback" action next to the file</li>
-                                    <li><img class="mw-100" src="img/feedback%20button.png"
+                                    <li><img class="mw-100" src="img/feedback%20button.webp"
                                              alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface">
                                     </li>
                                     <li>Fill in the details and share the file</li>
@@ -138,7 +138,7 @@
                                 <ol>
                                     <li>Navigate to to the file within the Obsidian Scrybble plugin</li>
                                     <li>Click the "feedback" action next to the file</li>
-                                    <li><img class="mw-100" src="img/feedback%20button.png"
+                                    <li><img class="mw-100" src="img/feedback%20button.webp"
                                              alt="An arrow pointing at the 'feedback button' within the Scrybble Obsidian plugin interface">
                                     </li>
                                     <li>Fill in the details and share the file</li>

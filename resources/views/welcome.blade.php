@@ -88,7 +88,7 @@
             <div class="grid d-none d-lg-block">
                 <div class="grid align-items-center g-col-12 gap-5 justify-content-center mb-4">
                     <div class="g-col-6">
-                        <img class="w-100" src="/img/docs-for-developers-md.png" alt="">
+                        <img class="w-100" src="/img/docs-for-developers-md.webp" alt="">
                     </div>
                     <div class="g-col-6">
                         <h3>Export your highlights</h3>
@@ -104,13 +104,13 @@
                             switching to external websites or apps.</p>
                     </div>
                     <div class="g-col-9">
-                        <img class="w-100" src="/img/rM-integration.png" alt="">
+                        <img class="w-100" src="/img/rM-integration.webp" alt="">
                     </div>
                 </div>
 
                 <div class="grid align-items-center g-col-12 gap-4 mb-4">
                     <div class="g-col-6">
-                        <img class="w-100" src="img/tags.png" alt="">
+                        <img class="w-100" src="img/tags.webp" alt="">
                     </div>
                     <div class="g-col-6">
                         <h3>Organized with tags</h3>
@@ -126,7 +126,7 @@
                             thinking.</p>
                     </div>
                     <div class="g-col-9">
-                        <img class="w-100" src="/img/bullet-journal-pdf.png" alt="">
+                        <img class="w-100" src="/img/bullet-journal-pdf.webp" alt="">
                     </div>
                 </div>
 
@@ -142,7 +142,7 @@
                 <div class="row g-4">
                     <div class="col-12 mb-4">
                         <div class="card border-0 bg-white shadow-sm p-2">
-                            <img class="card-img-top" src="/img/docs-for-developers-md.png" alt="">
+                            <img class="card-img-top" src="/img/docs-for-developers-md.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Export your highlights</h3>
                                 <p class="card-text">All your reMarkable highlights, searchable Markdown files in Obsidian, organized by page with preserved structure.</p>
@@ -152,7 +152,7 @@
 
                     <div class="col-12 mb-4">
                         <div class="card border-0 bg-white shadow-sm p-2">
-                            <img class="card-img-top" src="/img/rM-integration.png" alt="">
+                            <img class="card-img-top" src="/img/rM-integration.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Native Obsidian Integration</h3>
                                 <p class="card-text">Browse and sync your entire reMarkable file tree directly from within Obsidian. No more switching to external websites or apps.</p>
@@ -162,7 +162,7 @@
 
                     <div class="col-12 mb-4">
                         <div class="card border-0 bg-white shadow-sm p-2">
-                            <img class="card-img-top" src="img/tags.png" alt="">
+                            <img class="card-img-top" src="img/tags.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Organized with tags</h3>
                                 <p class="card-text">Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings, resulting in one organization system for both reMarkable and Obsidian.</p>
@@ -172,7 +172,7 @@
 
                     <div class="col-12 mb-4">
                         <div class="card border-0 bg-white shadow-sm p-2">
-                            <img class="card-img-top" src="/img/bullet-journal-pdf.png" alt="">
+                            <img class="card-img-top" src="/img/bullet-journal-pdf.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Handwritten notes for reference</h3>
                                 <p class="card-text">Obsidian becomes your perfect place for both freeform, handwritten thinking and digital thinking.</p>
