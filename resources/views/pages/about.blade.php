@@ -200,7 +200,7 @@
                     <div class="grid gap-3 mb-5">
                         <div class="g-col-6">
                             <div class="text-center p-3 bg-white bg-opacity-10 rounded">
-                                <strong><a class="text-white" href="https://github.com/zegevlier">Zegevlier</a></strong><br>
+                                <strong><a class="text-white" href="https://github.com/zegevlier">@Zegevlier</a></strong><br>
                                 <small>Feature suggestions, solutions for rendering problems in <a href="https://github.com/Scrybbling-together/remarks" class="text-white">remarks</a></small>
                             </div>
                         </div>
@@ -208,6 +208,12 @@
                             <div class="text-center p-3 bg-white bg-opacity-10 rounded">
                                 <strong><a href="https://github.com/chemag" class="text-white"></a>@chemag</strong><br>
                                 <small>Collaborated on data structure parsing in <a class="text-white" href="https://github.com/ricklupton/rmscene">rmscene</a></small>
+                            </div>
+                        </div>
+                        <div class="g-col-6">
+                            <div class="text-center p-3 bg-white bg-opacity-10 rounded">
+                                <strong><a href="https://github.com/der-lu" class="text-white"></a>@der-lu</strong><br>
+                                <small>Helped a lot with testing and feedback for the <a href="https://github.com/Scrybbling-together/zotero2remarkable_bridge">Zotero x reMarkable integration</a></small>
                             </div>
                         </div>
                     </div>
