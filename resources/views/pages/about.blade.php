@@ -5,7 +5,7 @@
 
     <meta name="description"
           content="Meet the team behind Scrybble - the reMarkable-Obsidian integration that bridges analog and digital thinking. Built with transparency, community, and respect for your workflow.">
-    <meta name="keywords" content="Scrybble team, about, reMarkable Obsidian creator, Applied Communication Design">
+    <meta name="keywords" content="Scrybble team, about, reMarkable x Obsidian, Applied Communication Design">
 @endpush
 
 @section('content')

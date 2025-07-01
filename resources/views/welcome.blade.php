@@ -133,7 +133,8 @@
                 <div class="g-col-12 text-center">
                     <h2>Handwriting to markdown text and diagrams.</h2>
                     <p class="note">This will be coming soon. Interested in helping us shape this integration? Share
-                        your ideas on our {{ config('app.discord') }}!</p>
+                        your ideas on our
+                        <a href="{{ config('app.discord_invite') }}" class="btn btn-primary"><b>{{ config('app.discord_name') }}</b> Discord</a></p>
                 </div>
             </div>
 
