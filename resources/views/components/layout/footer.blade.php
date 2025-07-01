@@ -10,7 +10,7 @@
             <div class="footer-section">
                 <h4>Support & Community</h4>
                 <a href="/support">Find support</a>
-                <a href="{{ config('app.discord_invite') }}">Discord Community</a>
+                <a href="{{ config('app.discord.invite') }}">Discord Community</a>
                 <a href="https://github.com/Scrybbling-together/scrybble/issues">Report Issues</a>
             </div>
 

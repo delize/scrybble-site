@@ -220,7 +220,7 @@
                             <li>• Documentation improvements</li>
                             <li>• Community support and discussion</li>
                         </ul>
-                        <a href="{{ config('app.discord') }}" class="btn btn-outline-light btn-lg">Join <strong>Scrybbling Together</strong> Discord Community</a>
+                        <a href="{{ config('app.discord.invite') }}" class="btn btn-outline-light btn-lg">Join <strong>Scrybbling Together</strong> Discord Community</a>
                         <a class="btn btn-outline-light btn-lg" href="https://github.com/scrybbling-together">Check out the <strong>Scrybbling Together</strong> Github organization</a>
                     </div>
                 </div>
@@ -240,7 +240,7 @@
                     <div class="d-flex gap-3 justify-content-center">
                         <a href="/support" class="btn btn-primary">Get Support</a>
                         <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
-                        <a class="btn btn-outline-primary" href="{{ config('app.discord_invite') }}">Join our <b>{{ config('app.discord_name') }}</b> Discord.</a>
+                        <a class="btn btn-outline-primary" href="{{ config('app.discord.invite') }}">Join our <b>{{ config('app.discord.name') }}</b> Discord.</a>
                     </div>
                 </div>
             </div>

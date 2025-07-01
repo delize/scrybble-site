@@ -228,7 +228,7 @@
                             <div class="card-footer">
                                 <div class="d-grid d-sm-flex gap-2">
                                     <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
-                                    <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                                    <a href="{{ config('app.discord.invite') }}" class="btn btn-primary">Join Discord</a>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,7 @@
                             <div class="card-footer">
                                 <div class="d-grid d-sm-flex gap-2">
                                     <a href="mailto:{{ config('app.support_email') }}" class="btn btn-outline-secondary">Send Email</a>
-                                    <a href="{{ config('app.discord') }}" class="btn btn-primary">Join Discord</a>
+                                    <a href="{{ config('app.discord.invite') }}" class="btn btn-primary">Join Discord</a>
                                 </div>
                             </div>
                         </div>

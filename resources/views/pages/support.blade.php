@@ -40,7 +40,7 @@
                                 </ul>
                                 <p class="mb-3"><strong>Response time:</strong> Same day on weekdays (Monday-Friday,
                                     European time)</p>
-                                <a href="{{ config('app.discord') }}" class="btn btn-primary">Join the <b>Scrybbling
+                                <a href="{{ config('app.discord.invite') }}" class="btn btn-primary">Join the <b>Scrybbling
                                         Together</b> Discord</a>
                             </div>
                         </div>

@@ -35,8 +35,10 @@ return [
     | The name and the invite URL to a Discord channel
     |
      */
-    'discord_name' => env('DISCORD_NAME'),
-    'discord_invite' => env('DISCORD_INVITE'),
+    'discord' => [
+        'name' => env('DISCORD_NAME'),
+        'invite' => env('DISCORD_INVITE'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
