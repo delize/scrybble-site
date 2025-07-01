@@ -14,8 +14,8 @@
             <thead>
             <tr>
                 <th>Sync id</th>
-                @if (Auth::user()->id === 1)
-                <th>User</th>
+                @if ( Auth::user()?->id === 1 )
+                    <th>User</th>
                 @endif
                 <th>When</th>
                 <th>Feedback</th>
@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{$shared_file['id']}}</td>
                     @if (Auth::user()->id === 1)
-                    <td>{{$shared_file['user_email']}}</td>
+                        <td>{{$shared_file['user_email']}}</td>
                     @else
                         <td>Must be logged in as an admin to view user e-mail</td>
                     @endif
@@ -38,7 +38,7 @@
                     <td>{{$shared_file['filename']}}</td>
                     <td>
                         @if($shared_file['output_href'])
-                        <a href="{{$shared_file['output_href']}}">Download</a>
+                            <a href="{{$shared_file['output_href']}}">Download</a>
                         @else
                             Gone
                         @endif

@@ -58,30 +58,5 @@ Route::group(['middleware' => 'auth'], static function () {
     Route::get('profile', ProfileController::class);
 });
 
-Route::group(['middleware' => ['auth'], 'prefix' => "api"], static function () {
-    Route::get('onboardingState', OnboardingStateController::class);
-    Route::get('licenseInformation', GumroadLicenseInformationController::class);
-
-    Route::post('gumroadLicense', [ConnectedGumroadLicenseController::class, "store"]);
-
-    Route::post('/onetimecode', [OnetimecodeController::class, 'create']);
-
-    Route::post('/file', [FileController::class, 'show'])->name('download');
-
-    Route::get('inspect-sync', [InspectSyncController::class, "index"]);
-
-    Route::post('RMFileTree', [RMFiletreeController::class, 'index']);
-
-    Route::post('remarkable-document-share', [ReMarkableDocumentFeedbackController::class, 'store']);
-});
-
-Route::group(['prefix' => 'api'], static function () {
-    Route::get('gumroadSale/{sale_id}', [GumroadSaleController::class, "show"]);
-
-    Route::get("posts", [PostController::class, "list"]);
-    Route::get("posts/{slug}", [PostController::class, "show"]);
-});
-
-
 Route::get('shared_documents', [SharedDocumentsController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
