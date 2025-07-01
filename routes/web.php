@@ -48,9 +48,6 @@ Route::group(['middleware' => ['auth']], static function () {
     Route::post('/connect-license', [ConnectedGumroadLicenseController::class, 'store'])->name('connect-license');
 });
 
-// required by Fortify: https://github.com/laravel/fortify/issues/155#issuecomment-732531717
-Route::get('/base/reset-password/{token}', [HomeController::class, 'index'])->name('password.reset');
-
 // required by sentry:
 // https://docs.sentry.io/platforms/javascript/guides/react/troubleshooting/#dealing-with-ad-blockers
 Route::post("/tunnel", [SentryTunnelController::class, "index"]);
