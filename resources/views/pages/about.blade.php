@@ -47,7 +47,7 @@
                             <div class="card border-0 bg-transparent">
                                 <div class="card-body">
                                     <div class="bg-secondary rounded mb-3 overflow-hidden" style="height: 200px; width: 200px; margin: 0 auto;">
-                                        <img class="mw-100" src="img/portraits/Laura.webp" alt="Photo of Laura Brekelmans">
+                                        <img width="1497" height="1500" class="mw-100" src="img/portraits/Laura.webp" alt="Photo of Laura Brekelmans">
                                     </div>
                                     <h3>Laura Brekelmans</h3>
                                     <p class="text-muted">Founder & Developer</p>
@@ -62,7 +62,7 @@
                                 <div class="card border-primary g-col-lg-6 g-col-sm-12">
                                     <div class="card-body text-center">
                                         <div class="bg-primary rounded-circle mb-3 overflow-hidden" style="height: 200px; width: 200px; margin: 0 auto;">
-                                            <img src="img/portraits/Pineapple.webp" class="mw-100" alt="A photo of Pineapple, tortoiseshell cat">
+                                            <img width="901" height="901" src="img/portraits/Pineapple.webp" class="mw-100" alt="A photo of Pineapple, tortoiseshell cat">
                                         </div>
                                         <h5>Pineapple</h5>
                                         <p class="text-muted mb-2">Chief Security Officer & Strategic Operations Director</p>
@@ -79,7 +79,7 @@
                                 <div class="card border-primary g-col-lg-6 g-col-sm-12">
                                     <div class="card-body text-center">
                                         <div class="bg-primary rounded-circle mb-3 overflow-hidden" style="height: 200px; width: 200px; margin: 0 auto;">
-                                            <img src="img/portraits/Lemon.webp" class="mw-100" alt="A photo of Lemon, tortoiseshell cat">
+                                            <img width="1500" height="2000" src="img/portraits/Lemon.webp" class="mw-100" alt="A photo of Lemon, tortoiseshell cat">
                                         </div>
 
                                         <h5>Lemon</h5>
