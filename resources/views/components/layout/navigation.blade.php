@@ -15,6 +15,9 @@
                     <li class="nav-item">
                         <a href="/roadmap" class="nav-link">Roadmap</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/support" class="nav-link">Support</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav">

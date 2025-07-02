@@ -213,7 +213,7 @@
                         <div class="g-col-6">
                             <div class="text-center p-3 bg-white bg-opacity-10 rounded">
                                 <strong><a href="https://github.com/der-lu" class="text-white"></a>@der-lu</strong><br>
-                                <small>Helped a lot with testing and feedback for the <a href="https://github.com/Scrybbling-together/zotero2remarkable_bridge">Zotero x reMarkable integration</a></small>
+                                <small>Helped a lot with testing and feedback for the <a class="text-white" href="https://github.com/Scrybbling-together/zotero2remarkable_bridge">Zotero x reMarkable integration</a></small>
                             </div>
                         </div>
                     </div>
