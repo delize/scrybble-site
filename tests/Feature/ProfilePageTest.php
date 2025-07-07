@@ -19,13 +19,11 @@ class ProfilePageTest extends TestCase
 
         $response = $this->actingAs($user)
             ->get('/profile');
-
-        // Assert the response is successful
         $response->assertStatus(200);
 
-        // Assert we can see the user's information on the page
-//        $response->assertSee($user->name);
-//        $response->assertSee($user->email);
+        $response->assertSee($user->name);
+        $response->assertSee($user->email);
+        $response->assertSee("No license");
     }
 
     public function test_unauthenticated_user_cannot_access_profile_page()
