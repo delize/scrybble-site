@@ -140,6 +140,10 @@ class RMapi
             $error = implode("\n", $output->toArray());
 
             // Rare error once received from the API. If this ever happens again, look into it
+            // started happening again.
+            // https://streamsoft.sentry.io/issues/6663898108
+            // What's weird is that if you look at the `.rmapi-auth` file, the token is indeed empty.
+            // What empties this token? rmapi itself if something goes wrong?
 //            if (Str::contains($error, "missing token")) {
 //
 //            }
