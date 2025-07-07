@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Services\PRMStorage\DiskPRMStorage;
 use App\Services\PRMStorage\PRMStorageInterface;
 use App\Services\PRMStorage\S3PRMStorage;
@@ -9,9 +10,13 @@ use App\Services\Remarks\RemarksHTTPServer;
 use App\Services\Remarks\RemarksRunDockerContainer;
 use App\Services\Remarks\RemarksService;
 use App\Services\RMapi;
+use Event;
+use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
+use Sentry\Laravel\Integration;
+use Sentry\State\Scope;
 use URL;
 
 class AppServiceProvider extends ServiceProvider
@@ -51,6 +56,13 @@ class AppServiceProvider extends ServiceProvider
 
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
+
+            Event::listen(function (Authenticated $event) {
+                /** @var User $user */
+                $user = $event->user;
+
+                Integration::configureScope(fn ($scope) => $scope->setUser(['id' => $user->id]));
+            });
         }
 
         if (config('scrybble.storage_platform') === "disk") {

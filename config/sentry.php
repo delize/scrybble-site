@@ -56,5 +56,4 @@ return [
 
     // @see: https://docs.sentry.io/platforms/php/guides/laravel/configuration/options/#traces-sample-rate
     'traces_sample_rate' => 0.01,
-
 ];
