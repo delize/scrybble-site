@@ -40,9 +40,21 @@
                             </h5>
 
                             <div class="subscription-status">
-                                @if($licenseData['lifetime'])
+                                @if(is_null($licenseData))
                                     <div class="d-flex align-items-center">
-                                        <i class="fas fa-infinity text-success me-2 fs-4"></i>
+                                        <div>
+                                            <span class="badge bg-warning fs-6 px-3 py-2">
+                                                {{ __('No license') }}
+                                            </span>
+                                            <div class="text-muted small mt-1">{{ __('You have no subscription linked to your account') }}</div>
+
+                                            <div>Install <a href="https://obsidian.md/plugins?id=scrybble.ink">the
+                                                    Obsidian plugin</a> and follow the steps to get started with your account.
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif($licenseData['lifetime'])
+                                    <div class="d-flex align-items-center">
                                         <div>
                                             <div
                                                 class="text-muted small mt-1">{{ __('You have unlimited access forever') }}</div>
@@ -53,18 +65,15 @@
                                         <div class="d-flex align-items-center">
                                             @if($licenseData['licenseInformation']['active'])
                                                 <div>
-                                                    <span class="badge bg-success fs-6">
+                                                    <span class="badge bg-success fs-6 px-3 py-2">
                                                         {{ __('Active') }}
                                                     </span>
                                                     <div
                                                         class="text-muted small mt-1">{{ __('Your subscription is active') }}</div>
                                                 </div>
                                             @else
-                                                <i class="fas fa-exclamation-circle text-danger me-2 fs-4"></i>
                                                 <div>
-                                                    <span class="badge bg-danger fs-6 px-3 py-2">
-                                                        <i class="fas fa-pause me-1"></i>{{ __('Inactive') }}
-                                                    </span>
+                                                    <span class="badge bg-danger fs-6 px-3 py-2"></span>
                                                     <div
                                                         class="text-muted small mt-1">{{ __('Your subscription needs attention') }}</div>
                                                 </div>
@@ -75,14 +84,13 @@
                                             <div>
                                                 <a href="https://app.gumroad.com/subscriptions/{{ $licenseData['licenseInformation']['subscription_id'] }}/manage"
                                                    class="btn btn-outline-primary">
-                                                    <i class="fas fa-cog me-1"></i>{{ __('Manage Subscription') }}
+                                                    {{ __('Manage Subscription') }}
                                                 </a>
                                             </div>
                                         @endif
                                     </div>
                                 @else
                                     <div class="d-flex align-items-center">
-                                        <i class="fas fa-question-circle text-warning me-2 fs-4"></i>
                                         <div>
                                             <span
                                                 class="text-muted">{{ __('Unable to load license information') }}</span>
