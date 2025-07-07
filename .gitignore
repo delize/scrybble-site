@@ -21,3 +21,4 @@ xochitl-binaries/
 .pytest_cache/
 
 .env.azure-prod
+test-results
