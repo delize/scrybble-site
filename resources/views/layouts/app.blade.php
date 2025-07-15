@@ -8,6 +8,10 @@
 
     <title>{{ $title ?? "Scrybble Sync - Think analog, organize digital"}}</title>
 
+    @if( config('scrybble.deployment_environment') === "commercial" )
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="y6foK17D1uxnfx43uJn9pw" async></script>
+    @endif
+
     @yield('head')
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
