@@ -52,6 +52,9 @@ class SetupAdminAccount extends Command
         $password = $this->secret('Enter admin password');
         $passwordConfirmation = $this->secret('Confirm admin password');
 
+        // Prompt for email
+        $email = $this->ask('Enter admin e-mail');
+
         // Validate password
         if ($password !== $passwordConfirmation) {
             $this->error('Passwords do not match.');
@@ -63,7 +66,7 @@ class SetupAdminAccount extends Command
         $user->id = 1;
         $user->name = $username;
         $user->password = Hash::make($password);
-        $user->email = "Doesn't matter";
+        $user->email = $email;
         $user->save();
 
         $this->info('Admin account created successfully!');
