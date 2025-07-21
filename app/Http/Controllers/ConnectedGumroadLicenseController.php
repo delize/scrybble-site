@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreConnectedGumroadLicenseRequest;
-use App\Models\GumroadLicense;
 use App\Models\User;
 use App\Services\GumroadApi;
 use App\Services\OnboardingStateService;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JsonException;
-use RuntimeException;
 
-class ConnectedGumroadLicenseController extends Controller {
-    public function store(StoreConnectedGumroadLicenseRequest $request, OnboardingStateService $onboarding_state_service, GumroadApi $gumroadApi) {
+class ConnectedGumroadLicenseController extends Controller
+{
+    public function store(StoreConnectedGumroadLicenseRequest $request, OnboardingStateService $onboarding_state_service, GumroadApi $gumroadApi)
+    {
         /** @var User $user */
         $user = Auth::user();
 
