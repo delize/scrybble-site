@@ -37,6 +37,11 @@ Route::get('/support', fn () => view('pages.support'));
 Route::get('/about', fn () => view('pages.about'));
 Route::get('/roadmap', fn () => view('pages.roadmap'));
 
+/**
+ * Legal
+ */
+Route::get('/privacy-policy', fn () => view('pages.legal.privacy-policy'));
+
 Route::middleware(['middleware' => 'deployment.self-hosted'])->get('/self-host-setup', [CustomHostInformationController::class, "show"]);
 Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', function (Request $request) {
     return $request->user();

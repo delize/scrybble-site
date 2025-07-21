@@ -15,18 +15,18 @@
             </div>
 
             <div class="footer-section">
-                <h4>Company</h4>
-{{--                <a href="/about">About</a>--}}
-{{--                <a href="/mission">Mission</a>--}}
-{{--                <a href="/privacy">Privacy</a>--}}
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Following the <i>Applied Communication Design</i> business philosophy: Creating technology that fosters curiosity, connection, nature and resilience.</p>
+                <h4>Legal</h4>
+                <a href="/privacy-policy">Privacy policy</a>
+{{--                <a href="">EULA</a>--}}
             </div>
 
-{{--            <div class="footer-section">--}}
-{{--                <h4>Legal</h4>--}}
-{{--                <a href="">Privacy policy</a>--}}
-{{--                <a href="">EULA</a>--}}
-{{--            </div>--}}
+            <div class="footer-section">
+                <h4>Company</h4>
+                {{--                <a href="/about">About</a>--}}
+                {{--                <a href="/mission">Mission</a>--}}
+                {{--                <a href="/privacy">Privacy</a>--}}
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Following the <i>Applied Communication Design</i> business philosophy: Creating technology that fosters curiosity, connection, nature and resilience.</p>
+            </div>
         </div>
 
         <div class="footer-bottom">
