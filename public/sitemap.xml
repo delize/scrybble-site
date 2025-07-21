@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://localhost/</loc>
+        <loc>https://scrybble.ink/</loc>
     </url>
     <url>
-        <loc>http://localhost/about</loc>
+        <loc>https://scrybble.ink/about</loc>
     </url>
     <url>
-        <loc>http://localhost/roadmap</loc>
+        <loc>https://scrybble.ink/roadmap</loc>
     </url>
     <url>
-        <loc>http://localhost/support</loc>
+        <loc>https://scrybble.ink/support</loc>
     </url>
     <url>
-        <loc>http://localhost/login</loc>
+        <loc>https://scrybble.ink/login</loc>
     </url>
     <url>
-        <loc>http://localhost/register</loc>
+        <loc>https://scrybble.ink/register</loc>
     </url>
     <url>
-        <loc>http://localhost/privacy-policy</loc>
+        <loc>https://scrybble.ink/privacy-policy</loc>
     </url>
     <url>
-        <loc>http://localhost/profile</loc>
+        <loc>https://scrybble.ink/profile</loc>
     </url>
     <url>
-        <loc>http://localhost/forgot-password</loc>
+        <loc>https://scrybble.ink/forgot-password</loc>
     </url>
 </urlset>
