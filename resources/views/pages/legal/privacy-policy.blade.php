@@ -3,24 +3,120 @@
 @push('head')
     <?php $title = "Scrybble - Privacy Policy"; ?>
 
+        <!-- Basic Meta Tags -->
     <meta name="description"
           content="Privacy Policy for Scrybble - Learn how we collect, use, and protect your personal information when using our reMarkable-Obsidian integration service. Transparent data practices and your privacy rights.">
     <meta name="keywords" content="Scrybble privacy policy, data protection, personal information, GDPR, reMarkable data, privacy rights, data security, cookie policy">
-
-    <!-- Additional privacy-related meta tags -->
     <meta name="robots" content="index, follow">
     <meta name="author" content="Streamsoft">
 
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="Privacy Policy - Scrybble">
-    <meta property="og:description" content="Learn how Scrybble protects your privacy and handles your personal data. Clear information about data collection, usage, and your rights.">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Privacy Policy - Scrybble">
+    <meta property="og:description" content="Learn how Scrybble protects your privacy and handles your personal data. Clear information about data collection, usage, and your rights under GDPR and other privacy laws.">
+    <meta property="og:site_name" content="Scrybble">
+    <meta property="og:locale" content="en_US">
 
-    <!-- Twitter Card tags -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="Privacy Policy - Scrybble">
-    <meta name="twitter:description" content="Learn how Scrybble protects your privacy and handles your personal data. Clear information about data collection, usage, and your rights.">
+    <meta name="twitter:description" content="Learn how Scrybble protects your privacy and handles your personal data. Clear information about data collection, usage, and your rights under GDPR and other privacy laws.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "isPartOf": {
+                "@id": "{{ url('/') }}#organization"
+            },
+            "@graph": [
+                {
+                    "@type": "WebPage",
+                    "@id": "{{ url()->current() }}#webpage",
+                    "url": "{{ url()->current() }}",
+                    "name": "Privacy Policy - Scrybble",
+                    "description": "Privacy Policy for Scrybble - Learn how we collect, use, and protect your personal information when using our reMarkable-Obsidian integration service.",
+                    "isPartOf": {
+                        "@id": "{{ url('/') }}#website"
+                    },
+                    "about": {
+                        "@id": "{{ url('/') }}#organization"
+                    },
+                    "dateModified": "2025-07-21",
+                    "inLanguage": "en-US",
+                    "mainEntity": {
+                        "@type": "PrivacyPolicy",
+                        "@id": "{{ url()->current() }}#privacy-policy"
+                    }
+                },
+                {
+                    "@type": "PrivacyPolicy",
+                    "@id": "{{ url()->current() }}#privacy-policy",
+                    "name": "Scrybble Privacy Policy",
+                    "description": "Details how Scrybble collects, uses, and protects personal information when you use our reMarkable-Obsidian integration service.",
+                    "dateModified": "2025-07-21",
+                    "publisher": {
+                        "@id": "{{ url('/') }}#organization"
+                    },
+                    "inLanguage": "en-US",
+                    "applicableJurisdiction": ["US", "EU", "UK", "CA"],
+                    "purpose": [
+                        "Account creation and authentication",
+                        "Service delivery",
+                        "Customer support",
+                        "Payment processing",
+                        "Legal compliance"
+                    ],
+                    "personalDataType": [
+                        "Email addresses",
+                        "Usernames",
+                        "Contact information",
+                        "Usage data",
+                        "Payment information"
+                    ],
+                    "retentionPeriod": "P3M",
+                    "gdprLawfulBasis": [
+                        "Consent",
+                        "Contract performance",
+                        "Legal obligation",
+                        "Vital interests"
+                    ]
+                },
+                {
+                    "@type": "Organization",
+                    "@id": "{{ url('/') }}#organization",
+                    "name": "Scrybble",
+                    "legalName": "Streamsoft",
+                    "url": "{{ url('/') }}",
+                    "contactPoint": [
+                        {
+                            "@type": "ContactPoint",
+                            "contactType": "Data Protection Officer",
+                            "name": "Laura Brekelmans",
+                            "email": "mail@scrybble.ink",
+                            "telephone": "+31 0681004456",
+                            "areaServed": ["US", "EU", "UK", "CA"]
+                        }
+                    ],
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Hertogstraat 74",
+                        "addressLocality": "Eindhoven",
+                        "addressRegion": "Noord-Brabant",
+                        "postalCode": "5611pc",
+                        "addressCountry": "NL"
+                    },
+                    "privacyPolicy": "{{ url()->current() }}",
+                    "foundingDate": "2022"
+                }
+            ]
+        }
+    </script>
 @endpush
 
 @section('content')

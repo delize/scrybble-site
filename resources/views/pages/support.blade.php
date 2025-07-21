@@ -1,9 +1,101 @@
 @extends('layouts.app')
 
 @section('head')
+    <!-- Primary Meta Tags -->
+    <title>Scrybble Support - Get Help with reMarkable-Obsidian Integration</title>
+    <meta name="title" content="Scrybble Support - Get Help with reMarkable-Obsidian Integration">
     <meta name="description"
           content="Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.">
-    <meta name="keywords" content="Scrybble support, reMarkable Obsidian help, sync troubleshooting, contact">
+    <meta name="keywords"
+          content="Scrybble support, reMarkable Obsidian help, sync troubleshooting, contact, Discord support, email support, technical issues, billing help">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Scrybble Support - Get Help with reMarkable-Obsidian Integration">
+    <meta property="og:description"
+          content="Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.">
+    {{--    TODO SEO: 1200x630px -}}
+    {{--    <meta property="og:image" content="{{ asset('img/scrybble-support-og.jpg') }}">--}}
+    <meta property="og:site_name" content="Scrybble">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Scrybble Support - Get Help with reMarkable-Obsidian Integration">
+    <meta property="twitter:description"
+          content="Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.">
+    {{--    TODO SEO: 1200x600px --}}
+    {{--    <meta property="twitter:image" content="{{ asset('img/scrybble-support-twitter.jpg') }}">--}}
+
+    <!-- Structured Data for Support Page -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "isPartOf": {
+                "@id": "{{ url('/') }}#organization"
+            },
+            "name": "Scrybble Support",
+            "description": "Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.",
+            "url": "{{ url()->current() }}",
+            "potentialAction": {
+                "@type": "CommunicateAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "{{ config('app.discord.invite') }}"
+                }
+            }
+        }
+    </script>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "My file isn't syncing correctly",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "This means our software is unable to process this specific file correctly. Navigate to the file within the Obsidian Scrybble plugin, click the feedback action next to the file, fill in the details and share the file. We'll get back to you via email after you shared your file."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "I want to cancel/change my subscription",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our subscriptions are managed by Gumroad. Log in, visit your profile, click 'manage subscription', and make the desired changes."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "My annotations look weird, are incomplete or are shown at the wrong position",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "This is a known issue that we're continuously working on improving. For specific issues, navigate to the file within the Obsidian Scrybble plugin, click the feedback action, and share the file so our developers can look at it."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "I made highlights on my device, but they're not showing",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "This usually happens with scanned PDFs where text isn't digitally embedded. Try running your document through a third-party OCR service first. If issues persist, use the feedback button in the Scrybble sync plugin."
+                    }
+                }
+            ]
+        }
+    </script>
+
+    <!-- Robots and indexing -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 @endsection
 
 @section('content')

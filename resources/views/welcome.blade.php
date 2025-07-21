@@ -1,17 +1,187 @@
 @extends('layouts.app')
 
 @section('head')
+    <!-- Basic Meta Tags -->
     <meta name="description"
           content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge. No more isolated notes.">
     <meta name="keywords"
-          content="reMarkable Obsidian integration, handwritten notes sync, PKM, digital knowledge management, note-taking workflow, reMarkable tablet, Obsidian plugin">
+          content="reMarkable Obsidian integration, reMarkable to Obsidian, handwritten notes sync, PKM, digital knowledge management, note-taking workflow, reMarkable tablet, Obsidian plugin">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="Scrybble Sync - Think Analog, Organize Digital">
     <meta property="og:description"
-          content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://scrybble.ink">
+          content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge. No more isolated notes.">
+    <meta property="og:image" content="{{ asset('/img/docs-for-developers-md.webp') }}">
+    <meta property="og:image:width" content="1162">
+    <meta property="og:image:height" content="1162">
+    <meta property="og:image:alt"
+          content="Screenshot of Scrybble showing reMarkable highlights exported as organized Markdown in Obsidian">
+    <meta property="og:site_name" content="Scrybble">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="Scrybble Sync - Think Analog, Organize Digital">
+    <meta name="twitter:description"
+          content="Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge. No more isolated notes.">
+    <meta name="twitter:image" content="{{ asset('/img/docs-for-developers-md.webp') }}">
+    <meta name="twitter:image:alt"
+          content="Screenshot of Scrybble showing reMarkable highlights exported as organized Markdown in Obsidian">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": "{{ url('/') }}#website",
+                    "url": "{{ url('/') }}",
+                    "name": "Scrybble",
+                    "description": "Think Analog, Organize Digital - The missing link between your reMarkable tablet and Obsidian vault",
+                    "publisher": {
+                        "@id": "{{ url('/') }}#organization"
+                    }
+                },
+                {
+                    "@type": "Organization",
+                    "@id": "{{ url('/') }}#organization",
+                    "name": "Streamsoft",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Scrybble",
+                        "foundingDate": "2022"
+                    },
+                    "url": "{{ url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ asset('/img/logo.png') }}"
+                    },
+                    "description": "Building bridges between analog and digital thinking, one workflow at a time. The reMarkable-Obsidian integration for knowledge workers.",
+                    "foundingDate": "2017",
+                    "founder": {
+                        "@type": "Person",
+                        "name": "Laura Brekelmans"
+                    },
+                    "sameAs": [
+                        "https://github.com/scrybbling-together",
+                        "https://applied-communication.design",
+                        "https://smgmusicdisplay.com",
+                        "{{ config('app.discord.invite') }}"
+                    ],
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "email": "{{ config('app.support_email') }}",
+                        "contactType": "customer support"
+                    }
+                },
+                {
+                    "@type": "SoftwareApplication",
+                    "@id": "{{ url('/') }}#software",
+                    "name": "Scrybble Sync",
+                    "applicationCategory": "ProductivityApplication",
+                    "operatingSystem": [
+                        "Windows",
+                        "macOS",
+                        "Linux",
+                        "Android",
+                        "iOS"
+                    ],
+                    "description": "Seamlessly sync your reMarkable tablet notes with Obsidian. Transform analog insights into searchable, linkable knowledge.",
+                    "offers": [
+                        {
+                            "@type": "Offer",
+                            "name": "Student & Academic Plan",
+                            "description": "Scrybble is discounted for students and academics",
+                            "price": "2.29",
+                            "priceCurrency": "USD",
+                            "priceSpecification": {
+                                "@type": "RecurringPaymentsPlan",
+                                "paymentFrequency": "Monthly"
+                            },
+                            "eligibleCustomerType": "Student",
+                            "url": "https://streamsoft.gumroad.com/l/remarkable-to-obsidian"
+                        },
+                        {
+                            "@type": "Offer",
+                            "name": "Professional Plan",
+                            "description": "For professional use with priority support",
+                            "price": "3.99",
+                            "priceCurrency": "USD",
+                            "priceSpecification": {
+                                "@type": "RecurringPaymentsPlan",
+                                "paymentFrequency": "Monthly"
+                            },
+                            "url": "https://streamsoft.gumroad.com/l/remarkable-to-obsidian"
+                        }
+                    ],
+                    "featureList": [
+                        "Export reMarkable highlights to Obsidian",
+                        "Native Obsidian integration",
+                        "Automatic tag synchronization",
+                        "Handwritten notes reference",
+                        "Unlimited documents",
+                        "Community support"
+                    ],
+                    "screenshot": "{{ asset('/img/docs-for-developers-md.webp') }}",
+                    "softwareRequirements": [
+                        "reMarkable tablet",
+                        "Obsidian"
+                    ],
+                    "publisher": {
+                        "@id": "{{ url('/') }}#organization"
+                    }
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "{{ url()->current() }}#webpage",
+                    "url": "{{ url()->current() }}",
+                    "name": "Scrybble Sync - Think Analog, Organize Digital",
+                    "description": "Seamlessly sync your reMarkable tablet notes with Obsidian. Transform handwritten insights into searchable, linkable knowledge. No more isolated notes.",
+                    "isPartOf": {
+                        "@id": "{{ url('/') }}#website"
+                    },
+                    "about": {
+                        "@id": "{{ url('/') }}#software"
+                    },
+                    "primaryImageOfPage": {
+                        "@type": "ImageObject",
+                        "url": "{{ asset('/img/docs-for-developers-md.webp') }}",
+                        "width": 1162,
+                        "height": 1162,
+                        "caption": "Screenshot of Scrybble showing reMarkable highlights exported as organized Markdown in Obsidian"
+                    }
+                },
+                {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "What does Scrybble do?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Scrybble creates a seamless bridge between your reMarkable tablet and Obsidian vault. It exports your highlights, preserves handwritten notes, integrates with tags, and allows native browsing of your reMarkable files directly within Obsidian."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How much does Scrybble cost?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Scrybble offers two main plans: Student & Academic at $2.29/month and Professional at $3.99/month. Both include a 30-day free trial and can be canceled anytime. Yearly and 2-yearly plans offer 15% and 25% discounts respectively."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    </script>
 @endsection
 
 @section('content')
@@ -22,19 +192,23 @@
                     <h1 class="display-1 fw-bolder">Think Analog, Organize Digital</h1>
                     <p class="display-5 text- mb-4" style="--bs-text-opacity: .65;">The missing link between your
                         reMarkable tablet and Obsidian vault</p>
-                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">You chose the reMarkable tablet for focused reading and writing, and use Obsidian for organization.</p>
-                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65">Scrybble is the glue connecting the two.</p>
+                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65;">You chose the reMarkable tablet
+                        for focused reading and writing, and use Obsidian for organization.</p>
+                    <p class="display-6 mb-4 text-black" style="--bs-text-opacity: .65">Scrybble is the glue connecting
+                        the two.</p>
                     <div class="d-grid d-sm-flex gap-2">
                         <a class="btn btn-lg btn-primary" role="button" aria-disabled="true"
                            href="https://streamsoft.gumroad.com/l/remarkable-to-obsidian">Get
                             Scrybble Now</a>
-                        <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">What can Scrybble do for you?</a>
+                        <a class="btn btn-lg btn-outline-secondary" href="#features" role="button" aria-disabled="true">What
+                            can Scrybble do for you?</a>
                     </div>
                 </div>
                 <div class="g-col-12 g-col-lg-6">
                     <div class="card border-secondary p-4 bg-white shadow">
                         <b>Your annotations in your vault</b>
-                        <p class="mb-0">Scrybble connects your reMarkable to Obsidian. Annotations written on your tablet appear in Obsidian with page references intact.</p>
+                        <p class="mb-0">Scrybble connects your reMarkable to Obsidian. Annotations written on your
+                            tablet appear in Obsidian with page references intact.</p>
                     </div>
                 </div>
             </div>
@@ -88,7 +262,8 @@
             <div class="grid d-none d-lg-block">
                 <div class="grid align-items-center g-col-12 gap-5 justify-content-center mb-4">
                     <div class="g-col-6">
-                        <img class="img-fluid" width="1162" height="1162" src="/img/docs-for-developers-md.webp" alt="An image showing a Markdown file generated by Scrybble for the book 'docs for developers', including pages and a few highlights">
+                        <img class="img-fluid" width="1162" height="1162" src="/img/docs-for-developers-md.webp"
+                             alt="An image showing a Markdown file generated by Scrybble for the book 'docs for developers', including pages and a few highlights">
                     </div>
                     <div class="g-col-6">
                         <h3>Export your highlights</h3>
@@ -104,13 +279,15 @@
                             switching to external websites or apps.</p>
                     </div>
                     <div class="g-col-9">
-                        <img class="img-fluid" width="2559" height="1440" src="/img/rM-integration.webp" alt="An image showing the reMarkable file tree UI within Obsidian">
+                        <img class="img-fluid" width="2559" height="1440" src="/img/rM-integration.webp"
+                             alt="An image showing the reMarkable file tree UI within Obsidian">
                     </div>
                 </div>
 
                 <div class="grid align-items-center g-col-12 gap-4 mb-4">
                     <div class="g-col-6">
-                        <img class="img-fluid" width="1244" height="649" src="img/tags.webp" alt="An image showcasing how tags show up in a Markdown file generated by Scrybble">
+                        <img class="img-fluid" width="1244" height="649" src="img/tags.webp"
+                             alt="An image showcasing how tags show up in a Markdown file generated by Scrybble">
                     </div>
                     <div class="g-col-6">
                         <h3>Organized with tags</h3>
@@ -126,7 +303,8 @@
                             thinking.</p>
                     </div>
                     <div class="g-col-9">
-                        <img class="img-fluid" width="2556" height="1436" src="/img/bullet-journal-pdf.webp" alt="An image showing a handwritten bullet journal page within the Obsidian UI, synced by Scrybble">
+                        <img class="img-fluid" width="2556" height="1436" src="/img/bullet-journal-pdf.webp"
+                             alt="An image showing a handwritten bullet journal page within the Obsidian UI, synced by Scrybble">
                     </div>
                 </div>
 
@@ -134,7 +312,8 @@
                     <h2>Handwriting to markdown text and diagrams.</h2>
                     <p class="note">This will be coming soon. Interested in helping us shape this integration? Share
                         your ideas on our
-                        <a href="{{ config('app.discord.invite') }}" class="btn btn-primary"><b>{{ config('app.discord.name') }}</b> Discord</a></p>
+                        <a href="{{ config('app.discord.invite') }}"
+                           class="btn btn-primary"><b>{{ config('app.discord.name') }}</b> Discord</a></p>
                 </div>
             </div>
 
@@ -145,7 +324,8 @@
                             <img class="card-img-top" src="/img/docs-for-developers-md.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Export your highlights</h3>
-                                <p class="card-text">All your reMarkable highlights, searchable Markdown files in Obsidian, organized by page with preserved structure.</p>
+                                <p class="card-text">All your reMarkable highlights, searchable Markdown files in
+                                    Obsidian, organized by page with preserved structure.</p>
                             </div>
                         </div>
                     </div>
@@ -155,7 +335,8 @@
                             <img class="card-img-top" src="/img/rM-integration.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Native Obsidian Integration</h3>
-                                <p class="card-text">Browse and sync your entire reMarkable file tree directly from within Obsidian. No more switching to external websites or apps.</p>
+                                <p class="card-text">Browse and sync your entire reMarkable file tree directly from
+                                    within Obsidian. No more switching to external websites or apps.</p>
                             </div>
                         </div>
                     </div>
@@ -165,7 +346,9 @@
                             <img class="card-img-top" src="img/tags.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Organized with tags</h3>
-                                <p class="card-text">Tags added in reMarkable automatically appear in your Obsidian frontmatter and page headings, resulting in one organization system for both reMarkable and Obsidian.</p>
+                                <p class="card-text">Tags added in reMarkable automatically appear in your Obsidian
+                                    frontmatter and page headings, resulting in one organization system for both
+                                    reMarkable and Obsidian.</p>
                             </div>
                         </div>
                     </div>
@@ -175,14 +358,18 @@
                             <img class="card-img-top" src="/img/bullet-journal-pdf.webp" alt="">
                             <div class="card-body">
                                 <h3 class="card-title">Handwritten notes for reference</h3>
-                                <p class="card-text">Obsidian becomes your perfect place for both freeform, handwritten thinking and digital thinking.</p>
+                                <p class="card-text">Obsidian becomes your perfect place for both freeform, handwritten
+                                    thinking and digital thinking.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12 text-center mt-5">
                         <h2>Handwriting to markdown text and diagrams.</h2>
-                        <p class="note">This will be coming soon. Interested in helping us shape this integration? Share your ideas on our <a href="{{ config('app.discord.invite') }}" class="btn btn-primary"><b>{{ config('app.discord.name') }}</b> Discord</a>!</p>
+                        <p class="note">This will be coming soon. Interested in helping us shape this integration? Share
+                            your ideas on our <a href="{{ config('app.discord.invite') }}"
+                                                 class="btn btn-primary"><b>{{ config('app.discord.name') }}</b> Discord</a>!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -196,7 +383,8 @@
                 <p class="fst-italic">From our user survey conducted in May, 2025:</p>
             </div>
 
-            <h4 style="color: var(--accent-color-first);">What do you value most about the Scrybble reMarkable x Obsidian integration?</h4>
+            <h4 style="color: var(--accent-color-first);">What do you value most about the Scrybble reMarkable x
+                Obsidian integration?</h4>
             <div class="testimonials">
                 <blockquote class="card-accent big-one">
                     <p>I was this close to giving up and no longer subscribe to reMarkable and sticking with my Kobo

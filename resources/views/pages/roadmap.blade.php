@@ -3,9 +3,51 @@
 @push('head')
     <?php $title = "Scrybble - Roadmap"; ?>
 
-    <meta name="description"
-          content="See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.">
-    <meta name="keywords" content="Scrybble roadmap, reMarkable Obsidian features, development plans, upcoming releases">
+        <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.">
+    <meta property="og:image" content="{{ asset('img/scrybble-roadmap-og.jpg') }}">
+    <meta property="og:site_name" content="Scrybble">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $title }}">
+    <meta property="twitter:description" content="See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.">
+    <meta property="twitter:image" content="{{ asset('img/scrybble-roadmap-twitter.jpg') }}">
+
+    <!-- Structured Data for Roadmap Page -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "{{ $title }}",
+            "description": "See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.",
+            "url": "{{ url()->current() }}",
+            "isPartOf": {
+                "@id": "{{ url('/') }}#organization"
+            },
+            "about": {
+                "@type": "SoftwareApplication",
+                "name": "Scrybble",
+                "description": "reMarkable-Obsidian integration software",
+                "applicationCategory": "ProductivityApplication"
+            },
+            "mainEntity": {
+                "@type": "Plan",
+                "name": "Scrybble Development Roadmap",
+                "description": "Transparent development roadmap showing current priorities and planned features",
+                "creator": {
+                    "@id": "https://scrybble.ink/#organization"
+                }
+            }
+        }
+    </script>
 @endpush
 
 @section('content')
