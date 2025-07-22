@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
 @push('head')
-    <?php $title = "Welcome to Scrybble - Thank You!"; ?>
+    <?php $title = "Scrybble - Thank You!"; ?>
 
-        <!-- Prevent indexing of this page -->
+    <!-- Prevent indexing of this page -->
     <meta name="robots" content="noindex, nofollow">
 
     <meta name="description"
           content="Thank you for purchasing Scrybble. Get started with your reMarkable-Obsidian integration.">
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
 @endpush
 
@@ -164,17 +163,17 @@
                             </p>
                             <div class="d-flex gap-2 justify-content-center flex-wrap">
                                 <a href="https://twitter.com/intent/tweet?text=Just%20started%20using%20Scrybble%20to%20sync%20my%20@remarkablepaper%20with%20@obsdmd%20-%20no%20more%20lost%20handwritten%20notes!%20%F0%9F%8E%89&url=https://scrybble.ink"
-                                   class="btn btn-outline-secondary btn-sm"
+                                   class="btn btn-secondary btn-sm"
                                    target="_blank">
                                     <i class="bi bi-twitter me-1"></i> Share on Twitter/X
                                 </a>
                                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://scrybble.ink"
-                                   class="btn btn-outline-secondary btn-sm"
+                                   class="btn btn-secondary btn-sm"
                                    target="_blank">
                                     <i class="bi bi-linkedin me-1"></i> Share on LinkedIn
                                 </a>
                                 <a href="https://www.reddit.com/submit?url=https://scrybble.ink&title=Scrybble%20-%20Seamless%20reMarkable%20to%20Obsidian%20sync"
-                                   class="btn btn-outline-secondary btn-sm"
+                                   class="btn btn-secondary btn-sm"
                                    target="_blank">
                                     <i class="bi bi-reddit me-1"></i> Share on Reddit
                                 </a>
@@ -186,14 +185,16 @@
                         <h3 class="h5 mb-3">Quick Links</h3>
                         <div class="d-flex gap-3 justify-content-center flex-wrap">
                             <a href="/profile" class="btn btn-primary">
-                                <i class="bi bi-credit-card me-1"></i> Manage Subscription
+                                Manage Subscription
                             </a>
                             <a href="/support" class="btn btn-primary">
-                                <i class="bi bi-credit-card me-1"></i> Find support
+                                Find support
                             </a>
                             <a href="{{ config('app.discord.invite') }}" class="btn btn-primary">
-                                <i class="bi bi-credit-card me-1"></i> Join the <b>{{ config('app.discord.name') }}</b>
-                                Discord community
+                                Join the <b>{{ config('app.discord.name') }}</b> Discord community
+                            </a>
+                            <a href="/roadmap" class="btn btn-primary">
+                                Check out what's coming next
                             </a>
                         </div>
                     </div>
