@@ -16,7 +16,7 @@
 
     @yield('head')
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', ])
     @stack('head')
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-between">
@@ -25,5 +25,6 @@
 @yield('content')
 @include('components.layout.footer')
 
+@vite(['resources/js/app.js'])
 </body>
 </html>

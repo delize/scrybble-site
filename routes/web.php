@@ -38,6 +38,7 @@ Route::get('/about', fn () => view('pages.about'));
 Route::get('/roadmap', fn () => view('pages.roadmap'));
 
 Route::get('/dashboard', fn () => view('pages.dashboard-replaced'));
+Route::get('/purchased', fn () => view('pages.purchased'));
 
 /**
  * Legal
