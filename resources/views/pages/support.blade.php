@@ -29,69 +29,6 @@
     {{--    TODO SEO: 1200x600px --}}
     {{--    <meta property="twitter:image" content="{{ asset('img/scrybble-support-twitter.jpg') }}">--}}
 
-    <!-- Structured Data for Support Page -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            "isPartOf": {
-                "@id": "{{ url('/') }}#organization"
-            },
-            "name": "Scrybble Support",
-            "description": "Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.",
-            "url": "{{ url()->current() }}",
-            "potentialAction": {
-                "@type": "CommunicateAction",
-                "target": {
-                    "@type": "EntryPoint",
-                    "urlTemplate": "{{ config('app.discord.invite') }}"
-                }
-            }
-        }
-    </script>
-
-    <!-- FAQ Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "My file isn't syncing correctly",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "This means our software is unable to process this specific file correctly. Navigate to the file within the Obsidian Scrybble plugin, click the feedback action next to the file, fill in the details and share the file. We'll get back to you via email after you shared your file."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "I want to cancel/change my subscription",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Our subscriptions are managed by Gumroad. Log in, visit your profile, click 'manage subscription', and make the desired changes."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "My annotations look weird, are incomplete or are shown at the wrong position",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "This is a known issue that we're continuously working on improving. For specific issues, navigate to the file within the Obsidian Scrybble plugin, click the feedback action, and share the file so our developers can look at it."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "I made highlights on my device, but they're not showing",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "This usually happens with scanned PDFs where text isn't digitally embedded. Try running your document through a third-party OCR service first. If issues persist, use the feedback button in the Scrybble sync plugin."
-                    }
-                }
-            ]
-        }
-    </script>
-
     <!-- Robots and indexing -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 @endsection

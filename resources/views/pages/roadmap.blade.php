@@ -20,34 +20,6 @@
     <meta property="twitter:title" content="{{ $title }}">
     <meta property="twitter:description" content="See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.">
     <meta property="twitter:image" content="{{ asset('img/scrybble-roadmap-twitter.jpg') }}">
-
-    <!-- Structured Data for Roadmap Page -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "{{ $title }}",
-            "description": "See what's coming next for Scrybble. Our transparent roadmap shows current development priorities, planned features, and community-requested improvements for the reMarkable-Obsidian integration.",
-            "url": "{{ url()->current() }}",
-            "isPartOf": {
-                "@id": "{{ url('/') }}#organization"
-            },
-            "about": {
-                "@type": "SoftwareApplication",
-                "name": "Scrybble",
-                "description": "reMarkable-Obsidian integration software",
-                "applicationCategory": "ProductivityApplication"
-            },
-            "mainEntity": {
-                "@type": "Plan",
-                "name": "Scrybble Development Roadmap",
-                "description": "Transparent development roadmap showing current priorities and planned features",
-                "creator": {
-                    "@id": "https://scrybble.ink/#organization"
-                }
-            }
-        }
-    </script>
 @endpush
 
 @section('content')

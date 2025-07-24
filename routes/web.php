@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CustomHostInformationController;
 use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentsController;
 use App\Http\Controllers\FileController;
@@ -39,6 +41,12 @@ Route::get('/roadmap', fn () => view('pages.roadmap'));
 
 Route::get('/dashboard', fn () => view('pages.dashboard-replaced'));
 Route::get('/purchased', fn () => view('pages.purchased'));
+
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+//Route::get('/news', [BlogController::class, 'index']);
+//Route::get('/news/{slug}', [BlogController::class, 'show']);
 
 /**
  * Legal

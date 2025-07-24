@@ -100,18 +100,21 @@ nav {
     align-items: center;
 
     :is(a, button):not(.navbar-brand) {
+        --background-color: rgba(255, 255, 255, 0.8);
+        --color: auto;
         font-weight: bold;
         border-radius: 3px;
         padding: 10px 15px;
         margin: 4px;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: var(--background-color);
+        color: var(--color);
         text-decoration: none;
 
         transition: color, background-color 200ms ease-out;
 
         &:hover {
-            color: rgba(255, 255, 255, 0.8);
-            background-color: $scrybble-envisage;
+            --color: rgba(255, 255, 255, 0.8);
+            --background-color: $scrybble-envisage !important;
         }
     }
 

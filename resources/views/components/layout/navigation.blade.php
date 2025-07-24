@@ -18,6 +18,15 @@
                     <li class="nav-item">
                         <a href="/support" class="nav-link">Support</a>
                     </li>
+                    <li class="mx-2">
+                        <hr class="vr">
+                    </li>
+                    <li class="nav-item" >
+                        <a href="/news" class="nav-link">News</a>
+                    </li>
+{{--                    <li class="nav-item" >--}}
+{{--                        <a href="/articles" class="nav-link">Articles</a>--}}
+{{--                    </li>--}}
                 </ul>
 
                 <ul class="navbar-nav">

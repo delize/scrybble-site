@@ -31,56 +31,6 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "isPartOf": {
-                "@id": "{{ url('/') }}#organization"
-            },
-            "@graph": [
-                {
-                    "@type": "Person",
-                    "@id": "{{ url('/about') }}#laura",
-                    "name": "Laura Brekelmans",
-                    "jobTitle": "Founder & Developer",
-                    "worksFor": {
-                        "@id": "{{ url('/') }}#organization"
-                    },
-                    "description": "Bsc in Embedded Systems & Computer Science. Believes technology should enhance human thinking, not replace it.",
-                    "image": "{{ asset('img/portraits/Laura.webp') }}",
-                    "knowsAbout": [
-                        "Embedded Systems",
-                        "Computer Science",
-                        "Software Development",
-                        "reMarkable Integration",
-                        "Digital-Analog Workflows"
-                    ]
-                },
-                {
-                    "@type": "WebPage",
-                    "@id": "{{ url()->current() }}#webpage",
-                    "url": "{{ url()->current() }}",
-                    "name": "About Scrybble - Meet the Team",
-                    "description": "Meet the team behind Scrybble - the reMarkable-Obsidian integration that bridges analog and digital thinking. Built with transparency, community, and respect for your workflow.",
-                    "isPartOf": {
-                        "@id": "{{ url('/') }}#website"
-                    },
-                    "about": {
-                        "@id": "{{ url('/') }}#organization"
-                    },
-                    "primaryImageOfPage": {
-                        "@type": "ImageObject",
-                        "url": "{{ asset('img/portraits/Laura.webp') }}",
-                        "width": 1497,
-                        "height": 1500,
-                        "caption": "Photo of Laura Brekelmans, Founder & Developer of Scrybble"
-                    }
-                }
-            ]
-        }
-    </script>
 @endpush
 
 @section('content')
