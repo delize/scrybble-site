@@ -3,6 +3,7 @@ FROM laauurraaa/composer-8.3.21 AS build-php
 RUN test -n "$RELEASE_HASH" || echo "RELEASE_HASH must be set for a build"
 LABEL authors="lb"
 
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
 COPY . /app/
 WORKDIR /app/
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
@@ -33,9 +34,11 @@ RUN docker-php-ext-configure opcache --enable-opcache && \
     intl \
     pcntl \
     pdo \
-    pdo_mysql && \
+    pdo_mysql \
+    exif \
+    && \
     pecl install redis && \
-    docker-php-ext-enable redis
+    docker-php-ext-enable redis exif
 
 COPY --chown=www-data:www-data --from=build-js /app/ /var/www/html/
 RUN rm -rf /var/www/html/public/hot
