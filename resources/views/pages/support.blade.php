@@ -2,8 +2,6 @@
 
 @section('head')
     <!-- Primary Meta Tags -->
-    <title>Scrybble Support - Get Help with reMarkable-Obsidian Integration</title>
-    <meta name="title" content="Scrybble Support - Get Help with reMarkable-Obsidian Integration">
     <meta name="description"
           content="Get help with Scrybble. Fast Discord support on workdays, comprehensive email support, and self-service resources for reMarkable-Obsidian integration.">
     <meta name="keywords"
