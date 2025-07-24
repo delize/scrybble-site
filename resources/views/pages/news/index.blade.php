@@ -25,7 +25,6 @@
         <div class="container">
             <div class="text-center">
                 <h1 class="display-2 fw-bolder mb-4">News & Updates</h1>
-                <p class="display-6 mb-0" style="--bs-text-opacity: .65;">Scrybble news</p>
             </div>
         </div>
     </section>

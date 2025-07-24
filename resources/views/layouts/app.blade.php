@@ -22,7 +22,9 @@
 <body class="min-vh-100 d-flex flex-column justify-content-between">
 
 @include('components.layout.navigation')
-@yield('content')
+<div class="flex-grow-1">
+    @yield('content')
+</div>
 @include('components.layout.footer')
 
 @vite(['resources/js/app.js'])
