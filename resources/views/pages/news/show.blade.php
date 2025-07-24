@@ -32,25 +32,6 @@
 @endsection
 
 @section('content')
-    <!-- Breadcrumb -->
-    <section class="bg-body-tertiary p-3">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('news.index') }}">News</a></li>
-                    @if($post->category)
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('news.index', ['category' => $post->category->slug]) }}">
-                                {{ $post->category->name }}
-                            </a>
-                        </li>
-                    @endif
-                    <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
-                </ol>
-            </nav>
-        </div>
-    </section>
-
     <!-- Article Header -->
     <section class="p-3 p-lg-5">
         <div class="container">

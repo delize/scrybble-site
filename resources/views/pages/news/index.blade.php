@@ -33,11 +33,11 @@
     <section class="p-3 p-lg-5">
         <div class="container">
             @if($posts->count() > 0)
-                <div class="row g-4">
+                <div class="d-flex flex-column gap-4">
                     @foreach($posts as $post)
-                        <div class="col-12 col-md-6 col-lg-4">
+                        <div>
                             <a href="{{ route('news.show', $post->slug) }}">
-                                <article class="card h-100 border-0 shadow-sm">
+                                <article class="card h-100 shadow-sm">
                                     @if($post->banner_url)
                                         <img src="{{ $post->banner_url }}"
                                              class="card-img-top"
@@ -85,7 +85,6 @@
                     @endforeach
                 </div>
 
-                <!-- Pagination -->
                 @if($posts->hasPages())
                     <div class="d-flex justify-content-center mt-5">
                         {{ $posts->appends(request()->query())->links() }}
