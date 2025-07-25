@@ -29,6 +29,13 @@
     @endif
 
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -111,28 +118,6 @@
                                              class="rounded-circle"
                                              width="64" height="64">
                                     @endif
-
-                                    <div class="flex-grow-1">
-                                        <h6 class="fw-bold mb-2">About {{ $post->author->name }}</h6>
-                                        <p class="mb-2">{{ $post->author->bio }}</p>
-
-                                        @if($post->author->github_handle || $post->author->twitter_handle)
-                                            <div class="d-flex gap-3">
-                                                @if($post->author->github_handle)
-                                                    <a href="https://github.com/{{ $post->author->github_handle }}"
-                                                       class="text-decoration-none" target="_blank">
-                                                        <i class="bi bi-github"></i> GitHub
-                                                    </a>
-                                                @endif
-                                                @if($post->author->twitter_handle)
-                                                    <a href="https://twitter.com/{{ $post->author->twitter_handle }}"
-                                                       class="text-decoration-none" target="_blank">
-                                                        <i class="bi bi-twitter"></i> Twitter
-                                                    </a>
-                                                @endif
-                                            </div>
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
                         @endif
