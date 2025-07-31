@@ -59,7 +59,6 @@ Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', functi
 });
 
 Route::group(['middleware' => ['auth']], static function () {
-    Route::get('/app/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::post('/connect-license', [ConnectedGumroadLicenseController::class, 'store'])->name('connect-license');
 });
@@ -76,3 +75,4 @@ Route::group(['middleware' => 'auth'], static function () {
 
 Route::get('shared_documents', [SharedDocumentsController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::redirect('/app/', '/home');
