@@ -15,7 +15,7 @@ readonly class CloudflareTurnstileService
         $this->url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
     }
 
-    public function verifyTurnstileToken(string $token, string $remoteip)
+    public function verifyTurnstileToken(?string $token, string $remoteip)
     {
         try {
             $response = Http::asForm()->post($this->url, [
