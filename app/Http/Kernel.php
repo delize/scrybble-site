@@ -11,6 +11,7 @@ use App\Http\Middleware\SelfHostedMiddleware;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\VerifyTurnstileToken;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -45,7 +46,7 @@ class Kernel extends HttpKernel
         PreventRequestsDuringMaintenance::class,
         ValidatePostSize::class,
         TrimStrings::class,
-        ConvertEmptyStringsToNull::class,
+        ConvertEmptyStringsToNull::class
     ];
 
     /**
@@ -90,5 +91,6 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'verify-turnstile-token' => VerifyTurnstileToken::class
     ];
 }

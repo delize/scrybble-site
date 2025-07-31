@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@cloudflareTurnstile
+@push('head')
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+@endpush
+@endcloudflareTurnstile
+
 @section('content')
     <div class="container">
         <div class="col-md-8">
@@ -10,6 +16,12 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        @error('turnstile')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -19,8 +31,8 @@
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -35,8 +47,8 @@
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -67,6 +79,12 @@
                                        name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        @cloudflareTurnstile
+                        <div class="row mb-3">
+                            <div class="cf-turnstile" data-sitekey={{ config('scrybble.cloudflare.site_key') }}></div>
+                        </div>
+                        @endcloudflareTurnstile
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

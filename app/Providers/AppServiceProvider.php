@@ -12,11 +12,12 @@ use App\Services\Remarks\RemarksService;
 use App\Services\RMapi;
 use Event;
 use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Sentry\Laravel\Integration;
-use Sentry\State\Scope;
 use URL;
 
 class AppServiceProvider extends ServiceProvider
@@ -51,6 +52,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Blade::if('cloudflareTurnstile', function () {
+            $configuredCorrectly = config('scrybble.cloudflare.secret_key') && config('scrybble.cloudflare.site_key');
+
+            if ((config('app.env') === 'production') && !$configuredCorrectly) {
+                Log::warning("The site is live, but Cloudflare turnstile is not configured correctly. Check the `site_key` and `secret_key`, see config/scrybble.php");
+            }
+
+            return $configuredCorrectly;
+        });
+
         Passport::deviceUserCodeView("auth.device.user-code");
         Passport::deviceAuthorizationView('auth.device.authorize');
 
@@ -61,13 +72,12 @@ class AppServiceProvider extends ServiceProvider
                 /** @var User $user */
                 $user = $event->user;
 
-                Integration::configureScope(fn ($scope) => $scope->setUser(['id' => $user->id]));
+                Integration::configureScope(fn($scope) => $scope->setUser(['id' => $user->id]));
             });
         }
 
         if (config('scrybble.storage_platform') === "disk") {
-            Storage::disk('efs')->buildTemporaryUrlsUsing(fn($path, $expiration, $options) =>
-                URL::temporarySignedRoute("prmdownload", $expiration, array_merge($options, ['path' => $path]))
+            Storage::disk('efs')->buildTemporaryUrlsUsing(fn($path, $expiration, $options) => URL::temporarySignedRoute("prmdownload", $expiration, array_merge($options, ['path' => $path]))
             );
         }
     }

@@ -40,4 +40,21 @@ return [
     | - "bare-metal": Scrybble is running on "bare-metal", ie on a vm or directly on a computer
      */
     'host_runner' => strtolower(env("SCRYBBLE_HOST_RUNNER", 'docker')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cloudflare settings
+    |--------------------------------------------------------------------------
+    */
+    'cloudflare' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Sitekey
+        |--------------------------------------------------------------------------
+        | Needs to be configured in order for Cloudflare turnstile to be enabled on the sign-up page.
+        | See: https://www.cloudflare.com/application-services/products/turnstile/
+        */
+        'site_key' => env("CLOUDFLARE_SITE_KEY"),
+        'secret_key' => env("CLOUDFLARE_TURNSTILE_SECRET_KEY")
+    ]
 ];
