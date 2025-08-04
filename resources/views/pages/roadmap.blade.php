@@ -97,14 +97,14 @@
                                 <span class="badge bg-primary text-dark fs-6 p-2">In progress</span>
                             </div>
                             <div class="card-body">
-                                <p><strong>Problem:</strong> How the server is currently implemented, your file security depends on us not getting hacked.</p>
-                                <p><strong>Solution:</strong> Implement end-to-end encryption so that even under awful circumstances, your files remain secure.</p>
+                                <p>Many people using the reMarkable use it within a research context, Zotero is the go-to citation management solution. However, like Obsidian it's not integrated well with the reMarkable ecosystem.</p>
+                                <p><strong>Solution:</strong> Develop an integration with zotero for reMarkable that becomes a part of the Scrybble offering.</p>
+                                <p>Interested in joining the conversation or trying an early version? Development is done in the open, and you can find the project [here](https://github.com/Scrybbling-together/zotero2remarkable_bridge)</p>
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">Expected: Q3 2025</small>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
