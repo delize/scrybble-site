@@ -199,4 +199,4 @@ The folder structure is shown below.
 
 ### Where can I view errors?
 
-Visit `http://{YOUR DOMAIN}/log-viewer`
+Visit `http://{YOUR DOMAIN}/admin`, log-in with the admin account and select the "log viewer"
