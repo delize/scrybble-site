@@ -9,7 +9,6 @@
         "ext-zip": "*",
         "erusev/parsedown": "^1.7",
         "filament/filament": "^3.3",
-        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "flowframe/laravel-trend": "^0.4.0",
         "gboquizosanchez/filament-log-viewer": "^1.2",
         "guzzlehttp/guzzle": "^7.0",
@@ -26,7 +25,6 @@
         "spatie/laravel-medialibrary": "^11.13",
         "spatie/laravel-sitemap": "^7.3",
         "stephenjude/filament-blog": "^4.0",
-        "tomatophp/filament-media-manager": "^1.1",
         "verschuur/laravel-robotstxt": "^5.2"
     },
     "require-dev": {

@@ -31,7 +31,6 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->plugin(BlogPlugin::make())
             ->plugin(FilamentLogViewerPlugin::make())
-            ->plugin(FilamentMediaManagerPlugin::make())
             ->login()
             ->colors([
                 'primary' => Color::Amber,
