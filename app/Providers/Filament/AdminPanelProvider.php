@@ -19,7 +19,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Stephenjude\FilamentBlog\BlogPlugin;
-use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
