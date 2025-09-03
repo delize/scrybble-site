@@ -56,7 +56,6 @@ class UserRegistrationTest extends TestCase
             'password' => 'a_valid_password',
             'password_confirmation' => 'a_valid_password',
         ]);
-        $response->dumpSession();
         $response->assertSessionHasErrorsIn("cf-turnstile-response");
         $response->assertStatus(302);
         $this->assertDatabaseMissing('users', [
