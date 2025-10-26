@@ -63,10 +63,6 @@ Route::group(['middleware' => ['auth']], static function () {
     Route::post('/connect-license', [ConnectedGumroadLicenseController::class, 'store'])->name('connect-license');
 });
 
-// required by sentry:
-// https://docs.sentry.io/platforms/javascript/guides/react/troubleshooting/#dealing-with-ad-blockers
-Route::post("/tunnel", [SentryTunnelController::class, "index"]);
-
 Route::get('prmdownload/{path}', [DownloadController::class, "download"])->where('path', '.*')->name('prmdownload');
 
 Route::group(['middleware' => 'auth'], static function () {
