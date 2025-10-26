@@ -14,7 +14,7 @@
             <thead>
             <tr>
                 <th>Sync id</th>
-                @if ( Auth::user()?->id === 1 )
+                @if ( Auth::id() === 1 )
                     <th>User</th>
                 @endif
                 <th>When</th>
@@ -28,7 +28,7 @@
             @foreach ($shared as $shared_file)
                 <tr>
                     <td>{{$shared_file['id']}}</td>
-                    @if (Auth::user()->id === 1)
+                    @if (Auth::id() === 1)
                         <td>{{$shared_file['user_email']}}</td>
                     @else
                         <td>Must be logged in as an admin to view user e-mail</td>
