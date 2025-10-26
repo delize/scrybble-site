@@ -7,7 +7,7 @@
 @endcloudflareTurnstile
 
 @section('content')
-    <div class="container">
+    <div class="container m-4">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
