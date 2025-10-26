@@ -1,27 +1,14 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CustomHostInformationController;
 use App\Http\Controllers\ConnectedGumroadLicenseController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CustomHostInformationController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentsController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\GumroadLicenseInformationController;
-use App\Http\Controllers\GumroadSaleController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InspectSyncController;
-use App\Http\Controllers\OnboardingStateController;
-use App\Http\Controllers\OnetimecodeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ReMarkableDocumentFeedbackController;
-use App\Http\Controllers\RMFiletreeController;
-use App\Http\Controllers\SentryTunnelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Passport\Passport;
 
 /*
 |--------------------------------------------------------------------------
