@@ -61,7 +61,7 @@ services:
     remarks:
         volumes:
             - ./storage/efs:/efs
-        image: "laauurraaa/remarks-server:wmwfyiqalxli8g83kml2r60hi75bqqcd"
+        image: "laauurraaa/remarks-server:latest"
         networks:
             - sail
 networks:
