@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Events\ReMarkableAuthenticatedEvent;
 use App\Exceptions\MissingRMApiAuthenticationTokenException;
+use App\Exceptions\RMApiNonZeroStatusCodeException;
 use App\Helpers\UserStorage;
 use App\Models\User;
 use App\Support\RmAuthenticationFile;
@@ -23,6 +24,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 use RuntimeException;
+use Sentry;
 
 /**
  *
@@ -71,8 +73,19 @@ class RMapi
         if (!chdir($this->storage->path(''))) {
             throw new RuntimeException('Could not cd into userdir');
         }
+        $output = [];
         try {
-            exec("$rmapi -ni $command 2>&1", $output, $exit_code);
+            $handle = popen("$rmapi -ni $command 2>&1", "r");
+            while ($line = fgets($handle)) {
+                $output []= $line;
+            }
+            $exit_code = pclose($handle);
+            if ($exit_code >= 128) {
+                $exit_code -= 128;
+            }
+            if ($exit_code === SIGPIPE) {
+                $exit_code = 0;
+            }
         } finally {
             chdir($cwd_before);
         }
@@ -120,11 +133,11 @@ class RMapi
             throw new RuntimeException('Failed to create token');
         }
         if ($exit_code !== 0) {
-            // unknown error for now
-            $user = Auth::user()->id;
-            Log::error("RMApi onetimecode failed for User#$user, exit_code=`$exit_code`, output=`$command_output`");
-            $support_email = config('app.support_email');
-            throw new RuntimeException("Unknown error, contact developer: $support_email");
+            Sentry::captureException(new RMApiNonZeroStatusCodeException(
+                'authenticate',
+                $exit_code,
+                explode("\n", $command_output)
+            ));
         }
         throw new RuntimeException('unknown error');
     }
@@ -165,8 +178,10 @@ class RMapi
             // a $line typically looks like
             // "[f] diary" (Note, that is a \t character, not a space!)
             // "[d]	2025"
+            Log::info("line is `$line`");
             preg_match('/\[([df])]\s*(.*)/', $line, $matches);
             [, $type, $filepath] = $matches;
+            Log::info("File or folder path is `$filepath`");
             return ['type' => $type, 'name' => $filepath, 'path' => $type === 'd' ? "$path$filepath/" : "$path$filepath"];
         })->values();
     }
