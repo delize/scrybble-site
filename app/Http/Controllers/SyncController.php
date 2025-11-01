@@ -40,11 +40,10 @@ class SyncController extends Controller
     public function show(Request $request, DownloadService $downloadService) {
         $user = Auth::user();
 
-        $request->integer('sync_id');
+        $sync_id = $request->integer('sync_id');
         $sync = Sync::select(['filename', 'created_at', 'completed', 'id', 'sync_id'])
             ->forUser(Auth::user())
-            ->orderByDesc("created_at")
-            ->first();
+            ->find($sync_id);
 
         $res = [
             "filename" => $sync->filename,
