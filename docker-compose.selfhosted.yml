@@ -130,7 +130,7 @@ services:
     networks:
       - scrybble-network
     volumes:
-      - /efs:/efs
+      - ./efs:/efs
 networks:
   scrybble-network:
     driver: bridge
