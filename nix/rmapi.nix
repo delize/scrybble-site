@@ -8,11 +8,11 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "ddvk";
       repo = "rmapi";
-      rev = "6ffeacbbdcaf3b744b03426a22ae6724dda4ba64";
-      sha256 = "sha256-+4WgTtscRw6dtxZI3J4b7jrv+RRglFMskoDzNN8TyPI=";
+      rev = "73b296193503e115c724c76bf6b7d745170a91a5";
+      sha256 = "sha256-IkUcU8xaPlyR3PA4bxX9LLxKmPct7MPOWHYa8O534HU=";
     };
 
-    vendorHash = "sha256-Qisfw+lCFZns13jRe9NskCaCKVj5bV1CV8WPpGBhKFc=";
+    vendorHash = "sha256-Qisfw+lCFZns13jRe9NskCaCKVj5bV1CV8WPpGBhKFc";
 
     CGO_ENABLED = 0;
 

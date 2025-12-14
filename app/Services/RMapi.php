@@ -75,7 +75,7 @@ class RMapi
         }
         $output = [];
         try {
-            $handle = popen("$rmapi -ni $command 2>&1", "r");
+            $handle = popen("$rmapi --json -ni $command 2>&1", "r");
             while ($line = fgets($handle)) {
                 $output []= $line;
             }
@@ -151,38 +151,41 @@ class RMapi
 
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
-
-            // Rare error once received from the API. If this ever happens again, look into it
-            // started happening again.
-            // https://streamsoft.sentry.io/issues/6663898108
-            // What's weird is that if you look at the `.rmapi-auth` file, the token is indeed empty.
-            // What empties this token? rmapi itself if something goes wrong?
-//            if (Str::contains($error, "missing token")) {
-//
-//            }
-
             throw new RuntimeException("rmapi ls path failed with exit code `$exit_code`: " . $error);
         }
 
-        return $output->reduce(function (Collection $joinedLines, string $line) use ($output) {
-            if (Str::startsWith($line, ["[d]", "[f]"])) {
-                $joinedLines->push($line);
-            } else {
-                Log::debug("Got a long line not starting with [d] or [f]");
-                Log::debug($line);
-                Log::debug(print_r($output, return: true));
-//                $joinedLines[count($joinedLines) - 1] .= $line;
+        $jsonOutput = $output->implode("");
+        $nodes = json_decode($jsonOutput, associative: true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new RuntimeException("Failed to parse rmapi JSON output: " . json_last_error_msg());
+        }
+
+        return collect($nodes)->map(function (array $node) use ($path) {
+            $type = match ($node['type']) {
+                'CollectionType' => 'd',
+                'DocumentType', 'TemplateType' => 'f',
+                default => 'f',
+            };
+            $name = $node['name'];
+
+            return [
+                'type' => $type,
+                'name' => $name,
+                'path' => $type === 'd' ? "$path$name/" : "$path$name",
+                'id' => $node['id'],
+                'version' => $node['version'] ?? null,
+                'modifiedClient' => $node['modifiedClient'] ?? null,
+                'currentPage' => $node['currentPage'] ?? null,
+                'tags' => $node['tags'] ?? [],
+                'starred' => $node['starred'] ?? false,
+            ];
+        })->sort(function ($a, $b) {
+            // Folders first, then files, alphabetically within each group
+            if ($a['type'] !== $b['type']) {
+                return $a['type'] === 'd' ? -1 : 1;
             }
-            return $joinedLines;
-        }, collect())->sort()->map(function ($line) use ($path) {
-            // a $line typically looks like
-            // "[f] diary" (Note, that is a \t character, not a space!)
-            // "[d]	2025"
-            Log::info("line is `$line`");
-            preg_match('/\[([df])]\s*(.*)/', $line, $matches);
-            [, $type, $filepath] = $matches;
-            Log::info("File or folder path is `$filepath`");
-            return ['type' => $type, 'name' => $filepath, 'path' => $type === 'd' ? "$path$filepath/" : "$path$filepath"];
+            return strcasecmp($a['name'], $b['name']);
         })->values();
     }
 
