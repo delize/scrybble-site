@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Sync;
 use App\Services\RMapi;
 use Eloquent\Pathogen\AbsolutePath;
@@ -11,6 +12,25 @@ use Illuminate\Support\Str;
 
 class RMFiletreeController extends Controller
 {
+    public function search(SearchRequest $request, RMapi $rmapi): JsonResponse
+    {
+        $files = $rmapi->find(
+            $request->input('query'),
+            $request->input('starred'),
+            $request->input('tags', [])
+        );
+
+        $syncs = Sync::syncMetadataForFiles($files->pluck('path'));
+
+        $filesWithSync = $files->map(fn($file) => [
+            ...$file,
+            'sync' => $syncs[$file['path']] ?? null,
+        ]);
+
+        return response()->json([
+            'items' => $filesWithSync,
+        ]);
+    }
 
     public function index(Request $request, RMapi $rmapi): JsonResponse
     {
@@ -25,18 +45,8 @@ class RMFiletreeController extends Controller
             $filesAndFolders->prepend(['type' => 'd', 'name' => '..', 'path' => $parent]);
         }
 
-        $files = $filesAndFolders->filter(fn($item) => $item['type'] === "f")->map(fn($item) => $item['path']);
-
-        $syncs = Sync::fromSub(function ($query) use ($files) {
-            return $query->select('*')
-                ->selectRaw('ROW_NUMBER() OVER (PARTITION BY filename ORDER BY created_at DESC) as rowNumber')
-                ->from('sync')
-                ->whereIn('filename', $files);
-        }, 'ranked_sync')
-            ->where('rowNumber', 1)
-            ->get()
-            ->map(Sync::formatForResponse(...))
-            ->keyBy('path');
+        $filePaths = $filesAndFolders->filter(fn($item) => $item['type'] === "f")->pluck('path');
+        $syncs = Sync::syncMetadataForFiles($filePaths);
 
         $filesAndFolders = $filesAndFolders->map(fn($fileOrFolder) => [
             ...$fileOrFolder,

@@ -7,6 +7,7 @@ use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
 use App\Http\Controllers\OnetimecodeController;
 use App\Http\Controllers\ReMarkableDocumentFeedbackController;
+use App\Http\Controllers\ResetReMarkableConnectionController;
 use App\Http\Controllers\RMFiletreeController;
 use App\Http\Controllers\SyncController;
 use App\Models\Sync;
@@ -39,10 +40,12 @@ Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static fu
     Route::get('sync/delta', [SyncController::class, 'index']);
     Route::get('sync/onboardingState', OnboardingStateController::class);
     Route::post('sync/RMFileTree', [RMFiletreeController::class, 'index']);
+    Route::post('sync/search', [RMFiletreeController::class, 'search']);
     Route::get('sync/inspect-sync', [InspectSyncController::class, 'index']);
 
     Route::post('sync/gumroadLicense', [ConnectedGumroadLicenseController::class, "store"]);
     Route::post('sync/onetimecode', [OnetimecodeController::class, 'create']);
+    Route::delete('sync/remarkable-connection', [ResetReMarkableConnectionController::class, 'destroy']);
 
     Route::get('/sync/user', function (Request $request, GumroadService $gumroadService, OnboardingStateService $onboardingStateService) {
         $user = $request->user();

@@ -143,6 +143,63 @@ class RMapi
     }
 
     /**
+     * Search for files recursively using rmapi find command.
+     */
+    public function find(?string $query = null, ?bool $starred = null, array $tags = []): Collection
+    {
+        $commandParts = ['find'];
+
+        if ($starred === true) {
+            $commandParts[] = '--starred';
+        }
+
+        foreach ($tags as $tag) {
+            $commandParts[] = '--tag=' . escapeshellarg($tag);
+        }
+
+        $commandParts[] = '/';
+
+        if ($query !== null && $query !== '') {
+            $commandParts[] = escapeshellarg($query);
+        }
+
+        [$output, $exit_code] = $this->executeRMApiCommand(implode(' ', $commandParts));
+
+        if ($exit_code !== 0) {
+            $error = implode("\n", $output->toArray());
+            throw new RuntimeException("rmapi find failed with exit code `$exit_code`: " . $error);
+        }
+
+        $jsonOutput = $output->implode("");
+        $nodes = json_decode($jsonOutput, associative: true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new RuntimeException("Failed to parse rmapi JSON output: " . json_last_error_msg());
+        }
+
+        return collect($nodes)->map(function (array $node) {
+            $type = match ($node['type']) {
+                'CollectionType' => 'd',
+                'DocumentType', 'TemplateType' => 'f',
+                default => 'f',
+            };
+
+            return [
+                'type' => $type,
+                'name' => $node['name'],
+                'path' => '/' . $node['name'],
+                'id' => $node['id'],
+                'version' => $node['version'] ?? null,
+                'modifiedClient' => $node['modifiedClient'] ?? null,
+                'currentPage' => $node['currentPage'] ?? null,
+                'tags' => $node['tags'] ?? [],
+                'starred' => $node['starred'] ?? false,
+            ];
+        })->filter(fn($item) => $item['type'] === 'f')
+          ->values();
+    }
+
+    /**
      *
      */
     public function list(string $path = '/'): Collection

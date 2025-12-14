@@ -3,22 +3,23 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Database\Factories\SyncFactory;
 use Eloquent\Pathogen\AbsolutePath;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
-class Sync extends Model {
+class Sync extends Model
+{
     use HasFactory;
-    
+
     protected $table = 'sync';
 
     protected $fillable = [
         'user_id',
-        'filename', 
+        'filename',
         'completed',
         'sync_id'
     ];
@@ -30,7 +31,8 @@ class Sync extends Model {
     /**
      * @return BelongsTo
      */
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -39,15 +41,18 @@ class Sync extends Model {
      * @param User $user
      * @return Builder
      */
-    public function scopeForUser(Builder $query, User $user): Builder {
+    public function scopeForUser(Builder $query, User $user): Builder
+    {
         return $query->where('user_id', $user->id);
     }
 
-    public function scopeWhereIsCompleted(Builder $query) {
+    public function scopeWhereIsCompleted(Builder $query)
+    {
         return $query->where('completed', true)->whereNotNull('sync_id');
     }
 
-    public function logs(): HasMany {
+    public function logs(): HasMany
+    {
         return $this->hasMany(SyncLog::class);
     }
 
@@ -65,7 +70,8 @@ class Sync extends Model {
         $this->save();
     }
 
-    public static function formatForResponse(self $sync): array {
+    public static function formatForResponse(self $sync): array
+    {
         return [
             'id' => $sync->id,
             'filename' => AbsolutePath::fromString($sync->filename)->name(),
@@ -74,5 +80,29 @@ class Sync extends Model {
             'completed' => $sync->completed,
             'error' => $sync->hasError()
         ];
+    }
+
+    /**
+     * Get the latest sync metadata for a collection of file paths, keyed by path.
+     *
+     * @param Collection<string> $filePaths
+     * @return Collection<string, array>
+     */
+    public static function syncMetadataForFiles(Collection $filePaths): Collection
+    {
+        if ($filePaths->isEmpty()) {
+            return collect();
+        }
+
+        return static::fromSub(
+            fn($query) => $query->select('*')
+                ->selectRaw('ROW_NUMBER() OVER (PARTITION BY filename ORDER BY created_at DESC) as rowNumber')
+                ->from('sync')
+                ->whereIn('filename', $filePaths),
+            'ranked_sync')
+            ->where('rowNumber', 1)
+            ->get()
+            ->map(static::formatForResponse(...))
+            ->keyBy('path');
     }
 }

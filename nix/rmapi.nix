@@ -6,13 +6,13 @@ let
     version = "unstable-${builtins.substring 0 8 src.rev}";
 
     src = pkgs.fetchFromGitHub {
-      owner = "ddvk";
+      owner = "scrybbling-together";
       repo = "rmapi";
-      rev = "73b296193503e115c724c76bf6b7d745170a91a5";
-      sha256 = "sha256-IkUcU8xaPlyR3PA4bxX9LLxKmPct7MPOWHYa8O534HU=";
+      rev = "be1fbc87581b34a4ec979665520d2dc6b165ff54";
+      sha256 = "sha256-VnQN2ta2PxJWOFuSKBS/5uBLUa4pLM1hUmA9tA5wquc=";
     };
 
-    vendorHash = "sha256-Qisfw+lCFZns13jRe9NskCaCKVj5bV1CV8WPpGBhKFc";
+    vendorHash = "sha256-Qisfw+lCFZns13jRe9NskCaCKVj5bV1CV8WPpGBhKFc=" ;
 
     CGO_ENABLED = 0;
 
