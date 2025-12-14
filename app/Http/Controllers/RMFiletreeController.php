@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Sync;
 use App\Services\RMapi;
 use Eloquent\Pathogen\AbsolutePath;
@@ -11,27 +12,14 @@ use Illuminate\Support\Str;
 
 class RMFiletreeController extends Controller
 {
-    public function search(Request $request, RMapi $rmapi): JsonResponse
+    public function search(SearchRequest $request, RMapi $rmapi): JsonResponse
     {
-        $request->validate([
-            'query' => 'nullable|string',
-            'starred' => 'nullable|boolean',
-            'tags' => 'nullable|array',
-            'tags.*' => 'string',
-        ]);
+        $files = $rmapi->find(
+            $request->input('query'),
+            $request->input('starred'),
+            $request->input('tags', [])
+        );
 
-        $query = $request->input('query');
-        $starred = $request->input('starred');
-        $tags = $request->input('tags', []);
-
-        if ($query === null && $starred === null && empty($tags)) {
-            return response()->json([
-                'message' => 'At least one filter (query, starred, or tags) must be provided.',
-                'errors' => ['filters' => ['At least one filter (query, starred, or tags) must be provided.']],
-            ], 422);
-        }
-
-        $files = $rmapi->find($query, $starred, $tags);
         $syncs = Sync::syncMetadataForFiles($files->pluck('path'));
 
         $filesWithSync = $files->map(fn($file) => [
