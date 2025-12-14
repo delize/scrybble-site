@@ -40,6 +40,7 @@ Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static fu
     Route::get('sync/delta', [SyncController::class, 'index']);
     Route::get('sync/onboardingState', OnboardingStateController::class);
     Route::post('sync/RMFileTree', [RMFiletreeController::class, 'index']);
+    Route::post('sync/search', [RMFiletreeController::class, 'search']);
     Route::get('sync/inspect-sync', [InspectSyncController::class, 'index']);
 
     Route::post('sync/gumroadLicense', [ConnectedGumroadLicenseController::class, "store"]);

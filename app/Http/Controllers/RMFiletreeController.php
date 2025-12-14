@@ -11,6 +11,38 @@ use Illuminate\Support\Str;
 
 class RMFiletreeController extends Controller
 {
+    public function search(Request $request, RMapi $rmapi): JsonResponse
+    {
+        $request->validate([
+            'query' => 'nullable|string',
+            'starred' => 'nullable|boolean',
+            'tags' => 'nullable|array',
+            'tags.*' => 'string',
+        ]);
+
+        $query = $request->input('query');
+        $starred = $request->input('starred');
+        $tags = $request->input('tags', []);
+
+        if ($query === null && $starred === null && empty($tags)) {
+            return response()->json([
+                'message' => 'At least one filter (query, starred, or tags) must be provided.',
+                'errors' => ['filters' => ['At least one filter (query, starred, or tags) must be provided.']],
+            ], 422);
+        }
+
+        $files = $rmapi->find($query, $starred, $tags);
+        $syncs = Sync::syncMetadataForFiles($files->pluck('path'));
+
+        $filesWithSync = $files->map(fn($file) => [
+            ...$file,
+            'sync' => $syncs[$file['path']] ?? null,
+        ]);
+
+        return response()->json([
+            'items' => $filesWithSync,
+        ]);
+    }
 
     public function index(Request $request, RMapi $rmapi): JsonResponse
     {
@@ -25,18 +57,8 @@ class RMFiletreeController extends Controller
             $filesAndFolders->prepend(['type' => 'd', 'name' => '..', 'path' => $parent]);
         }
 
-        $files = $filesAndFolders->filter(fn($item) => $item['type'] === "f")->map(fn($item) => $item['path']);
-
-        $syncs = Sync::fromSub(function ($query) use ($files) {
-            return $query->select('*')
-                ->selectRaw('ROW_NUMBER() OVER (PARTITION BY filename ORDER BY created_at DESC) as rowNumber')
-                ->from('sync')
-                ->whereIn('filename', $files);
-        }, 'ranked_sync')
-            ->where('rowNumber', 1)
-            ->get()
-            ->map(Sync::formatForResponse(...))
-            ->keyBy('path');
+        $filePaths = $filesAndFolders->filter(fn($item) => $item['type'] === "f")->pluck('path');
+        $syncs = Sync::syncMetadataForFiles($filePaths);
 
         $filesAndFolders = $filesAndFolders->map(fn($fileOrFolder) => [
             ...$fileOrFolder,

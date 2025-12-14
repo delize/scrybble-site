@@ -10,15 +10,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class Sync extends Model {
     use HasFactory;
-    
+
     protected $table = 'sync';
 
     protected $fillable = [
         'user_id',
-        'filename', 
+        'filename',
         'completed',
         'sync_id'
     ];
@@ -74,5 +75,29 @@ class Sync extends Model {
             'completed' => $sync->completed,
             'error' => $sync->hasError()
         ];
+    }
+
+    /**
+     * Get the latest sync metadata for a collection of file paths, keyed by path.
+     *
+     * @param Collection<string> $filePaths
+     * @return Collection<string, array>
+     */
+    public static function syncMetadataForFiles(Collection $filePaths): Collection
+    {
+        if ($filePaths->isEmpty()) {
+            return collect();
+        }
+
+        return static::fromSub(function ($query) use ($filePaths) {
+            return $query->select('*')
+                ->selectRaw('ROW_NUMBER() OVER (PARTITION BY filename ORDER BY created_at DESC) as rowNumber')
+                ->from('sync')
+                ->whereIn('filename', $filePaths);
+        }, 'ranked_sync')
+            ->where('rowNumber', 1)
+            ->get()
+            ->map(static::formatForResponse(...))
+            ->keyBy('path');
     }
 }
