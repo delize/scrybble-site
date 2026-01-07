@@ -39,4 +39,18 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    /**
+     * Indicate that the user is an admin (ID 1).
+     *
+     * @return static
+     */
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'id' => 1,
+            ];
+        });
+    }
 }

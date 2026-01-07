@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ConnectedGumroadLicenseController;
+use App\Http\Controllers\DebugBundleController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
@@ -29,6 +30,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('debug-bundle')->middleware(['web'])->group(function () {
+    Route::get('{sync:sync_id}/input', [DebugBundleController::class, 'input']);
+    Route::get('{sync:sync_id}/full', [DebugBundleController::class, 'full']);
 });
 
 Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static function () {
