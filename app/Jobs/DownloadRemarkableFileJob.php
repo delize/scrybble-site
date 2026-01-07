@@ -19,7 +19,7 @@ class DownloadRemarkableFileJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(private SyncContext $sync_context)
+    public function __construct(public SyncContext $sync_context)
     {
     }
 
@@ -27,9 +27,21 @@ class DownloadRemarkableFileJob implements ShouldQueue
     {
         $RMapi = new RMapi($this->sync_context->user);
         $RMapi->refresh(strategy: "hard");
-        $this->sync_context->logStep("Downloading file");
+        $this->sync_context->logStep("Downloading file", [
+            'filename' => $this->sync_context->input_filename,
+            'rm_file_id' => $this->sync_context->rm_file_id,
+        ]);
         try {
-            $results = $RMapi->get($this->sync_context->input_filename);
+            if ($this->sync_context->rm_file_id !== null) {
+                // Use ID-based download
+                $results = $RMapi->getById(
+                    $this->sync_context->rm_file_id,
+                    $this->sync_context->input_filename
+                );
+            } else {
+                // Use legacy path-based download
+                $results = $RMapi->get($this->sync_context->input_filename);
+            }
         } catch (EmptyPathException|NonAbsolutePathException $e) {
             $this->sync_context->logError("Failed downloading file, looks like the input path is incorrect");
             return;

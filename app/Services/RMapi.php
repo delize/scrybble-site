@@ -313,6 +313,36 @@ class RMapi
     }
 
     /**
+     * Download a file by its reMarkable document ID.
+     *
+     * @throws RuntimeException
+     * @throws FileNotFoundException
+     */
+    public function getById(string $rmFileId, string $name): array
+    {
+        $escapedId = escapeshellarg($rmFileId);
+        [$output, $exit_code] = $this->executeRMApiCommand("get --id $escapedId");
+        if ($exit_code !== 0) {
+            if ($output && Str::contains($output->implode(""), "doesn't exist")) {
+                throw new FileNotFoundException("Failed downloading file, it doesn't seem to exist (have you deleted the file? Otherwise try resyncing the file on your device)");
+            }
+            throw new RuntimeException('RMapi `get --id` command failed for an unknown reason');
+        }
+
+        // Downloaded file is named after the document name, not the ID
+        $location = $this->getDownloadedZipLocation($name)->toRelative();
+
+        // Hash based on ID for uniqueness
+        $newLocation = static::hashedFilepath($rmFileId);
+        if (!$this->storage->move($location, $newLocation)) {
+            throw new RuntimeException("Unable to rename downloaded RMZip to hashed filePath " . $location . " to " . $newLocation);
+        }
+
+        // For ID-based downloads, we don't have the folder path
+        return ['output' => $output, 'downloaded_zip_location' => $newLocation, 'folder' => '/'];
+    }
+
+    /**
      * @return void
      */
     public function configureEnv(): void
