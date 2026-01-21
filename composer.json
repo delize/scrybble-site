@@ -6,12 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "8.3.*",
-        "ext-zip": "*",
         "ext-pcntl": "*",
+        "ext-zip": "*",
         "erusev/parsedown": "^1.7",
-        "filament/filament": "^3.3",
+        "filament/filament": "^4.0",
         "flowframe/laravel-trend": "^0.4.0",
-        "gboquizosanchez/filament-log-viewer": "^1.2",
+        "gboquizosanchez/filament-log-viewer": "^2.2",
         "guzzlehttp/guzzle": "^7.0",
         "laravel/fortify": "^1.14",
         "laravel/framework": "^12.0",
@@ -31,9 +31,11 @@
     "require-dev": {
         "ext-xdebug": "*",
         "fakerphp/faker": "^1.9.1",
+        "filament/upgrade": "^4.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.1",
+        "phpstan/phpstan": "*",
         "phpunit/phpunit": "^12.0.0",
         "spatie/laravel-ignition": "^2.0"
     },

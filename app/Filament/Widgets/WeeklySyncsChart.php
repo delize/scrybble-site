@@ -7,7 +7,7 @@ use App\Models\Sync;
 
 class WeeklySyncsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Weekly Syncs';
+    protected ?string $heading = 'Weekly Syncs';
 
     protected function getData(): array
     {

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 
-class RemarksHTTPServer implements Remarks\RemarksService
+class RemarksHTTPServer implements RemarksService
 {
 
     /**

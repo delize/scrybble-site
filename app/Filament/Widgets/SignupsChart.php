@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 
 class SignupsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Signups';
+    protected ?string $heading = 'Signups';
 
     protected function getData(): array
     {

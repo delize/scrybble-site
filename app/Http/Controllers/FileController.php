@@ -28,9 +28,6 @@ class FileController extends Controller
     public function show(Request $request): JsonResponse
     {
         $user = Auth::user();
-        if (!$user) {
-            throw new UnauthorizedException();
-        }
 
         $validated = $request->validate([
             'file' => 'nullable|string',
