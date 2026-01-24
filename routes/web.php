@@ -50,7 +50,10 @@ Route::group(['middleware' => ['auth']], static function () {
     Route::post('/connect-license', [ConnectedGumroadLicenseController::class, 'store'])->name('connect-license');
 });
 
-Route::get('prmdownload/{path}', [DownloadController::class, "download"])->where('path', '.*')->name('prmdownload');
+Route::get('prmdownload/{path}', [DownloadController::class, "download"])
+    ->where('path', '.*')
+    ->middleware('signed')
+    ->name('prmdownload');
 
 Route::group(['middleware' => 'auth'], static function () {
     Route::get('profile', ProfileController::class);
