@@ -32,7 +32,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('debug-bundle')->middleware(['web'])->group(function () {
+Route::prefix('debug-bundle')->middleware(['web', 'throttle:10,1'])->group(function () {
     Route::get('{sync:sync_id}/input', [DebugBundleController::class, 'input']);
     Route::get('{sync:sync_id}/full', [DebugBundleController::class, 'full']);
 });
