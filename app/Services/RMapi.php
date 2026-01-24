@@ -115,11 +115,33 @@ class RMapi
      */
     public function authenticate(string $code): bool
     {
+        // Validate code format (reMarkable codes are alphanumeric, 6-12 chars)
+        if (!preg_match('/^[a-zA-Z0-9]{6,12}$/', $code)) {
+            throw new InvalidArgumentException('Invalid code format');
+        }
+
         $rmapi = base_path('binaries/rmapi');
         $this->configureEnv();
-        $command = "echo $code | $rmapi";
-        exec($command, $output, $exit_code);
-        $command_output = implode("\n", $output);
+
+        $descriptorspec = [
+            0 => ['pipe', 'r'],  // stdin
+            1 => ['pipe', 'w'],  // stdout
+            2 => ['pipe', 'w'],  // stderr
+        ];
+
+        $process = proc_open($rmapi, $descriptorspec, $pipes);
+        if (!is_resource($process)) {
+            throw new RuntimeException('Failed to start rmapi process');
+        }
+
+        fwrite($pipes[0], $code . "\n");
+        fclose($pipes[0]);
+
+        $command_output = stream_get_contents($pipes[1]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+
+        $exit_code = proc_close($process);
 
         $index = Str::lower($command_output);
         if (Str::contains($index, 'refresh') || Str::contains($index, "syncversion: 1.5")) {
