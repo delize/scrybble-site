@@ -60,11 +60,11 @@ class RMapi
     }
 
     /**
-     * @param string $command
+     * @param array $args Command arguments to pass to rmapi
      * @return array
      */
     #[ArrayShape([Collection::class, 'int'])]
-    public function executeRMApiCommand(string $command): array
+    public function executeRMApiCommand(array $args): array
     {
         $this->configureEnv();
 
@@ -75,7 +75,14 @@ class RMapi
         }
         $output = [];
         try {
-            $handle = popen("$rmapi --json -ni $command 2>&1", "r");
+            // Build command with proper escaping
+            $commandParts = [escapeshellarg($rmapi), '--json', '-ni'];
+            foreach ($args as $arg) {
+                $commandParts[] = escapeshellarg($arg);
+            }
+            $command = implode(' ', $commandParts) . ' 2>&1';
+
+            $handle = popen($command, "r");
             while ($line = fgets($handle)) {
                 $output []= $line;
             }
@@ -147,23 +154,23 @@ class RMapi
      */
     public function find(?string $query = null, ?bool $starred = null, array $tags = []): Collection
     {
-        $commandParts = ['find'];
+        $args = ['find'];
 
         if ($starred === true) {
-            $commandParts[] = '--starred';
+            $args[] = '--starred';
         }
 
         foreach ($tags as $tag) {
-            $commandParts[] = '--tag=' . escapeshellarg($tag);
+            $args[] = '--tag=' . $tag;
         }
 
-        $commandParts[] = '/';
+        $args[] = '/';
 
         if ($query !== null && $query !== '') {
-            $commandParts[] = escapeshellarg($query);
+            $args[] = $query;
         }
 
-        [$output, $exit_code] = $this->executeRMApiCommand(implode(' ', $commandParts));
+        [$output, $exit_code] = $this->executeRMApiCommand($args);
 
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
@@ -204,7 +211,7 @@ class RMapi
      */
     public function list(string $path = '/'): Collection
     {
-        [$output, $exit_code] = $this->executeRMApiCommand("ls \"$path\"");
+        [$output, $exit_code] = $this->executeRMApiCommand(['ls', $path]);
 
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
@@ -254,7 +261,7 @@ class RMapi
     {
         $hardRefresh = fn() => $this->storage->delete("rmapi/tree.cache");
         $softRefresh = function () {
-            [$refresh_output, $refresh_exit_code] = $this->executeRMApiCommand("refresh");
+            [$refresh_output, $refresh_exit_code] = $this->executeRMApiCommand(['refresh']);
             if ($refresh_exit_code !== 0) {
                 $all_refresh_output = implode("\n", $refresh_output);
                 throw new RuntimeException("Failed to refresh: `$all_refresh_output`");
@@ -292,8 +299,7 @@ class RMapi
      */
     public function get(string $filePath): array
     {
-        $rmapi_download_path = escapeshellarg($filePath);
-        [$output, $exit_code] = $this->executeRMApiCommand("get $rmapi_download_path");
+        [$output, $exit_code] = $this->executeRMApiCommand(['get', $filePath]);
         if ($exit_code !== 0) {
             if ($output && Str::contains($output->implode(""), "file doesn't exist")) {
                 throw new FileNotFoundException("Failed downloading file, it doesn't seem to exist (have you deleted the file? Otherwise try resyncing the file on your device)");
@@ -320,8 +326,7 @@ class RMapi
      */
     public function getById(string $rmFileId, string $name): array
     {
-        $escapedId = escapeshellarg($rmFileId);
-        [$output, $exit_code] = $this->executeRMApiCommand("get --id $escapedId");
+        [$output, $exit_code] = $this->executeRMApiCommand(['get', '--id', $rmFileId]);
         if ($exit_code !== 0) {
             if ($output && Str::contains($output->implode(""), "doesn't exist")) {
                 throw new FileNotFoundException("Failed downloading file, it doesn't seem to exist (have you deleted the file? Otherwise try resyncing the file on your device)");
