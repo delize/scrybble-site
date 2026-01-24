@@ -5,6 +5,7 @@ namespace App\Services\Remarks;
 
 use Eloquent\Pathogen\AbsolutePathInterface;
 use RuntimeException;
+use Symfony\Component\Process\Process;
 
 /**
  *
@@ -20,20 +21,23 @@ class RemarksRunDockerContainer implements RemarksService
      */
     public function extractNotesAndHighlights(AbsolutePathInterface $sourceDirectory, AbsolutePathInterface $targetDirectory): string
     {
-        // docker run -v "$PWD/files":/store laauurraaa/remarks-bin /store /store --targets md
-        $source_dir = $sourceDirectory->string();
-        $target_dir = $targetDirectory->string();
-        $command =
+        $process = new Process([
+            'docker', 'run',
+            '-v', $sourceDirectory->string() . '/:/in',
+            '-v', $targetDirectory->string() . ':/out',
+            'laauurraaa/remarks-bin:' . $this->remarks_version,
+            '/in', '/out'
+        ]);
 
-            "docker run -v \"$source_dir/\":/in -v \"$target_dir\":/out laauurraaa/remarks-bin:{$this->remarks_version} /in /out 2>&1";
-        exec($command, $output, $result_code);
+        $process->run();
 
-        if ($result_code !== 0) {
-            throw new RuntimeException("remarks-bin docker failed with error_code: `$result_code`: `" . implode
-                ("\n", $output) . '`');
+        if (!$process->isSuccessful()) {
+            throw new RuntimeException(
+                "remarks-bin docker failed: " . $process->getErrorOutput()
+            );
         }
 
-        return implode("\n", $output);
+        return $process->getOutput();
     }
 
 }
