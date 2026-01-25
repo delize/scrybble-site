@@ -25,6 +25,7 @@ use InvalidArgumentException;
 use JetBrains\PhpStorm\ArrayShape;
 use RuntimeException;
 use Sentry;
+use Symfony\Component\Process\Process;
 
 /**
  *
@@ -60,37 +61,18 @@ class RMapi
     }
 
     /**
-     * @param string $command
+     * @param array $command
      * @return array
      */
     #[ArrayShape([Collection::class, 'int'])]
-    public function executeRMApiCommand(string $command): array
+    public function executeRMApiCommand(array $command): array
     {
-        $this->configureEnv();
+        [$outputLines, $exit_code] = $this->execWithProcess(
+            arguments: array_merge(['--json', '-ni'], $command),
+            workingDirectory: $this->storage->path('')
+        );
 
-        $rmapi = base_path('binaries/rmapi');
-        $cwd_before = getcwd();
-        if (!chdir($this->storage->path(''))) {
-            throw new RuntimeException('Could not cd into userdir');
-        }
-        $output = [];
-        try {
-            $handle = popen("$rmapi --json -ni $command 2>&1", "r");
-            while ($line = fgets($handle)) {
-                $output []= $line;
-            }
-            $exit_code = pclose($handle);
-            if ($exit_code >= 128) {
-                $exit_code -= 128;
-            }
-            if ($exit_code === SIGPIPE) {
-                $exit_code = 0;
-            }
-        } finally {
-            chdir($cwd_before);
-        }
-
-        $output = collect($output)->filter(function ($line) {
+        $output = collect($outputLines)->filter(function ($line) {
             if (Str::startsWith($line, 'Refreshing tree')) {
                 return false;
             }
@@ -110,16 +92,74 @@ class RMapi
     }
 
     /**
-     * @param string $code
-     * @return bool
+     * Execute rmapi command using Symfony Process
+     *
+     * @param array $arguments Additional arguments to pass to rmapi
+     * @param string|null $input Input to pass via stdin
+     * @param string|null $workingDirectory Working directory for the process
+     * @return array [output_lines, exit_code]
      */
-    public function authenticate(string $code): bool
+    private function execWithProcess(
+        ?array   $arguments = null,
+        ?string $input = null,
+        ?string $workingDirectory = null
+    ): array
     {
         $rmapi = base_path('binaries/rmapi');
-        $this->configureEnv();
-        $command = "echo $code | $rmapi";
-        exec($command, $output, $exit_code);
-        $command_output = implode("\n", $output);
+
+        // Build the process with rmapi + any additional arguments
+        if ($arguments !== null) {
+            $process = new Process(array_merge([$rmapi], $arguments));
+        } else {
+            $process = new Process([$rmapi]);
+        }
+        $process->setEnv([
+            'RMAPI_CONFIG' => $this->storage->path('.rmapi-auth'),
+            'XDG_CACHE_HOME' => $this->storage->path(''),
+        ]);
+        $process->setTimeout(60);
+
+        if ($input !== null) {
+            $process->setInput($input);
+        }
+
+        if ($workingDirectory !== null) {
+            $process->setWorkingDirectory($workingDirectory);
+        }
+
+        // Capture both stdout and stderr chronologically
+        $combinedOutput = [];
+        $process->run(function ($type, $buffer) use (&$combinedOutput) {
+            $combinedOutput[] = $buffer;
+        });
+
+        $exit_code = $process->getExitCode();
+
+        // Handle SIGPIPE like the original
+        if ($exit_code >= 128) {
+            $exit_code -= 128;
+        }
+        if ($exit_code === SIGPIPE) {
+            $exit_code = 0;
+        }
+
+        // Split combined output into lines
+        $allOutput = implode('', $combinedOutput);
+        $outputLines = explode("\n", $allOutput);
+
+        return [$outputLines, $exit_code];
+    }
+
+
+    public function authenticate(string $code): bool
+    {
+        // Validate code format (reMarkable codes are alphanumeric, 6-12 chars)
+        if (!preg_match('/^[a-zA-Z0-9]{6,12}$/', $code)) {
+            throw new InvalidArgumentException('Invalid code format');
+        }
+
+        [$outputLines, $exit_code] = $this->execWithProcess(input: $code);
+        $command_output = implode("\n", $outputLines);
 
         $index = Str::lower($command_output);
         if (Str::contains($index, 'refresh') || Str::contains($index, "syncversion: 1.5")) {
@@ -154,16 +194,16 @@ class RMapi
         }
 
         foreach ($tags as $tag) {
-            $commandParts[] = '--tag=' . escapeshellarg($tag);
+            $commandParts[] = "--tag=$tag";
         }
 
         $commandParts[] = '/';
 
         if ($query !== null && $query !== '') {
-            $commandParts[] = escapeshellarg($query);
+            $commandParts[] = $query;
         }
 
-        [$output, $exit_code] = $this->executeRMApiCommand(implode(' ', $commandParts));
+        [$output, $exit_code] = $this->executeRMApiCommand($commandParts);
 
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
@@ -196,7 +236,7 @@ class RMapi
                 'starred' => $node['starred'] ?? false,
             ];
         })->filter(fn($item) => $item['type'] === 'f')
-          ->values();
+            ->values();
     }
 
     /**
@@ -204,7 +244,7 @@ class RMapi
      */
     public function list(string $path = '/'): Collection
     {
-        [$output, $exit_code] = $this->executeRMApiCommand("ls \"$path\"");
+        [$output, $exit_code] = $this->executeRMApiCommand(['ls', $path]);
 
         if ($exit_code !== 0) {
             $error = implode("\n", $output->toArray());
@@ -254,7 +294,7 @@ class RMapi
     {
         $hardRefresh = fn() => $this->storage->delete("rmapi/tree.cache");
         $softRefresh = function () {
-            [$refresh_output, $refresh_exit_code] = $this->executeRMApiCommand("refresh");
+            [$refresh_output, $refresh_exit_code] = $this->executeRMApiCommand(['refresh']);
             if ($refresh_exit_code !== 0) {
                 $all_refresh_output = implode("\n", $refresh_output);
                 throw new RuntimeException("Failed to refresh: `$all_refresh_output`");
@@ -293,7 +333,7 @@ class RMapi
     public function get(string $filePath): array
     {
         $rmapi_download_path = escapeshellarg($filePath);
-        [$output, $exit_code] = $this->executeRMApiCommand("get $rmapi_download_path");
+        [$output, $exit_code] = $this->executeRMApiCommand(['get', $rmapi_download_path]);
         if ($exit_code !== 0) {
             if ($output && Str::contains($output->implode(""), "file doesn't exist")) {
                 throw new FileNotFoundException("Failed downloading file, it doesn't seem to exist (have you deleted the file? Otherwise try resyncing the file on your device)");
@@ -320,8 +360,7 @@ class RMapi
      */
     public function getById(string $rmFileId, string $name): array
     {
-        $escapedId = escapeshellarg($rmFileId);
-        [$output, $exit_code] = $this->executeRMApiCommand("get --id $escapedId");
+        [$output, $exit_code] = $this->executeRMApiCommand(['get', '--id', $rmFileId]);
         if ($exit_code !== 0) {
             if ($output && Str::contains($output->implode(""), "doesn't exist")) {
                 throw new FileNotFoundException("Failed downloading file, it doesn't seem to exist (have you deleted the file? Otherwise try resyncing the file on your device)");
@@ -345,10 +384,14 @@ class RMapi
     /**
      * @return void
      */
-    public function configureEnv(): void
+    public function configureEnv(): array
     {
         putenv('RMAPI_CONFIG=' . $this->storage->path('.rmapi-auth'));
         putenv('XDG_CACHE_HOME=' . $this->storage->path(''));
+
+        return [
+
+        ];
     }
 
 
