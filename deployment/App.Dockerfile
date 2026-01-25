@@ -14,7 +14,6 @@ RUN php artisan about
 FROM node:lts-alpine3.15 AS build-js
 ARG RELEASE_HASH
 COPY --from=build-php /app/ /app/
-COPY ../.env.azure-prod /app/.env
 WORKDIR /app/
 ENV RELEASE_HASH=$RELEASE_HASH
 RUN npm ci
@@ -47,7 +46,6 @@ COPY ./deployment/php/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY deployment/php/conf.d/php-overrides.ini /usr/local/etc/php/conf.d/php-overrides.ini
 COPY ./deployment/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-COPY ../.env.azure-prod /var/www/html/.env
 
 RUN a2enmod rewrite
 RUN a2enmod expires

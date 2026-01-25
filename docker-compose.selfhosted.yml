@@ -8,15 +8,19 @@ services:
     networks:
       - scrybble-network
     depends_on:
-      - redis
-      - remarks
+      redis:
+        condition: service_healthy
+      remarks:
+        condition: service_healthy
+      on_startup:
+        condition: service_completed_successfully
       # Uncomment if you want to use letsencrypt
-      # - nginx-proxy
+      # nginx-proxy:
+      #   condition: service_healthy
     expose:
       - "80"
     volumes:
       - app-cache:/var/www/html/storage/framework
-      - app-bootstrap-cache:/var/www/html/bootstrap/cache
       - ./efs/:/var/www/html/storage/efs/
       - ./.env:/var/www/html/.env
     environment:
@@ -55,13 +59,12 @@ services:
     depends_on:
       - redis
     volumes:
-      - app-cache:/var/www/html/storage/framework
-      - app-bootstrap-cache:/var/www/html/bootstrap/cache
       - ./.env:/var/www/html/.env
     command:
       - /bin/bash
       - -c
       - |
+        php /var/www/html/artisan migrate --force
         php /var/www/html/artisan optimize:clear
         php /var/www/html/artisan optimize
   horizon:
@@ -76,7 +79,6 @@ services:
     command: ["php", "/var/www/html/artisan", "horizon"]
     volumes:
       - app-cache:/var/www/html/storage/framework
-      - app-bootstrap-cache:/var/www/html/bootstrap/cache
       - ./efs/:/var/www/html/storage/efs/
       - ./.env:/var/www/html/.env
     environment:
@@ -138,8 +140,6 @@ volumes:
   app-redis:
     driver: local
   app-cache:
-    driver: local
-  app-bootstrap-cache:
     driver: local
   conf:
   vhost:
