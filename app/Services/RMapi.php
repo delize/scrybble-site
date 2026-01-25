@@ -153,11 +153,6 @@ class RMapi
 
     public function authenticate(string $code): bool
     {
-        // Validate code format (reMarkable codes are alphanumeric, 6-12 chars)
-        if (!preg_match('/^[a-zA-Z0-9]{6,12}$/', $code)) {
-            throw new InvalidArgumentException('Invalid code format');
-        }
-
         [$outputLines, $exit_code] = $this->execWithProcess(input: $code);
         $command_output = implode("\n", $outputLines);
 
