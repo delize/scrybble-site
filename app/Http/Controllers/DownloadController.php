@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\UserStorage;
+use Illuminate\Http\Request;
 
 class DownloadController extends Controller
 {
@@ -11,8 +12,9 @@ class DownloadController extends Controller
 
     }
 
-    public function download(string $path)
+    public function download(Request $request, string $path)
     {
-        return Storage::disk('efs')->download($path);
+        $storage = UserStorage::get($request->user());
+        return $storage->download($path);
     }
 }

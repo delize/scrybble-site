@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Sync;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RemarkableDocumentShareRequest extends FormRequest
@@ -18,6 +19,11 @@ class RemarkableDocumentShareRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        $sync = Sync::find($this->input('sync_id'));
+        if (!$sync) {
+            return false;
+        }
+
+        return $this->user()->id === $sync->user_id;
     }
 }

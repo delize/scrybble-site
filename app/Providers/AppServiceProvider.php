@@ -75,10 +75,5 @@ class AppServiceProvider extends ServiceProvider
                 Integration::configureScope(fn($scope) => $scope->setUser(['id' => $user->id]));
             });
         }
-
-        if (config('scrybble.storage_platform') === "disk") {
-            Storage::disk('efs')->buildTemporaryUrlsUsing(fn($path, $expiration, $options) => URL::temporarySignedRoute("prmdownload", $expiration, array_merge($options, ['path' => $path]))
-            );
-        }
     }
 }

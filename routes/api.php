@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\DebugBundleController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\InspectSyncController;
 use App\Http\Controllers\OnboardingStateController;
@@ -38,6 +39,11 @@ Route::prefix('debug-bundle')->middleware(['web'])->group(function () {
 });
 
 Route::group(['middleware' => ["auth:api", "throttle:180,1"]], routes: static function () {
+    Route::get('prmdownload/{path}', [DownloadController::class, "download"])
+        ->middleware('auth:api')
+        ->where('path', '.*')
+        ->name('prmdownload');
+
     Route::post('sync/file', [FileController::class, 'show']);
     Route::post('sync/status', [SyncController::class, 'show']);
 
