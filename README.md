@@ -200,8 +200,3 @@ The folder structure is shown below.
 ### Where can I view errors?
 
 Visit `http://{YOUR DOMAIN}/admin`, log-in with the admin account and select the "log viewer"
-
-## External resources
-
-- [Official Laravel documentation](https://laravel.com/docs/12.x/installation)
-- Article: [Self-Hosting Scrybble: reMarkable to Obsidian Sync with Lessons Learned](https://andrewdoering.org/blog/2026/hosting-scrybble/?utm_source=atom_feed#optional-using-rmfakecloud)
