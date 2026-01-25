@@ -44,7 +44,6 @@ Route::middleware(['middleware' => 'auth:sanctum'])->get('/sanctum/user', functi
 });
 
 Route::group(['middleware' => ['auth']], static function () {
-
     Route::post('/connect-license', [ConnectedGumroadLicenseController::class, 'store'])->name('connect-license');
 });
 

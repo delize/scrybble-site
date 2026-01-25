@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Helpers\FileManipulations;
+use App\Helpers\UserStorage;
+use App\Models\User;
 use Eloquent\Pathogen\RelativePath;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\GoneHttpException;
@@ -34,9 +36,9 @@ class DownloadService
      */
     public function prepareProcessedRemarksZipUrl(int $user_id, string $sync_id): string
     {
-        $storage = Storage::disk('efs');
+        $storage = UserStorage::get(User::find($user_id));
 
-        $path = "user-{$user_id}/processed/{$sync_id}.zip";
+        $path = "processed/{$sync_id}.zip";
         if ($storage->exists($path)) {
             return $storage->temporaryUrl($path, now()->addMinutes(5));
         }
