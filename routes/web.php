@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\ConnectedGumroadLicenseController;
 use App\Http\Controllers\CustomHostInformationController;
-use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SharedDocumentsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +52,7 @@ Route::group(['middleware' => 'auth'], static function () {
     Route::get('profile', ProfileController::class);
 });
 
-Route::get('shared_documents', [SharedDocumentsController::class, 'index']);
+// TODO: Temporarily disabled because the underlying logic was removed for security review
+//Route::get('shared_documents', [SharedDocumentsController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::redirect('/app/', '/home');
